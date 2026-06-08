@@ -1,0 +1,3797 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Solutions — Tinqbit</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #1e3a5a;
+        --cyan: #45bfe5;
+        --mid: #1490c8;
+        --light: #eef5fa;
+        --white: #ffffff;
+        --dark: #0f1f2e;
+        --muted: #5e7a8e;
+        --tint: #dff0fb;
+        --border: #e0eef6;
+        --grad: linear-gradient(135deg, #1e3a5a, #1490c8);
+        --nav-h: 100px;
+        --nav-bg: rgba(255, 255, 255, 0.97);
+        --nav-text: #0f1f2e;
+        --nav-sub: #5e7a8e;
+        --nav-hover: #e6f2fa;
+        --nav-border: rgba(30, 58, 90, 0.09);
+        --gfrom: #1e3a5a;
+        --gto: #1490c8;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Sora", sans-serif;
+        color: var(--dark);
+        background: var(--white);
+        overflow-x: hidden;
+        padding-top: var(--nav-h);
+      }
+      body.no-scroll {
+        overflow: hidden;
+      }
+      .navbar-main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--nav-h);
+        z-index: 1000;
+        background: var(--nav-bg);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--nav-border);
+        transition: box-shadow 0.3s;
+        font-family: "Manrope", sans-serif;
+      }
+      .navbar-main.scrolled {
+        box-shadow: 0 4px 32px rgba(15, 23, 42, 0.09);
+      }
+      .nav-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        gap: 0.5rem;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+        margin-right: 1.5rem;
+      }
+      .nav-logo img {
+        height: 52px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .nav-list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 100%;
+        flex: 1;
+        justify-content: center;
+        margin-bottom: 0;
+      }
+      .nav-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: static;
+      }
+      .nav-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        height: 100%;
+        padding: 0 0.8rem;
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--nav-text);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: "Manrope", sans-serif;
+        white-space: nowrap;
+        position: relative;
+        transition: color 0.2s;
+      }
+      .nav-trigger::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 22px;
+        height: 2.5px;
+        background: linear-gradient(90deg, var(--gfrom), var(--gto));
+        border-radius: 2px;
+        transition: transform 0.22s ease;
+      }
+      .nav-item:hover .nav-trigger {
+        color: var(--gfrom);
+      }
+      .nav-item:hover .nav-trigger::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+      .nav-trigger .chev {
+        width: 14px;
+        height: 14px;
+        opacity: 0.45;
+        transition:
+          transform 0.22s ease,
+          opacity 0.22s;
+        flex-shrink: 0;
+      }
+      .nav-item:hover .nav-trigger .chev {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      .mega {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow:
+          0 24px 64px rgba(15, 23, 42, 0.12),
+          0 8px 24px rgba(15, 23, 42, 0.06);
+        border-radius: 0 0 20px 20px;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          visibility 0.2s;
+      }
+      .nav-item:hover > .mega,
+      .mega:hover {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .mega-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1.75rem 2rem 2rem;
+      }
+      .mega-eyebrow {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--nav-sub);
+        margin-bottom: 1rem;
+      }
+      .mega-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+      }
+      .mi {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        padding: 0.7rem 0.65rem;
+        border-radius: 11px;
+        text-decoration: none;
+        transition: background 0.14s ease;
+      }
+      .mi:hover {
+        background: var(--nav-hover);
+      }
+      .mi-ic {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .mi-name {
+        display: block;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--nav-text);
+        line-height: 1.3;
+        transition: color 0.14s;
+        font-family: "Manrope", sans-serif;
+      }
+      .mi-desc {
+        display: block;
+        font-size: 0.71rem;
+        color: var(--nav-sub);
+        margin-top: 2px;
+        line-height: 1.3;
+        font-family: "Manrope", sans-serif;
+      }
+      .mi:hover .mi-name {
+        color: var(--gfrom);
+      }
+      .ci {
+        background: #dff0fb;
+        color: #1e3a5a;
+      }
+      .cv {
+        background: #d8edf8;
+        color: #1490c8;
+      }
+      .cb {
+        background: #dff0fb;
+        color: #1490c8;
+      }
+      .cs {
+        background: #d8f0fb;
+        color: #45bfe5;
+      }
+      .ce {
+        background: #ecfdf5;
+        color: #059669;
+      }
+      .ct {
+        background: #f0fdfa;
+        color: #0d9488;
+      }
+      .cr {
+        background: #fff1f2;
+        color: #e11d48;
+      }
+      .co {
+        background: #fff7ed;
+        color: #ea580c;
+      }
+      .ca {
+        background: #fffbeb;
+        color: #d97706;
+      }
+      .cp {
+        background: #fdf4ff;
+        color: #c026d3;
+      }
+      .csl {
+        background: #f8fafc;
+        color: #475569;
+      }
+      .ccn {
+        background: #ecfeff;
+        color: #0891b2;
+      }
+      .clm {
+        background: #f7fee7;
+        color: #65a30d;
+      }
+      .crd {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+      .cgr {
+        background: #dff0fb;
+        color: #1490c8;
+      }
+      .btn-cta-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: linear-gradient(135deg, var(--gfrom), var(--gto));
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        border-radius: 10px;
+        padding: 0.58rem 1.1rem;
+        white-space: nowrap;
+        cursor: pointer;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 16px rgba(30, 58, 90, 0.28);
+      }
+      .btn-cta-nav::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.18),
+          transparent
+        );
+        transition: left 0.45s ease;
+      }
+      .btn-cta-nav:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(30, 58, 90, 0.38);
+        color: #fff;
+      }
+      .btn-cta-nav:hover::before {
+        left: 160%;
+      }
+      .btn-cta-nav:active {
+        transform: translateY(0);
+      }
+      .nav-burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 9px;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .nav-burger:hover {
+        background: var(--nav-hover);
+      }
+      .nav-burger span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--nav-text);
+        border-radius: 2px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-burger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-burger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-burger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+      .mob-drawer {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 998;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 1.25rem 1rem 3rem;
+        font-family: "Manrope", sans-serif;
+        -webkit-overflow-scrolling: touch;
+      }
+      .mob-drawer.open {
+        transform: translateX(0);
+      }
+      .mob-acc {
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 0.55rem;
+      }
+      .mob-acc-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--nav-text);
+        background: #fff;
+        border: none;
+        cursor: pointer;
+        font-family: "Manrope", sans-serif;
+        transition: background 0.15s;
+      }
+      .mob-acc-btn:hover {
+        background: #f8fafc;
+      }
+      .mob-acc-btn.active {
+        color: var(--gfrom);
+      }
+      .mob-acc-btn .ac {
+        opacity: 0.4;
+        transition:
+          transform 0.22s,
+          opacity 0.22s;
+      }
+      .mob-acc-btn.active .ac {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      .mob-acc-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #f4f9fd;
+        border-top: 1px solid rgba(30, 58, 90, 0.06);
+      }
+      .mob-acc-body.open {
+        max-height: 700px;
+      }
+      .mob-acc-items {
+        padding: 0.5rem 0.75rem 0.75rem;
+      }
+      .mob-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.55rem 0.6rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--nav-text);
+        font-size: 0.83rem;
+        font-weight: 500;
+        font-family: "Manrope", sans-serif;
+        transition:
+          background 0.14s,
+          color 0.14s;
+      }
+      .mob-link:hover {
+        background: #dff0fb;
+        color: var(--gfrom);
+      }
+      .mob-ic {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .mob-cta {
+        padding: 1.25rem 0 0;
+      }
+      .mob-cta .btn-cta-nav {
+        width: 100%;
+        justify-content: center;
+        border-radius: 12px;
+        padding: 0.88rem;
+        font-size: 0.9rem;
+      }
+      .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.3);
+        z-index: 997;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s,
+          visibility 0.3s;
+      }
+      .nav-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      @media (max-width: 1024px) {
+        .nav-list {
+          display: none;
+        }
+        .btn-cta-nav {
+          display: none;
+        }
+        .nav-burger {
+          display: flex;
+        }
+      }
+      /* HERO */
+      .hero {
+        background: #0b1929;
+        position: relative;
+        overflow: hidden;
+        min-height: calc(100vh - var(--nav-h));
+        display: flex;
+        align-items: center;
+        padding: 5rem 1.5rem 4rem;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(69, 191, 229, 0.12) 1px,
+          transparent 1px
+        );
+        background-size: 32px 32px;
+        pointer-events: none;
+      }
+      .hero-blob1,
+      .hero-blob2 {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(80px);
+      }
+      .hero-blob1 {
+        width: 560px;
+        height: 420px;
+        background: rgba(20, 144, 200, 0.18);
+        top: -100px;
+        left: -120px;
+      }
+      .hero-blob2 {
+        width: 420px;
+        height: 380px;
+        background: rgba(69, 191, 229, 0.12);
+        bottom: -80px;
+        right: -80px;
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-bottom: 1.2rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1.5px;
+        background: var(--cyan);
+        border-radius: 2px;
+      }
+      .hero-h1 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+        margin-bottom: 1.4rem;
+      }
+      .hero-h1 .hl {
+        background: linear-gradient(90deg, #45bfe5, #7dd8f0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-desc {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(0.88rem, 1.3vw, 1rem);
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.75;
+        max-width: 480px;
+        margin-bottom: 2.2rem;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+      .btn-hero-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--grad);
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 0.8rem 1.6rem;
+        box-shadow: 0 6px 20px rgba(30, 58, 90, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn-hero-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(30, 58, 90, 0.5);
+        color: #fff;
+      }
+      .btn-hero-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(255, 255, 255, 0.8);
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 0.78rem 1.4rem;
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          background 0.2s;
+      }
+      .btn-hero-outline:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+        background: rgba(69, 191, 229, 0.07);
+      }
+      .hero-trust {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .trust-item svg {
+        color: var(--cyan);
+        flex-shrink: 0;
+      }
+      .hero-visual {
+        position: relative;
+        height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .metric-card {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 1.2rem 1.4rem;
+        color: #fff;
+        animation: mFloat 5s ease-in-out infinite;
+        min-width: 170px;
+      }
+      .metric-card:nth-child(1) {
+        top: 10%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+      .metric-card:nth-child(2) {
+        top: 38%;
+        right: 2%;
+        animation-delay: 1.2s;
+      }
+      .metric-card:nth-child(3) {
+        bottom: 10%;
+        left: 15%;
+        animation-delay: 2.4s;
+      }
+      @keyframes mFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .mc-label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 0.4rem;
+      }
+      .mc-value {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+      .mc-value .pos {
+        color: #45bfe5;
+      }
+      .mc-sub {
+        font-family: "Sora", sans-serif;
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .mc-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+        height: 32px;
+        margin-top: 0.6rem;
+      }
+      .mc-bars span {
+        flex: 1;
+        background: rgba(69, 191, 229, 0.3);
+        border-radius: 3px 3px 0 0;
+      }
+      .mc-bars span.hi {
+        background: #45bfe5;
+      }
+      .hero-ring {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        border: 1px solid rgba(69, 191, 229, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-ring-inner {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 1px solid rgba(69, 191, 229, 0.28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(69, 191, 229, 0.05);
+      }
+      .hero-ring-core {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 58, 90, 0.8),
+          rgba(20, 144, 200, 0.6)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(69, 191, 229, 0.25);
+      }
+      @media (max-width: 900px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-desc,
+        .hero-actions,
+        .hero-trust {
+          justify-content: center;
+        }
+        .hero-visual {
+          height: 280px;
+          order: -1;
+        }
+        .metric-card {
+          min-width: 140px;
+        }
+        .mc-value {
+          font-size: 1.4rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .hero {
+          padding: 3rem 1.25rem 2.5rem;
+          min-height: auto;
+        }
+        .hero-visual {
+          display: none;
+        }
+      }
+      /* SHARED */
+      .sec-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .sec-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .sec-eye {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-bottom: 1rem;
+      }
+      .sec-eye::before,
+      .sec-eye::after {
+        content: "";
+        height: 1.5px;
+        border-radius: 2px;
+        background: var(--cyan);
+      }
+      .sec-eye::before {
+        width: 26px;
+      }
+      .sec-eye::after {
+        width: 14px;
+      }
+      .sec-h2 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+        font-weight: 800;
+        color: var(--dark);
+        letter-spacing: -0.03em;
+        line-height: 1.18;
+        margin-bottom: 0.9rem;
+      }
+      .sec-lead {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(0.88rem, 1.3vw, 1rem);
+        color: var(--muted);
+        line-height: 1.75;
+        max-width: 580px;
+        margin: 0 auto;
+      }
+      /* SERVICES */
+      .services {
+        background: var(--light);
+        padding: 6.5rem 1.5rem;
+      }
+      .srv-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+      }
+      .srv-card {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 20px;
+        padding: 1.8rem 1.6rem 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s,
+          border-color 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .srv-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--grad);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .srv-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(30, 58, 90, 0.1);
+        border-color: var(--cyan);
+      }
+      .srv-card:hover::before {
+        transform: scaleX(1);
+      }
+      .srv-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-bottom: 0.25rem;
+        transition: transform 0.25s;
+      }
+      .srv-card:hover .srv-icon {
+        transform: scale(1.08);
+      }
+      .srv-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--dark);
+        letter-spacing: -0.015em;
+        line-height: 1.3;
+      }
+      .srv-desc {
+        font-family: "Sora", sans-serif;
+        font-size: 0.83rem;
+        color: var(--muted);
+        line-height: 1.7;
+        flex: 1;
+      }
+      .srv-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--navy);
+        text-decoration: none;
+        margin-top: 0.25rem;
+        transition:
+          gap 0.2s,
+          color 0.2s;
+      }
+      .srv-link:hover {
+        gap: 10px;
+        color: var(--cyan);
+      }
+      @media (max-width: 1024px) {
+        .srv-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 580px) {
+        .srv-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* TESTIMONIALS */
+      .testimonials {
+        background: var(--white);
+        padding: 6.5rem 1.5rem;
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.4rem;
+      }
+      .tcard {
+        background: var(--light);
+        border: 1.5px solid var(--border);
+        border-radius: 20px;
+        padding: 2rem 1.8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .tcard:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 38px rgba(30, 58, 90, 0.09);
+      }
+      .tcard-quote-mark {
+        font-family: Georgia, serif;
+        font-size: 4rem;
+        line-height: 0.8;
+        color: var(--cyan);
+        display: block;
+      }
+      .tcard-stars {
+        display: flex;
+        gap: 3px;
+      }
+      .tcard-stars svg {
+        color: #f59e0b;
+      }
+      .tcard-text {
+        font-family: "Sora", sans-serif;
+        font-size: 0.88rem;
+        color: #334155;
+        line-height: 1.75;
+        flex: 1;
+      }
+      .tcard-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+      .tcard-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--grad);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 800;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .tcard-name {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--dark);
+        display: block;
+      }
+      .tcard-role {
+        font-family: "Sora", sans-serif;
+        font-size: 0.75rem;
+        color: var(--muted);
+        display: block;
+        margin-top: 2px;
+      }
+      @media (max-width: 900px) {
+        .testi-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 580px) {
+        .testi-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* CONTACT */
+      .contact {
+        background: var(--light);
+        padding: 6.5rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact::before {
+        content: "";
+        position: absolute;
+        width: 480px;
+        height: 480px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(69, 191, 229, 0.08),
+          transparent 70%
+        );
+        top: -120px;
+        left: -100px;
+        pointer-events: none;
+      }
+      .contact-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 4rem;
+        align-items: start;
+        position: relative;
+        z-index: 1;
+      }
+      .contact-info .sec-eye {
+        margin-bottom: 1rem;
+      }
+      .contact-h2 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+        font-weight: 800;
+        color: var(--dark);
+        letter-spacing: -0.03em;
+        line-height: 1.18;
+        margin-bottom: 0.9rem;
+      }
+      .contact-lead {
+        font-family: "Sora", sans-serif;
+        font-size: 0.92rem;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 2.2rem;
+        max-width: 400px;
+      }
+      .cdet-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        margin-bottom: 2rem;
+      }
+      .cdet {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        padding: 1rem 1.15rem;
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 13px;
+        text-decoration: none;
+        transition:
+          border-color 0.22s,
+          box-shadow 0.22s,
+          transform 0.22s;
+      }
+      .cdet:hover {
+        border-color: var(--cyan);
+        box-shadow: 0 6px 22px rgba(30, 58, 90, 0.09);
+        transform: translateX(4px);
+      }
+      .cdet-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--tint);
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.22s,
+          color 0.22s;
+      }
+      .cdet:hover .cdet-icon {
+        background: var(--navy);
+        color: #fff;
+      }
+      .cdet-label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: block;
+        margin-bottom: 2px;
+      }
+      .cdet-value {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--dark);
+        display: block;
+        line-height: 1.4;
+      }
+      .wa-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #fff;
+        background: #25d366;
+        border-radius: 50px;
+        padding: 0.46rem 0.95rem;
+        text-decoration: none;
+        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .wa-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+        color: #fff;
+      }
+      .contact-form-wrap {
+        background: var(--white);
+        border-radius: 22px;
+        padding: 2.6rem 2.4rem;
+        box-shadow: 0 12px 44px rgba(30, 58, 90, 0.09);
+        border: 1.5px solid var(--border);
+      }
+      .form-head {
+        margin-bottom: 1.6rem;
+      }
+      .form-head h3 {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--dark);
+        letter-spacing: -0.025em;
+        margin-bottom: 0.3rem;
+      }
+      .form-head p {
+        font-family: "Sora", sans-serif;
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.95rem;
+        margin-bottom: 0.95rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .form-group.full {
+        grid-column: 1/-1;
+      }
+      .form-group label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.73rem;
+        font-weight: 700;
+        color: var(--dark);
+        letter-spacing: 0.02em;
+      }
+      .form-group label span {
+        color: var(--cyan);
+        margin-left: 2px;
+      }
+      .fc {
+        font-family: "Sora", sans-serif;
+        font-size: 0.875rem;
+        color: var(--dark);
+        background: #f8fbfd;
+        border: 1.5px solid #d8ebf5;
+        border-radius: 9px;
+        padding: 0.68rem 0.9rem;
+        outline: none;
+        width: 100%;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+        resize: none;
+      }
+      .fc::placeholder {
+        color: #9ab4c4;
+      }
+      .fc:focus {
+        border-color: var(--cyan);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(69, 191, 229, 0.13);
+      }
+      textarea.fc {
+        min-height: 128px;
+        line-height: 1.65;
+      }
+      .form-submit {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 1.3rem;
+      }
+      .form-note {
+        font-family: "Sora", sans-serif;
+        font-size: 0.72rem;
+        color: #9ab4c4;
+        line-height: 1.5;
+      }
+      .btn-send {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--grad);
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.86rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 9px;
+        padding: 0.72rem 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(30, 58, 90, 0.26);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+      }
+      .btn-send:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(30, 58, 90, 0.36);
+      }
+      @media (max-width: 900px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+      @media (max-width: 580px) {
+        .contact {
+          padding: 4rem 1.25rem;
+        }
+        .contact-form-wrap {
+          padding: 1.8rem 1.4rem;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-submit {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn-send {
+          justify-content: center;
+        }
+      }
+      /* FOOTER */
+      .site-footer {
+        background: #0d1b2a;
+      }
+      .footer-top {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 2.5rem 1.5rem;
+      }
+      .footer-top-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      .footer-logo img {
+        height: 32px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.85;
+      }
+      .footer-tagline {
+        font-family: "Sora", sans-serif;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.38);
+        margin-top: 6px;
+      }
+      .footer-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
+      .footer-nav-links a {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.45);
+        text-decoration: none;
+        padding: 0.28rem 0.6rem;
+        border-radius: 6px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .footer-nav-links a:hover {
+        color: var(--cyan);
+        background: rgba(69, 191, 229, 0.08);
+      }
+      .footer-socials {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .soc-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .soc-btn:hover {
+        background: rgba(69, 191, 229, 0.15);
+        color: var(--cyan);
+        border-color: rgba(69, 191, 229, 0.3);
+      }
+      .footer-bottom {
+        padding: 1.1rem 1.5rem;
+      }
+      .footer-bottom-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .footer-copy {
+        font-family: "Sora", sans-serif;
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.3);
+        line-height: 1.5;
+      }
+      .footer-copy strong {
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 600;
+      }
+      .footer-legal {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .footer-legal a {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.73rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .footer-legal a:hover {
+        color: var(--cyan);
+      }
+      .footer-legal .dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        flex-shrink: 0;
+      }
+      @media (max-width: 768px) {
+        .footer-top-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .footer-bottom-inner {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .footer-legal {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar-main" id="navbar">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo"
+          ><img src="/logo_full.png" alt="Tinqbit"
+        /></a>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Digital Marketing<svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">Digital Marketing Services</p>
+                <div class="mega-grid">
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">SEO Services</span
+                      ><span class="mi-desc"
+                        >Rank higher, grow organically</span
+                      >
+                    </div></a
+                  >
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic cs">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                        />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Local SEO</span
+                      ><span class="mi-desc">Dominate local searches</span>
+                    </div></a
+                  >
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                        <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Social Media Marketing</span
+                      ><span class="mi-desc"
+                        >Build &amp; engage your audience</span
+                      >
+                    </div></a
+                  >
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic co">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                        <path d="m13 13 6 6" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">PPC Advertising</span
+                      ><span class="mi-desc">ROI-driven paid campaigns</span>
+                    </div></a
+                  >
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                        />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" x2="8" y1="13" y2="13" />
+                        <line x1="16" x2="8" y1="17" y2="17" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Content Marketing</span
+                      ><span class="mi-desc">Stories that convert</span>
+                    </div></a
+                  >
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Email Marketing</span
+                      ><span class="mi-desc">Nurture leads at scale</span>
+                    </div></a
+                  >
+                  <a href="digital-marketing.html" class="mi"
+                    ><div class="mi-ic crd">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Online Reputation</span
+                      ><span class="mi-desc">Protect your brand online</span>
+                    </div></a
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Web Development<svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">Web Development Services</p>
+                <div class="mega-grid">
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Custom Website Dev</span
+                      ><span class="mi-desc"
+                        >Pixel-perfect, performance-first</span
+                      >
+                    </div></a
+                  >
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="8" cy="21" r="1" />
+                        <circle cx="19" cy="21" r="1" />
+                        <path
+                          d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">E-Commerce Dev</span
+                      ><span class="mi-desc">Sell more, convert better</span>
+                    </div></a
+                  >
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                        <path d="M3 9h18" />
+                        <path d="M9 21V9" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">WordPress Development</span
+                      ><span class="mi-desc">Powerful, flexible CMS sites</span>
+                    </div></a
+                  >
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic cv">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Web Application Dev</span
+                      ><span class="mi-desc">Scalable, robust web apps</span>
+                    </div></a
+                  >
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+                        />
+                        <path
+                          d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"
+                        />
+                        <path
+                          d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">UI/UX Design</span
+                      ><span class="mi-desc"
+                        >Intuitive, stunning interfaces</span
+                      >
+                    </div></a
+                  >
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic ca">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Website Maintenance</span
+                      ><span class="mi-desc">Always fast, always secure</span>
+                    </div></a
+                  >
+                  <a href="web-development.html" class="mi"
+                    ><div class="mi-ic ct">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+                        />
+                        <path d="M21 3v5h-5" />
+                        <path
+                          d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+                        />
+                        <path d="M8 16H3v5" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Website Redesign</span
+                      ><span class="mi-desc">Refresh, modernise, convert</span>
+                    </div></a
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">
+              IT Solutions<svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">IT Solutions &amp; Services</p>
+                <div class="mega-grid">
+                  <a href="software-development.html" class="mi"
+                    ><div class="mi-ic csl">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="4 17 10 11 4 5" />
+                        <line x1="12" x2="20" y1="19" y2="19" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Software Development</span
+                      ><span class="mi-desc"
+                        >Custom software, built to scale</span
+                      >
+                    </div></a
+                  >
+                  <a href="mobile-app-development.html" class="mi"
+                    ><div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          width="14"
+                          height="20"
+                          x="5"
+                          y="2"
+                          rx="2"
+                          ry="2"
+                        />
+                        <path d="M12 18h.01" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Mobile App Development</span
+                      ><span class="mi-desc"
+                        >iOS &amp; Android, native or hybrid</span
+                      >
+                    </div></a
+                  >
+                  <a href="cloud-solutions.html" class="mi"
+                    ><div class="mi-ic cs">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Cloud Solutions</span
+                      ><span class="mi-desc">Migrate, optimise, automate</span>
+                    </div></a
+                  >
+                  <a href="it-consulting.html" class="mi"
+                    ><div class="mi-ic ca">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                        />
+                        <path d="M9 18h6" />
+                        <path d="M10 22h4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">IT Consulting</span
+                      ><span class="mi-desc">Strategy-led tech advisory</span>
+                    </div></a
+                  >
+                  <a href="erp-solutions.html" class="mi"
+                    ><div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="7" height="7" x="3" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="14" rx="1" />
+                        <rect width="7" height="7" x="3" y="14" rx="1" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">ERP Solutions</span
+                      ><span class="mi-desc">Streamline every operation</span>
+                    </div></a
+                  >
+                  <a href="crm-development.html" class="mi"
+                    ><div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">CRM Development</span
+                      ><span class="mi-desc"
+                        >Know &amp; grow your customers</span
+                      >
+                    </div></a
+                  >
+                  <a href="#services" class="mi"
+                    ><div class="mi-ic crd">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="11"
+                          x="3"
+                          y="11"
+                          rx="2"
+                          ry="2"
+                        />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Cyber Security</span
+                      ><span class="mi-desc">Protect, detect, respond</span>
+                    </div></a
+                  >
+                  <a href="#services" class="mi"
+                    ><div class="mi-ic cv">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="16" height="16" x="4" y="4" rx="2" />
+                        <rect width="6" height="6" x="9" y="9" rx="1" />
+                        <path d="M15 2v2" />
+                        <path d="M15 20v2" />
+                        <path d="M2 15h2" />
+                        <path d="M20 15h2" />
+                        <path d="M2 9h2" />
+                        <path d="M20 9h2" />
+                        <path d="M9 2v2" />
+                        <path d="M9 20v2" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">AI &amp; Automation</span
+                      ><span class="mi-desc">Intelligent systems at scale</span>
+                    </div></a
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Company<svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">About Tinqbit</p>
+                <div class="mega-grid">
+                  <a href="index.html#about" class="mi"
+                    ><div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4" />
+                        <path d="M12 8h.01" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">About Us</span
+                      ><span class="mi-desc"
+                        >Our story, mission &amp; values</span
+                      >
+                    </div></a
+                  >
+                  <a href="#" class="mi"
+                    ><div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <polyline points="16 11 18 13 22 9" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Our Team</span
+                      ><span class="mi-desc">The people behind the work</span>
+                    </div></a
+                  >
+                  <a href="#" class="mi"
+                    ><div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="18"
+                          x="3"
+                          y="3"
+                          rx="2"
+                          ry="2"
+                        />
+                        <circle cx="9" cy="9" r="2" />
+                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Portfolio</span
+                      ><span class="mi-desc">Work we're proud of</span>
+                    </div></a
+                  >
+                  <a href="#" class="mi"
+                    ><div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <line x1="18" x2="18" y1="20" y2="10" />
+                        <line x1="12" x2="12" y1="20" y2="4" />
+                        <line x1="6" x2="6" y1="20" y2="14" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Case Studies</span
+                      ><span class="mi-desc">Real results, real clients</span>
+                    </div></a
+                  >
+                  <a href="#" class="mi"
+                    ><div class="mi-ic co">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                        />
+                        <path
+                          d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Careers</span
+                      ><span class="mi-desc">Join our growing team</span>
+                    </div></a
+                  >
+                  <a href="#" class="mi"
+                    ><div class="mi-ic ct">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 20h9" />
+                        <path
+                          d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Blog</span
+                      ><span class="mi-desc"
+                        >Insights &amp; industry trends</span
+                      >
+                    </div></a
+                  >
+                  <a href="#" class="mi"
+                    ><div class="mi-ic ca">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polygon
+                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Testimonials</span
+                      ><span class="mi-desc">What our clients say</span>
+                    </div></a
+                  >
+                  <a href="#contact" class="mi"
+                    ><div class="mi-ic cgr">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Contact Us</span
+                      ><span class="mi-desc">Let's start a conversation</span>
+                    </div></a
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <a href="#contact" class="btn-cta-nav"
+          >Get Free Consultation<svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" /></svg
+        ></a>
+        <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mob-drawer" id="mobDrawer">
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="dm">
+          Digital Marketing<svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-dm">
+          <div class="mob-acc-items">
+            <a href="digital-marketing.html" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </div>
+              SEO Services</a
+            ><a href="digital-marketing.html" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                  <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                </svg>
+              </div>
+              Social Media Marketing</a
+            ><a href="digital-marketing.html" class="mob-link"
+              ><div class="mob-ic co">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                </svg>
+              </div>
+              PPC Advertising</a
+            ><a href="digital-marketing.html" class="mob-link"
+              ><div class="mob-ic crd">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              Online Reputation Management</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="wd">
+          Web Development<svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-wd">
+          <div class="mob-acc-items">
+            <a href="web-development.html" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="14" x="2" y="3" rx="2" />
+                  <line x1="8" x2="16" y1="21" y2="21" />
+                  <line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+              </div>
+              Custom Website Development</a
+            ><a href="web-development.html" class="mob-link"
+              ><div class="mob-ic ce">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="8" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                  <path
+                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                  />
+                </svg>
+              </div>
+              E-Commerce Development</a
+            ><a href="web-development.html" class="mob-link"
+              ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              Web Application Development</a
+            ><a href="web-development.html" class="mob-link"
+              ><div class="mob-ic ct">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+                  />
+                  <path d="M21 3v5h-5" />
+                </svg>
+              </div>
+              Website Redesign</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="it">
+          IT Solutions<svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-it">
+          <div class="mob-acc-items">
+            <a href="software-development.html" class="mob-link"
+              ><div class="mob-ic csl">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" x2="20" y1="19" y2="19" />
+                </svg>
+              </div>
+              Software Development</a
+            ><a href="mobile-app-development.html" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="14" height="20" x="5" y="2" rx="2" />
+                  <path d="M12 18h.01" />
+                </svg>
+              </div>
+              Mobile App Development</a
+            ><a href="cloud-solutions.html" class="mob-link"
+              ><div class="mob-ic cs">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
+                  />
+                </svg>
+              </div>
+              Cloud Solutions</a
+            ><a href="it-consulting.html" class="mob-link"
+              ><div class="mob-ic crd">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              IT Consulting</a
+            ><a href="erp-solutions.html" class="mob-link"
+              ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="16" height="16" x="4" y="4" rx="2" />
+                  <rect width="6" height="6" x="9" y="9" rx="1" />
+                  <path d="M15 2v2" />
+                  <path d="M9 2v2" />
+                </svg>
+              </div>
+              ERP Solutions</a
+            ><a href="crm-development.html" class="mob-link"
+              ><div class="mob-ic csl">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" x2="20" y1="19" y2="19" />
+                </svg>
+              </div>
+              CRM Development</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="co">
+          Company<svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-co">
+          <div class="mob-acc-items">
+            <a href="index.html#about" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 16v-4" />
+                  <path d="M12 8h.01" />
+                </svg>
+              </div>
+              About Us</a
+            ><a href="#" class="mob-link"
+              ><div class="mob-ic co">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                  />
+                  <path
+                    d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+                  />
+                </svg>
+              </div>
+              Careers</a
+            ><a href="#contact" class="mob-link"
+              ><div class="mob-ic cgr">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              Contact Us</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="mob-cta">
+        <a href="#contact" class="btn-cta-nav"
+          >Get Free Consultation<svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" /></svg
+        ></a>
+      </div>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-blob1"></div>
+      <div class="hero-blob2"></div>
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow">IT Solutions &amp; Technology</div>
+          <h1 class="hero-h1">
+            Enterprise IT solutions that <span class="hl">scale</span> with your
+            ambitions
+          </h1>
+          <p class="hero-desc">
+            From custom software to AI automation, we build technology solutions
+            that eliminate inefficiency, reduce costs, and give your business a
+            decisive competitive edge.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-hero-primary"
+              >Get Free Consultation<svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+            <a href="#services" class="btn-hero-outline"
+              >Explore Services<svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" /></svg
+            ></a>
+          </div>
+          <div class="hero-trust">
+            <span class="trust-item"
+              ><svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" /></svg
+              >99.9% Uptime SLA</span
+            >
+            <span class="trust-item"
+              ><svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" /></svg
+              >500+ Deployments</span
+            >
+            <span class="trust-item"
+              ><svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" /></svg
+              >35% Avg Cost Reduction</span
+            >
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-ring">
+            <div class="hero-ring-inner">
+              <div class="hero-ring-core">
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.9)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="16" height="16" x="4" y="4" rx="2" />
+                  <rect width="6" height="6" x="9" y="9" rx="1" />
+                  <path d="M15 2v2" />
+                  <path d="M15 20v2" />
+                  <path d="M2 15h2" />
+                  <path d="M20 15h2" />
+                  <path d="M2 9h2" />
+                  <path d="M20 9h2" />
+                  <path d="M9 2v2" />
+                  <path d="M9 20v2" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">System Uptime</div>
+            <div class="mc-value">99.9<span class="pos">%</span></div>
+            <div class="mc-sub">guaranteed SLA</div>
+            <div class="mc-bars">
+              <span style="height: 90%"></span><span style="height: 92%"></span
+              ><span style="height: 95%"></span><span style="height: 97%"></span
+              ><span style="height: 98%" class="hi"></span
+              ><span style="height: 99%" class="hi"></span
+              ><span style="height: 100%" class="hi"></span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Cost Reduction</div>
+            <div class="mc-value">35<span class="pos">%</span></div>
+            <div class="mc-sub">avg across clients</div>
+            <div class="mc-bars">
+              <span style="height: 40%"></span><span style="height: 52%"></span
+              ><span style="height: 65%"></span><span style="height: 75%"></span
+              ><span style="height: 82%" class="hi"></span
+              ><span style="height: 90%" class="hi"></span
+              ><span style="height: 100%" class="hi"></span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Deployments</div>
+            <div class="mc-value">500<span class="pos">+</span></div>
+            <div class="mc-sub">systems live globally</div>
+            <div class="mc-bars">
+              <span style="height: 45%"></span><span style="height: 58%"></span
+              ><span style="height: 70%"></span
+              ><span style="height: 80%" class="hi"></span
+              ><span style="height: 88%" class="hi"></span
+              ><span style="height: 93%" class="hi"></span
+              ><span style="height: 100%" class="hi"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="sec-wrap">
+        <div class="sec-header">
+          <div class="sec-eye">What We Deliver</div>
+          <h2 class="sec-h2">Our IT solutions &amp; services</h2>
+          <p class="sec-lead">
+            From intelligent automation to enterprise software, we architect and
+            implement technology that drives real operational and financial
+            results.
+          </p>
+        </div>
+        <div class="srv-grid">
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #f8fafc; color: #475569">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" x2="20" y1="19" y2="19" />
+              </svg>
+            </div>
+            <div class="srv-title">Software Development</div>
+            <div class="srv-desc">
+              Custom software built for your exact workflows — not generic tools
+              with workarounds. Scalable, maintainable, and fully yours.
+            </div>
+            <a href="software-development.html" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #dff0fb; color: #1490c8">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                <path d="M12 18h.01" />
+              </svg>
+            </div>
+            <div class="srv-title">Mobile App Development</div>
+            <div class="srv-desc">
+              Native and cross-platform iOS &amp; Android apps that users love.
+              From MVP to enterprise-grade — we own the full lifecycle.
+            </div>
+            <a href="mobile-app-development.html" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #d8f0fb; color: #45bfe5">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+              </svg>
+            </div>
+            <div class="srv-title">Cloud Solutions</div>
+            <div class="srv-desc">
+              Migrate, optimise, and automate on AWS, Azure, or GCP. We cut
+              infrastructure costs and improve resilience without disruption.
+            </div>
+            <a href="cloud-solutions.html" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #fffbeb; color: #d97706">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                />
+                <path d="M9 18h6" />
+                <path d="M10 22h4" />
+              </svg>
+            </div>
+            <div class="srv-title">IT Consulting</div>
+            <div class="srv-desc">
+              Strategic technology advisory grounded in real-world experience.
+              We align IT investments with business goals and prevent costly
+              mistakes.
+            </div>
+            <a href="it-consulting.html" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #ecfdf5; color: #059669">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="7" height="7" x="3" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" />
+                <rect width="7" height="7" x="3" y="14" rx="1" />
+              </svg>
+            </div>
+            <div class="srv-title">ERP Solutions</div>
+            <div class="srv-desc">
+              Streamline operations across finance, HR, supply chain, and
+              production with ERP systems tailored to your industry's exact
+              requirements.
+            </div>
+            <a href="erp-solutions.html" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #dff0fb; color: #1e3a5a">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="srv-title">CRM Development</div>
+            <div class="srv-desc">
+              Know your customers better and serve them faster. Custom CRM
+              systems that centralise data and automate follow-ups to grow
+              revenue.
+            </div>
+            <a href="crm-development.html" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #fef2f2; color: #dc2626">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <div class="srv-title">Cyber Security</div>
+            <div class="srv-desc">
+              Protect your business with layered security — vulnerability
+              assessments, penetration testing, SOC monitoring, and incident
+              response.
+            </div>
+            <a href="#contact" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+          <div class="srv-card">
+            <div class="srv-icon" style="background: #d8edf8; color: #1490c8">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="16" height="16" x="4" y="4" rx="2" />
+                <rect width="6" height="6" x="9" y="9" rx="1" />
+                <path d="M15 2v2" />
+                <path d="M15 20v2" />
+                <path d="M2 15h2" />
+                <path d="M20 15h2" />
+                <path d="M2 9h2" />
+                <path d="M20 9h2" />
+                <path d="M9 2v2" />
+                <path d="M9 20v2" />
+              </svg>
+            </div>
+            <div class="srv-title">AI &amp; Automation</div>
+            <div class="srv-desc">
+              Intelligent automation that eliminates repetitive tasks and
+              surfaces insights. From RPA to machine learning built for real
+              business impact.
+            </div>
+            <a href="#contact" class="srv-link"
+              >Get Started<svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" /></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+      <div class="sec-wrap">
+        <div class="sec-header">
+          <div class="sec-eye">Client Stories</div>
+          <h2 class="sec-h2">Technology that delivers measurable results</h2>
+          <p class="sec-lead">
+            Here's what decision-makers say after partnering with Tinqbit for
+            their technology transformation.
+          </p>
+        </div>
+        <div class="testi-grid">
+          <div class="tcard">
+            <span class="tcard-quote-mark">"</span>
+            <div class="tcard-stars">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <p class="tcard-text">
+              Tinqbit migrated our entire infrastructure to AWS with zero
+              downtime. Our server costs dropped by 42% and performance improved
+              dramatically. Their cloud architects genuinely know what they're
+              doing.
+            </p>
+            <div class="tcard-author">
+              <div class="tcard-avatar">AG</div>
+              <div>
+                <span class="tcard-name">Ananya Gupta</span
+                ><span class="tcard-role">CTO, NextGenStartup</span>
+              </div>
+            </div>
+          </div>
+          <div class="tcard">
+            <span class="tcard-quote-mark">"</span>
+            <div class="tcard-stars">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <p class="tcard-text">
+              The custom ERP Tinqbit built replaced three separate systems we
+              were juggling. Our team's efficiency improved overnight and
+              reporting that used to take days now happens in real time.
+              Game-changing.
+            </p>
+            <div class="tcard-author">
+              <div class="tcard-avatar">RP</div>
+              <div>
+                <span class="tcard-name">Ravi Pillai</span
+                ><span class="tcard-role">IT Director, GlobalCorp India</span>
+              </div>
+            </div>
+          </div>
+          <div class="tcard">
+            <span class="tcard-quote-mark">"</span>
+            <div class="tcard-stars">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <p class="tcard-text">
+              After a security audit flagged critical vulnerabilities, Tinqbit
+              stepped in and completely secured our infrastructure within a
+              week. Their cyber security team is fast, thorough, and
+              communicates clearly throughout.
+            </p>
+            <div class="tcard-author">
+              <div class="tcard-avatar">DM</div>
+              <div>
+                <span class="tcard-name">Divya Menon</span
+                ><span class="tcard-role"
+                  >Managing Director, Precision Manufacturing</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <div class="contact-info">
+          <div class="sec-eye">Get In Touch</div>
+          <h2 class="contact-h2">Ready to transform your technology?</h2>
+          <p class="contact-lead">
+            Describe your IT challenge. Our engineers will review it and respond
+            with a technical roadmap within 24 hours.
+          </p>
+          <div class="cdet-list">
+            <div class="cdet">
+              <div class="cdet-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <span class="cdet-label">Our Office</span
+                ><span class="cdet-value"
+                  >12/A Digital Avenue, Tech Park<br />Innovation District,
+                  Kochi — 682 030</span
+                >
+              </div>
+            </div>
+            <a href="mailto:hello@tinqbit.com" class="cdet"
+              ><div class="cdet-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              <div>
+                <span class="cdet-label">Email Us</span
+                ><span class="cdet-value">hello@tinqbit.com</span>
+              </div></a
+            >
+            <a href="tel:+919876543210" class="cdet"
+              ><div class="cdet-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="cdet-label">Call Us</span
+                ><span class="cdet-value">+91 98765 43210</span>
+              </div></a
+            >
+            <a
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noopener"
+              class="cdet"
+              ><div class="cdet-icon">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="cdet-label">WhatsApp</span
+                ><span class="cdet-value">+91 98765 43210</span>
+              </div></a
+            >
+          </div>
+          <a
+            href="https://wa.me/919876543210"
+            target="_blank"
+            rel="noopener"
+            class="wa-badge"
+            ><svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+              /></svg
+            >Chat on WhatsApp</a
+          >
+        </div>
+        <div class="contact-form-wrap">
+          <div class="form-head">
+            <h3>Request a technical consultation</h3>
+            <p>
+              Tell us your challenge and we'll respond with a tailored technical
+              roadmap within 24 hours.
+            </p>
+          </div>
+          <form action="#" method="POST" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="c-name">Full Name <span>*</span></label
+                ><input
+                  id="c-name"
+                  name="name"
+                  type="text"
+                  class="fc"
+                  placeholder="John Smith"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="c-email">Email Address <span>*</span></label
+                ><input
+                  id="c-email"
+                  name="email"
+                  type="email"
+                  class="fc"
+                  placeholder="john@company.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="c-phone">Phone Number</label
+                ><input
+                  id="c-phone"
+                  name="phone"
+                  type="tel"
+                  class="fc"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+              <div class="form-group">
+                <label for="c-company">Company Name</label
+                ><input
+                  id="c-company"
+                  name="company"
+                  type="text"
+                  class="fc"
+                  placeholder="Your Company Ltd."
+                />
+              </div>
+              <div class="form-group full">
+                <label for="c-service">Service You're Interested In</label
+                ><select id="c-service" name="service" class="fc">
+                  <option value="" disabled selected>Select a service…</option>
+                  <option>Software Development</option>
+                  <option>Mobile App Development</option>
+                  <option>Cloud Solutions</option>
+                  <option>IT Consulting</option>
+                  <option>ERP Solutions</option>
+                  <option>CRM Development</option>
+                  <option>Cyber Security</option>
+                  <option>AI &amp; Automation</option>
+                  <option>Full IT Solutions Package</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label for="c-message"
+                  >Describe your IT challenge <span>*</span></label
+                ><textarea
+                  id="c-message"
+                  name="message"
+                  class="fc"
+                  placeholder="What technology problem are you facing? What does success look like for your business?"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="form-submit">
+              <p class="form-note">
+                We respond within 2 business hours.<br />Your data is never
+                shared.
+              </p>
+              <button type="submit" class="btn-send">
+                Send Request<svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <div>
+            <a href="index.html" class="footer-logo"
+              ><img src="/logo_full.png" alt="Tinqbit"
+            /></a>
+            <p class="footer-tagline">Digital Marketing &amp; IT Solutions</p>
+          </div>
+          <nav class="footer-nav-links">
+            <a href="index.html">Home</a
+            ><a href="digital-marketing.html">Digital Marketing</a
+            ><a href="web-development.html">Web Development</a
+            ><a href="index.html#about">About</a><a href="#contact">Contact</a>
+          </nav>
+          <div class="footer-socials">
+            <a href="#" class="soc-btn" aria-label="LinkedIn"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" /></svg
+            ></a>
+            <a href="#" class="soc-btn" aria-label="Twitter"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="soc-btn" aria-label="Instagram"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg
+            ></a>
+            <a href="#" class="soc-btn" aria-label="Facebook"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                /></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">
+            &copy; <span id="fyear"></span>
+            <strong>Tinqbit Digital Pvt. Ltd.</strong> All rights reserved.
+          </p>
+          <div class="footer-legal">
+            <a href="#">Terms &amp; Conditions</a><span class="dot"></span
+            ><a href="#">Privacy Policy</a><span class="dot"></span
+            ><a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const navbar = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => navbar.classList.toggle("scrolled", window.scrollY > 8),
+        { passive: true },
+      );
+      const burger = document.getElementById("navBurger"),
+        drawer = document.getElementById("mobDrawer"),
+        backdrop = document.getElementById("navBackdrop");
+      function openDrawer() {
+        burger.classList.add("open");
+        drawer.classList.add("open");
+        backdrop.classList.add("active");
+        document.body.classList.add("no-scroll");
+      }
+      function closeDrawer() {
+        burger.classList.remove("open");
+        drawer.classList.remove("open");
+        backdrop.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+      burger.addEventListener("click", () =>
+        drawer.classList.contains("open") ? closeDrawer() : openDrawer(),
+      );
+      backdrop.addEventListener("click", closeDrawer);
+      document.querySelectorAll(".mob-acc-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.acc,
+            body = document.getElementById("acc-" + id),
+            isOpen = body.classList.contains("open");
+          document
+            .querySelectorAll(".mob-acc-body")
+            .forEach((b) => b.classList.remove("open"));
+          document
+            .querySelectorAll(".mob-acc-btn")
+            .forEach((b) => b.classList.remove("active"));
+          if (!isOpen) {
+            body.classList.add("open");
+            btn.classList.add("active");
+          }
+        });
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDrawer();
+      });
+      const fyear = document.getElementById("fyear");
+      if (fyear) fyear.textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

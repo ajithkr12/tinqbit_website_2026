@@ -1,0 +1,5349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tinqbit — Digital Marketing & IT Solutions</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Variables ───────────────────────────────────── */
+      :root {
+        --cream: #eef5fa;
+        --dark: #0d1b2a;
+        --muted: #5e7a8e;
+        --orange: #f5a31a;
+        --blue-px: #1490c8;
+        --nav-h: 100px;
+        --nav-bg: rgba(255, 255, 255, 0.97);
+        --nav-text: #0f1f2e;
+        --nav-sub: #5e7a8e;
+        --nav-hover: #e6f2fa;
+        --nav-border: rgba(30, 58, 90, 0.09);
+        --gfrom: #1e3a5a;
+        --gto: #1490c8;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--cream);
+        font-family: "Sora", sans-serif;
+        color: var(--dark);
+        overflow-x: hidden;
+        padding-top: var(--nav-h);
+      }
+
+      body.no-scroll {
+        overflow: hidden;
+      }
+
+      /* ════════════════════════════════════════════════════
+       NAVBAR
+    ════════════════════════════════════════════════════ */
+      .navbar-main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--nav-h);
+        z-index: 1000;
+        background: var(--nav-bg);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--nav-border);
+        transition: box-shadow 0.3s;
+        font-family: "Manrope", sans-serif;
+      }
+
+      .navbar-main.scrolled {
+        box-shadow: 0 4px 32px rgba(15, 23, 42, 0.09);
+      }
+
+      .nav-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        gap: 0.5rem;
+      }
+
+      /* ── Logo ── */
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+        margin-right: 1.5rem;
+      }
+
+      .nav-logo img {
+        height: 52px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      /* ── Nav items ── */
+      .nav-list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 100%;
+        flex: 1;
+        justify-content: center;
+        margin-bottom: 0px;
+      }
+
+      .nav-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: static;
+      }
+
+      .nav-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        height: 100%;
+        padding: 0 0.8rem;
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--nav-text);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: "Manrope", sans-serif;
+        white-space: nowrap;
+        position: relative;
+        transition: color 0.2s;
+      }
+
+      .nav-trigger::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 22px;
+        height: 2.5px;
+        background: linear-gradient(90deg, var(--gfrom), var(--gto));
+        border-radius: 2px;
+        transition: transform 0.22s ease;
+      }
+
+      .nav-item:hover .nav-trigger {
+        color: var(--gfrom);
+      }
+      .nav-item:hover .nav-trigger::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      .nav-trigger .chev {
+        width: 14px;
+        height: 14px;
+        opacity: 0.45;
+        transition:
+          transform 0.22s ease,
+          opacity 0.22s;
+        flex-shrink: 0;
+      }
+
+      .nav-item:hover .nav-trigger .chev {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+
+      /* ════════════════════════════════════════════════════
+       MEGA MENU
+    ════════════════════════════════════════════════════ */
+      .mega {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow:
+          0 24px 64px rgba(15, 23, 42, 0.12),
+          0 8px 24px rgba(15, 23, 42, 0.06);
+        border-radius: 0 0 20px 20px;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          visibility 0.2s;
+      }
+
+      .nav-item:hover > .mega,
+      .mega:hover {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .mega-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1.75rem 2rem 2rem;
+      }
+
+      .mega-eyebrow {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--nav-sub);
+        margin-bottom: 1rem;
+      }
+
+      .mega-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+      }
+
+      .mi {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        padding: 0.7rem 0.65rem;
+        border-radius: 11px;
+        text-decoration: none;
+        transition: background 0.14s ease;
+      }
+
+      .mi:hover {
+        background: var(--nav-hover);
+      }
+
+      .mi-ic {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .mi-name {
+        display: block;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--nav-text);
+        line-height: 1.3;
+        transition: color 0.14s;
+        font-family: "Manrope", sans-serif;
+      }
+
+      .mi-desc {
+        display: block;
+        font-size: 0.71rem;
+        color: var(--nav-sub);
+        margin-top: 2px;
+        line-height: 1.3;
+        font-family: "Manrope", sans-serif;
+      }
+
+      .mi:hover .mi-name {
+        color: var(--gfrom);
+      }
+
+      /* Icon palette */
+      .ci {
+        background: #dff0fb;
+        color: #1e3a5a;
+      }
+      .cv {
+        background: #d8edf8;
+        color: #1490c8;
+      }
+      .cb {
+        background: #dff0fb;
+        color: #1490c8;
+      }
+      .cs {
+        background: #d8f0fb;
+        color: #45bfe5;
+      }
+      .ce {
+        background: #ecfdf5;
+        color: #059669;
+      }
+      .ct {
+        background: #f0fdfa;
+        color: #0d9488;
+      }
+      .cr {
+        background: #fff1f2;
+        color: #e11d48;
+      }
+      .co {
+        background: #fff7ed;
+        color: #ea580c;
+      }
+      .ca {
+        background: #fffbeb;
+        color: #d97706;
+      }
+      .cp {
+        background: #fdf4ff;
+        color: #c026d3;
+      }
+      .csl {
+        background: #f8fafc;
+        color: #475569;
+      }
+      .ccn {
+        background: #ecfeff;
+        color: #0891b2;
+      }
+      .clm {
+        background: #f7fee7;
+        color: #65a30d;
+      }
+      .crd {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+      .cgr {
+        background: #dff0fb;
+        color: #1490c8;
+      }
+
+      /* ── CTA Button ── */
+      .btn-cta-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: linear-gradient(135deg, var(--gfrom), var(--gto));
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        border-radius: 10px;
+        padding: 0.58rem 1.1rem;
+        white-space: nowrap;
+        cursor: pointer;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 16px rgba(30, 58, 90, 0.28);
+      }
+
+      .btn-cta-nav::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.18),
+          transparent
+        );
+        transition: left 0.45s ease;
+      }
+
+      .btn-cta-nav:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(30, 58, 90, 0.38);
+        color: #fff;
+      }
+
+      .btn-cta-nav:hover::before {
+        left: 160%;
+      }
+      .btn-cta-nav:active {
+        transform: translateY(0);
+      }
+
+      /* ── Hamburger ── */
+      .nav-burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 9px;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+
+      .nav-burger:hover {
+        background: var(--nav-hover);
+      }
+
+      .nav-burger span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--nav-text);
+        border-radius: 2px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-burger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-burger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-burger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* ════════════════════════════════════════════════════
+       MOBILE DRAWER
+    ════════════════════════════════════════════════════ */
+      .mob-drawer {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 998;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 1.25rem 1rem 3rem;
+        font-family: "Manrope", sans-serif;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .mob-drawer.open {
+        transform: translateX(0);
+      }
+
+      .mob-acc {
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 0.55rem;
+      }
+
+      .mob-acc-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--nav-text);
+        background: #fff;
+        border: none;
+        cursor: pointer;
+        font-family: "Manrope", sans-serif;
+        transition: background 0.15s;
+      }
+
+      .mob-acc-btn:hover {
+        background: #f8fafc;
+      }
+      .mob-acc-btn.active {
+        color: var(--gfrom);
+      }
+
+      .mob-acc-btn .ac {
+        opacity: 0.4;
+        transition:
+          transform 0.22s,
+          opacity 0.22s;
+      }
+
+      .mob-acc-btn.active .ac {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+
+      .mob-acc-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #f4f9fd;
+        border-top: 1px solid rgba(30, 58, 90, 0.06);
+      }
+
+      .mob-acc-body.open {
+        max-height: 700px;
+      }
+
+      .mob-acc-items {
+        padding: 0.5rem 0.75rem 0.75rem;
+      }
+
+      .mob-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.55rem 0.6rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--nav-text);
+        font-size: 0.83rem;
+        font-weight: 500;
+        font-family: "Manrope", sans-serif;
+        transition:
+          background 0.14s,
+          color 0.14s;
+      }
+
+      .mob-link:hover {
+        background: #dff0fb;
+        color: var(--gfrom);
+      }
+
+      .mob-ic {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .mob-cta {
+        padding: 1.25rem 0 0;
+      }
+
+      .mob-cta .btn-cta-nav {
+        width: 100%;
+        justify-content: center;
+        border-radius: 12px;
+        padding: 0.88rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.3);
+        z-index: 997;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s,
+          visibility 0.3s;
+      }
+
+      .nav-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      @media (max-width: 1024px) {
+        .nav-list {
+          display: none;
+        }
+        .btn-cta-nav {
+          display: none;
+        }
+        .nav-burger {
+          display: flex;
+        }
+      }
+
+      /* ════════════════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════════════════ */
+      .hero {
+        position: relative;
+        min-height: calc(100dvh - var(--nav-h));
+        background: #eef5fa;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 4.5rem 1.5rem 0;
+        overflow: hidden;
+      }
+
+      /* ── Background tech icons ── */
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      /* Outer wrapper: JS moves this for parallax */
+      .bg-icon {
+        position: absolute;
+        transition: transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+      }
+
+      /* Inner SVG: CSS animates a gentle float */
+      .bg-icon svg {
+        display: block;
+        color: #1e3a5a;
+        opacity: 0.065;
+        animation: bgFloat var(--fd, 7s) ease-in-out infinite var(--fdy, 0s);
+        transform-origin: center;
+      }
+
+      @keyframes bgFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(var(--fr, 0deg));
+        }
+        50% {
+          transform: translateY(-10px) rotate(var(--fr, 0deg));
+        }
+      }
+
+      /* Hero content above the bg layer */
+      .h-title,
+      .step-bar,
+      .feat-stage {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Headline ── */
+      .h-title {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2.8rem, 6vw, 5.2rem);
+        font-weight: 800;
+        color: #0f1f2e;
+        text-align: center;
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+        margin-bottom: 2.4rem;
+      }
+
+      .h-hl {
+        display: inline-block;
+        background: #45bfe5;
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 10px 5px;
+        position: relative;
+      }
+
+      /* Top-left selection handle dot */
+      .h-hl::before {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: #1e3a5a;
+        border-radius: 50%;
+        top: -5px;
+        left: -4px;
+      }
+
+      /* Blinking cursor */
+      .h-hl::after {
+        content: "|";
+        position: absolute;
+        right: -11px;
+        top: 50%;
+        transform: translateY(-52%);
+        color: #1e3a5a;
+        font-weight: 300;
+        animation: cursorBlink 1.1s step-end infinite;
+      }
+
+      @keyframes cursorBlink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ── Step bar ── */
+      .step-bar {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 4rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .step-pill {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(0, 0, 0, 0.11);
+        border-radius: 50px;
+        padding: 0.48rem 0.3rem;
+      }
+
+      .s-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0.1rem 0.9rem;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #0f172a;
+        white-space: nowrap;
+      }
+
+      .s-item svg {
+        flex-shrink: 0;
+        opacity: 0.7;
+      }
+
+      .s-div {
+        width: 1px;
+        height: 18px;
+        background: rgba(0, 0, 0, 0.14);
+        flex-shrink: 0;
+      }
+
+      .step-go {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #1e3a5a, #1490c8);
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        border-radius: 50px;
+        padding: 0.65rem 1.45rem;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(30, 58, 90, 0.32);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+      }
+
+      .step-go:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 26px rgba(30, 58, 90, 0.42);
+        color: #fff;
+      }
+
+      /* ── Feature cards ── */
+      .feat-stage {
+        position: relative;
+        width: 100%;
+        max-width: 1020px;
+        height: 400px;
+        flex-shrink: 0;
+      }
+
+      .fcard {
+        position: absolute;
+        width: 300px;
+        background: #fff;
+        border-radius: 22px;
+        padding: 1.7rem 1.6rem 0;
+        box-shadow:
+          0 16px 52px rgba(0, 0, 0, 0.13),
+          0 4px 14px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        height: 360px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .fcard--l {
+        left: 50%;
+        transform: translateX(-50%) translateX(-308px) rotate(-7deg);
+        transform-origin: bottom center;
+        top: 24px;
+      }
+
+      .fcard--m {
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        top: 0;
+      }
+
+      .fcard--r {
+        left: 50%;
+        transform: translateX(-50%) translateX(308px) rotate(7deg);
+        transform-origin: bottom center;
+        top: 24px;
+      }
+
+      .fc-eye {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #94a3b8;
+        margin-bottom: 0.65rem;
+      }
+
+      .fc-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.42rem;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.22;
+        letter-spacing: -0.025em;
+      }
+
+      .fc-illo {
+        margin-top: auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex: 1;
+        padding-top: 0.5rem;
+      }
+
+      .fc-illo svg {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      /* Responsive cards */
+      @media (max-width: 960px) {
+        .feat-stage {
+          height: auto;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+          padding-bottom: 2rem;
+        }
+
+        .fcard {
+          position: relative;
+          left: auto;
+          top: auto;
+          transform: none !important;
+          width: 280px;
+          height: 320px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .h-title {
+          font-size: clamp(2.2rem, 9vw, 3rem);
+        }
+        .step-pill {
+          flex-wrap: wrap;
+          border-radius: 16px;
+          padding: 0.5rem;
+        }
+        .s-item {
+          font-size: 0.75rem;
+          padding: 0.3rem 0.6rem;
+        }
+        .s-div {
+          display: none;
+        }
+        .fcard {
+          width: min(100%, 300px);
+        }
+      }
+
+      /* ════════════════════════════════════════════════════
+         ABOUT SECTION
+      ════════════════════════════════════════════════════ */
+      .about {
+        background: #fff;
+        padding: 7rem 1.5rem 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Soft top-edge fade from hero */
+      .about::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #d8edf8 30%,
+          #d8edf8 70%,
+          transparent
+        );
+      }
+
+      .about-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+
+      /* ── Eyebrow ── */
+      .sec-eye {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #45bfe5;
+        margin-bottom: 1.1rem;
+      }
+
+      .sec-eye::before,
+      .sec-eye::after {
+        content: "";
+        height: 1.5px;
+        background: #45bfe5;
+        border-radius: 2px;
+      }
+
+      .sec-eye::before {
+        width: 28px;
+      }
+      .sec-eye::after {
+        width: 16px;
+      }
+
+      /* ── About header ── */
+      .about-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .about-header .sec-eye {
+        justify-content: center;
+      }
+
+      .about-h2 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2rem, 3.6vw, 3rem);
+        font-weight: 800;
+        color: #0f1f2e;
+        letter-spacing: -0.032em;
+        line-height: 1.16;
+        margin-bottom: 1.1rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-lead {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+        color: #5e7a8e;
+        line-height: 1.75;
+        max-width: 580px;
+        margin: 0 auto;
+      }
+
+      /* ── Stats strip ── */
+      .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1.5px solid #e0eef6;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 5.5rem;
+        background: #fff;
+        box-shadow: 0 4px 24px rgba(30, 58, 90, 0.055);
+      }
+
+      .stat-cell {
+        padding: 2.2rem 1rem;
+        text-align: center;
+        border-right: 1.5px solid #e0eef6;
+        transition: background 0.2s;
+        position: relative;
+      }
+
+      .stat-cell:last-child {
+        border-right: none;
+      }
+
+      .stat-cell::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, #1e3a5a, #45bfe5);
+        border-radius: 2px;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-cell:hover {
+        background: #f4f9fd;
+      }
+      .stat-cell:hover::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      .stat-num {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2.2rem, 3.5vw, 2.8rem);
+        font-weight: 800;
+        color: #1e3a5a;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        display: block;
+        margin-bottom: 0.45rem;
+      }
+
+      .stat-num .accent {
+        color: #45bfe5;
+      }
+
+      .stat-label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.73rem;
+        font-weight: 600;
+        color: #5e7a8e;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        display: block;
+      }
+
+      /* ── Split section ── */
+      .about-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+        margin-bottom: 5.5rem;
+      }
+
+      /* Left ── */
+      .about-text .split-sub {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0f1f2e;
+        letter-spacing: -0.025em;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .about-text p {
+        font-family: "Sora", sans-serif;
+        font-size: 0.93rem;
+        color: #5e7a8e;
+        line-height: 1.78;
+        margin-bottom: 1.1rem;
+      }
+
+      .diff-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        margin: 1.6rem 0 2rem;
+      }
+
+      .diff-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #0f1f2e;
+        line-height: 1.4;
+      }
+
+      .diff-list li .chk {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #dff0fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+        color: #1e3a5a;
+      }
+
+      .about-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #1e3a5a;
+        text-decoration: none;
+        border-bottom: 1.5px solid #45bfe5;
+        padding-bottom: 2px;
+        transition:
+          gap 0.2s,
+          color 0.2s;
+      }
+
+      .about-link:hover {
+        gap: 12px;
+        color: #1490c8;
+      }
+
+      /* Right ── */
+      .about-visual {
+        position: relative;
+      }
+
+      .vis-main {
+        position: relative;
+        background: linear-gradient(135deg, #1e3a5a 0%, #1490c8 100%);
+        border-radius: 24px;
+        padding: 2.8rem 2.5rem 2.5rem;
+        overflow: hidden;
+        color: #fff;
+        min-height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* Decorative rings inside the gradient card */
+      .vis-main::before,
+      .vis-main::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .vis-main::before {
+        width: 280px;
+        height: 280px;
+        top: -80px;
+        right: -60px;
+      }
+
+      .vis-main::after {
+        width: 180px;
+        height: 180px;
+        top: -30px;
+        right: -10px;
+      }
+
+      .vis-ring-inner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.18);
+        top: 20px;
+        right: 30px;
+      }
+
+      .vis-main blockquote {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.45;
+        letter-spacing: -0.02em;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .vis-main blockquote::before {
+        content: '"';
+        display: block;
+        font-size: 3.5rem;
+        line-height: 1;
+        color: #45bfe5;
+        margin-bottom: 0.25rem;
+        font-family: Georgia, serif;
+      }
+
+      .vis-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .vis-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .vis-author-info {
+        line-height: 1.3;
+      }
+
+      .vis-author-name {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #fff;
+        display: block;
+      }
+
+      .vis-author-role {
+        font-family: "Sora", sans-serif;
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.65);
+        display: block;
+      }
+
+      /* Floating metric badges */
+      .vis-badge {
+        position: absolute;
+        background: #fff;
+        border-radius: 14px;
+        padding: 0.7rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 28px rgba(30, 58, 90, 0.18);
+        animation: badgeFloat 4s ease-in-out infinite;
+        z-index: 3;
+      }
+
+      .vis-badge:nth-child(1) {
+        top: -18px;
+        right: 24px;
+        animation-delay: 0s;
+      }
+
+      .vis-badge:nth-child(2) {
+        bottom: 28px;
+        left: -24px;
+        animation-delay: 1.8s;
+      }
+
+      @keyframes badgeFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+
+      .badge-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: #dff0fb;
+        color: #1e3a5a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .badge-text {
+        line-height: 1.2;
+      }
+
+      .badge-val {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 800;
+        color: #0f1f2e;
+        display: block;
+      }
+
+      .badge-sub {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: #5e7a8e;
+        display: block;
+        white-space: nowrap;
+      }
+
+      /* ── Values grid ── */
+      .values-head {
+        text-align: center;
+        margin-bottom: 2.8rem;
+      }
+
+      .values-h3 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        font-weight: 800;
+        color: #0f1f2e;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.6rem;
+      }
+
+      .values-sub {
+        font-family: "Sora", sans-serif;
+        font-size: 0.92rem;
+        color: #5e7a8e;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+
+      .val-card {
+        background: #f8fbfd;
+        border: 1.5px solid #e0eef6;
+        border-radius: 18px;
+        padding: 1.8rem 1.6rem;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        cursor: default;
+      }
+
+      .val-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 36px rgba(30, 58, 90, 0.09);
+        border-color: #45bfe5;
+      }
+
+      .val-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
+        background: #dff0fb;
+        color: #1e3a5a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.1rem;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+
+      .val-card:hover .val-icon {
+        background: #1e3a5a;
+        color: #fff;
+      }
+
+      .val-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: #0f1f2e;
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.01em;
+      }
+
+      .val-desc {
+        font-family: "Sora", sans-serif;
+        font-size: 0.83rem;
+        color: #5e7a8e;
+        line-height: 1.65;
+      }
+
+      /* ── About responsive ── */
+      @media (max-width: 900px) {
+        .stats-strip {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stat-cell:nth-child(2) {
+          border-right: none;
+        }
+        .stat-cell:nth-child(1),
+        .stat-cell:nth-child(2) {
+          border-bottom: 1.5px solid #e0eef6;
+        }
+        .about-split {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .about-visual {
+          order: -1;
+        }
+        .vis-badge:nth-child(2) {
+          left: auto;
+          right: -16px;
+          bottom: -18px;
+        }
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .about {
+          padding: 4rem 1.25rem 3.5rem;
+        }
+        .stats-strip {
+          grid-template-columns: repeat(2, 1fr);
+          border-radius: 14px;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .vis-main {
+          min-height: 300px;
+        }
+        .vis-main blockquote {
+          font-size: 1.1rem;
+        }
+      }
+
+      /* ════════════════════════════════════════════════════
+         CONTACT SECTION
+      ════════════════════════════════════════════════════ */
+      .contact {
+        background: #eef5fa;
+        padding: 7rem 1.5rem 7rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Decorative blobs */
+      .contact::before {
+        content: "";
+        position: absolute;
+        width: 480px;
+        height: 480px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(69, 191, 229, 0.08) 0%,
+          transparent 70%
+        );
+        top: -120px;
+        left: -100px;
+        pointer-events: none;
+      }
+
+      .contact::after {
+        content: "";
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(30, 58, 90, 0.06) 0%,
+          transparent 70%
+        );
+        bottom: -80px;
+        right: -60px;
+        pointer-events: none;
+      }
+
+      .contact-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 4rem;
+        align-items: start;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Left panel ── */
+      .contact-info {
+        padding-top: 0.5rem;
+      }
+
+      .contact-info .sec-eye {
+        margin-bottom: 1rem;
+      }
+
+      .contact-h2 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.9rem, 3vw, 2.6rem);
+        font-weight: 800;
+        color: #0f1f2e;
+        letter-spacing: -0.03em;
+        line-height: 1.18;
+        margin-bottom: 1rem;
+      }
+
+      .contact-lead {
+        font-family: "Sora", sans-serif;
+        font-size: 0.93rem;
+        color: #5e7a8e;
+        line-height: 1.75;
+        margin-bottom: 2.5rem;
+        max-width: 400px;
+      }
+
+      /* Contact detail rows */
+      .cdet-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .cdet {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 1.1rem 1.2rem;
+        background: #fff;
+        border: 1.5px solid #e0eef6;
+        border-radius: 14px;
+        text-decoration: none;
+        transition:
+          border-color 0.22s,
+          box-shadow 0.22s,
+          transform 0.22s;
+      }
+
+      .cdet:hover {
+        border-color: #45bfe5;
+        box-shadow: 0 6px 24px rgba(30, 58, 90, 0.09);
+        transform: translateX(4px);
+      }
+
+      .cdet-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        background: #dff0fb;
+        color: #1e3a5a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.22s,
+          color 0.22s;
+      }
+
+      .cdet:hover .cdet-icon {
+        background: #1e3a5a;
+        color: #fff;
+      }
+
+      .cdet-body {
+        min-width: 0;
+      }
+
+      .cdet-label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #5e7a8e;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .cdet-value {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #0f1f2e;
+        display: block;
+        line-height: 1.4;
+      }
+
+      /* WhatsApp badge */
+      .wa-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #fff;
+        background: #25d366;
+        border-radius: 50px;
+        padding: 0.48rem 1rem;
+        text-decoration: none;
+        margin-top: 0.25rem;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+        width: fit-content;
+      }
+
+      .wa-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+        color: #fff;
+      }
+
+      /* ── Right panel: form card ── */
+      .contact-form-wrap {
+        background: #fff;
+        border-radius: 24px;
+        padding: 2.8rem 2.5rem;
+        box-shadow:
+          0 12px 48px rgba(30, 58, 90, 0.09),
+          0 2px 8px rgba(30, 58, 90, 0.04);
+        border: 1.5px solid #e0eef6;
+      }
+
+      .form-head {
+        margin-bottom: 1.8rem;
+      }
+
+      .form-head h3 {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: #0f1f2e;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.3rem;
+      }
+
+      .form-head p {
+        font-family: "Sora", sans-serif;
+        font-size: 0.83rem;
+        color: #5e7a8e;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #0f1f2e;
+        letter-spacing: 0.03em;
+      }
+
+      .form-group label span {
+        color: #45bfe5;
+        margin-left: 2px;
+      }
+
+      .form-control-c {
+        font-family: "Sora", sans-serif;
+        font-size: 0.875rem;
+        color: #0f1f2e;
+        background: #f8fbfd;
+        border: 1.5px solid #dce8f0;
+        border-radius: 10px;
+        padding: 0.72rem 0.95rem;
+        outline: none;
+        width: 100%;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+        resize: none;
+      }
+
+      .form-control-c::placeholder {
+        color: #9ab4c4;
+      }
+
+      .form-control-c:focus {
+        border-color: #45bfe5;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(69, 191, 229, 0.14);
+      }
+
+      textarea.form-control-c {
+        min-height: 130px;
+        line-height: 1.65;
+      }
+
+      .form-submit {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.4rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .form-note {
+        font-family: "Sora", sans-serif;
+        font-size: 0.75rem;
+        color: #9ab4c4;
+        line-height: 1.5;
+      }
+
+      .btn-send {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #1e3a5a, #1490c8);
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        padding: 0.75rem 1.6rem;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(30, 58, 90, 0.28);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .btn-send:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 26px rgba(30, 58, 90, 0.38);
+      }
+
+      .btn-send:active {
+        transform: translateY(0);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .contact {
+          padding: 4.5rem 1.25rem 4rem;
+        }
+        .contact-form-wrap {
+          padding: 2rem 1.5rem;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-submit {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn-send {
+          justify-content: center;
+        }
+      }
+
+      /* ════════════════════════════════════════════════════
+         FOOTER
+      ════════════════════════════════════════════════════ */
+      .site-footer {
+        background: #0d1b2a;
+        padding: 0;
+      }
+
+      /* Top bar: logo + nav links */
+      .footer-top {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 3rem 1.5rem;
+      }
+
+      .footer-top-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .footer-logo img {
+        height: 36px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+      }
+
+      .footer-tagline {
+        font-family: "Sora", sans-serif;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 8px;
+        letter-spacing: 0.01em;
+      }
+
+      .footer-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-nav a {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        padding: 0.3rem 0.65rem;
+        border-radius: 6px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+        white-space: nowrap;
+      }
+
+      .footer-nav a:hover {
+        color: #45bfe5;
+        background: rgba(69, 191, 229, 0.08);
+      }
+
+      /* Social icons row */
+      .footer-social {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .soc-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+        flex-shrink: 0;
+      }
+
+      .soc-btn:hover {
+        background: rgba(69, 191, 229, 0.15);
+        color: #45bfe5;
+        border-color: rgba(69, 191, 229, 0.3);
+      }
+
+      /* Bottom bar: copyright + legal links */
+      .footer-bottom {
+        padding: 1.3rem 1.5rem;
+      }
+
+      .footer-bottom-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-copy {
+        font-family: "Sora", sans-serif;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.35);
+        line-height: 1.5;
+      }
+
+      .footer-copy strong {
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 600;
+      }
+
+      .footer-legal {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .footer-legal a {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.38);
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+
+      .footer-legal a:hover {
+        color: #45bfe5;
+      }
+
+      .footer-legal .sep {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 768px) {
+        .footer-top-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .footer-bottom-inner {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .footer-legal {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════ -->
+    <header class="navbar-main" id="navbar">
+      <div class="nav-wrap">
+        <!-- Logo -->
+        <a href="#" class="nav-logo">
+          <img src="/logo_full.png" alt="Tinqbit" />
+        </a>
+
+        <!-- Desktop nav -->
+        <ul class="nav-list">
+          <!-- Digital Marketing -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Digital Marketing
+              <svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">Digital Marketing Services</p>
+                <div class="mega-grid">
+                  <a href="#" class="mi">
+                    <div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">SEO Services</span
+                      ><span class="mi-desc"
+                        >Rank higher, grow organically</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cs">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                        />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Local SEO</span
+                      ><span class="mi-desc">Dominate local searches</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cv">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+                        />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Technical SEO</span
+                      ><span class="mi-desc"
+                        >Speed, structure &amp; crawlability</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                        <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Social Media Marketing</span
+                      ><span class="mi-desc"
+                        >Build &amp; engage your audience</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic co">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                        <path d="m13 13 6 6" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">PPC Advertising</span
+                      ><span class="mi-desc">ROI-driven paid campaigns</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                        />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" x2="8" y1="13" y2="13" />
+                        <line x1="16" x2="8" y1="17" y2="17" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Content Marketing</span
+                      ><span class="mi-desc">Stories that convert</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Email Marketing</span
+                      ><span class="mi-desc">Nurture leads at scale</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic crd">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Online Reputation</span
+                      ><span class="mi-desc">Protect your brand online</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Web Development -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Web Development
+              <svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">Web Development Services</p>
+                <div class="mega-grid">
+                  <a href="#" class="mi">
+                    <div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Custom Website Dev</span
+                      ><span class="mi-desc"
+                        >Pixel-perfect, performance-first</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="8" cy="21" r="1" />
+                        <circle cx="19" cy="21" r="1" />
+                        <path
+                          d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">E-Commerce Dev</span
+                      ><span class="mi-desc">Sell more, convert better</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                        <path d="M3 9h18" />
+                        <path d="M9 21V9" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">WordPress Development</span
+                      ><span class="mi-desc">Powerful, flexible CMS sites</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cv">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Web Application Dev</span
+                      ><span class="mi-desc">Scalable, robust web apps</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+                        />
+                        <path
+                          d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"
+                        />
+                        <path
+                          d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">UI/UX Design</span
+                      ><span class="mi-desc"
+                        >Intuitive, stunning interfaces</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ca">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Website Maintenance</span
+                      ><span class="mi-desc">Always fast, always secure</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ct">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+                        />
+                        <path d="M21 3v5h-5" />
+                        <path
+                          d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+                        />
+                        <path d="M8 16H3v5" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Website Redesign</span
+                      ><span class="mi-desc">Refresh, modernise, convert</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- IT Solutions -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              IT Solutions
+              <svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">IT Solutions &amp; Services</p>
+                <div class="mega-grid">
+                  <a href="#" class="mi">
+                    <div class="mi-ic csl">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="4 17 10 11 4 5" />
+                        <line x1="12" x2="20" y1="19" y2="19" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Software Development</span
+                      ><span class="mi-desc"
+                        >Custom software, built to scale</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          width="14"
+                          height="20"
+                          x="5"
+                          y="2"
+                          rx="2"
+                          ry="2"
+                        />
+                        <path d="M12 18h.01" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Mobile App Development</span
+                      ><span class="mi-desc"
+                        >iOS &amp; Android, native or hybrid</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cs">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Cloud Solutions</span
+                      ><span class="mi-desc">Migrate, optimise, automate</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ca">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                        />
+                        <path d="M9 18h6" />
+                        <path d="M10 22h4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">IT Consulting</span
+                      ><span class="mi-desc">Strategy-led tech advisory</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="7" height="7" x="3" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="14" rx="1" />
+                        <rect width="7" height="7" x="3" y="14" rx="1" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">ERP Solutions</span
+                      ><span class="mi-desc">Streamline every operation</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">CRM Development</span
+                      ><span class="mi-desc"
+                        >Know &amp; grow your customers</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic crd">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="11"
+                          x="3"
+                          y="11"
+                          rx="2"
+                          ry="2"
+                        />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Cyber Security</span
+                      ><span class="mi-desc">Protect, detect, respond</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cv">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="16" height="16" x="4" y="4" rx="2" />
+                        <rect width="6" height="6" x="9" y="9" rx="1" />
+                        <path d="M15 2v2" />
+                        <path d="M15 20v2" />
+                        <path d="M2 15h2" />
+                        <path d="M20 15h2" />
+                        <path d="M2 9h2" />
+                        <path d="M20 9h2" />
+                        <path d="M9 2v2" />
+                        <path d="M9 20v2" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">AI &amp; Automation</span
+                      ><span class="mi-desc">Intelligent systems at scale</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Company -->
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Company
+              <svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">About Tinqbit</p>
+                <div class="mega-grid">
+                  <a href="#" class="mi">
+                    <div class="mi-ic ci">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4" />
+                        <path d="M12 8h.01" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">About Us</span
+                      ><span class="mi-desc"
+                        >Our story, mission &amp; values</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cb">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <polyline points="16 11 18 13 22 9" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Our Team</span
+                      ><span class="mi-desc">The people behind the work</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect
+                          width="18"
+                          height="18"
+                          x="3"
+                          y="3"
+                          rx="2"
+                          ry="2"
+                        />
+                        <circle cx="9" cy="9" r="2" />
+                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Portfolio</span
+                      ><span class="mi-desc">Work we're proud of</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ce">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <line x1="18" x2="18" y1="20" y2="10" />
+                        <line x1="12" x2="12" y1="20" y2="4" />
+                        <line x1="6" x2="6" y1="20" y2="14" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Case Studies</span
+                      ><span class="mi-desc">Real results, real clients</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic co">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                        />
+                        <path
+                          d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Careers</span
+                      ><span class="mi-desc">Join our growing team</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ct">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 20h9" />
+                        <path
+                          d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Blog</span
+                      ><span class="mi-desc"
+                        >Insights &amp; industry trends</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic ca">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polygon
+                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Testimonials</span
+                      ><span class="mi-desc">What our clients say</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="mi">
+                    <div class="mi-ic cgr">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Contact Us</span
+                      ><span class="mi-desc">Let's start a conversation</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- /nav-list -->
+
+        <!-- CTA -->
+        <a href="#" class="btn-cta-nav">
+          Get Free Consultation
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ════════════════════════════════════════════════════
+     MOBILE DRAWER
+════════════════════════════════════════════════════ -->
+    <div class="mob-drawer" id="mobDrawer">
+      <!-- Digital Marketing -->
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="dm">
+          Digital Marketing
+          <svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-dm">
+          <div class="mob-acc-items">
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </div>
+              SEO Services</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cs">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              Local SEO</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"
+                  />
+                </svg>
+              </div>
+              Technical SEO</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                  <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                </svg>
+              </div>
+              Social Media Marketing</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic co">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                </svg>
+              </div>
+              PPC Advertising</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ce">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                  />
+                </svg>
+              </div>
+              Content Marketing</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              Email Marketing</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic crd">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              Online Reputation Management</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Web Development -->
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="wd">
+          Web Development
+          <svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-wd">
+          <div class="mob-acc-items">
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="14" x="2" y="3" rx="2" />
+                  <line x1="8" x2="16" y1="21" y2="21" />
+                  <line x1="12" x2="12" y1="17" y2="21" />
+                </svg>
+              </div>
+              Custom Website Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ce">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="8" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                  <path
+                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                  />
+                </svg>
+              </div>
+              E-Commerce Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" />
+                  <path d="M3 9h18" />
+                  <path d="M9 21V9" />
+                </svg>
+              </div>
+              WordPress Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              Web Application Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+                  />
+                </svg>
+              </div>
+              UI/UX Design</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ca">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                  />
+                </svg>
+              </div>
+              Website Maintenance</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ct">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+                  />
+                  <path d="M21 3v5h-5" />
+                </svg>
+              </div>
+              Website Redesign</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- IT Solutions -->
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="it">
+          IT Solutions
+          <svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-it">
+          <div class="mob-acc-items">
+            <a href="#" class="mob-link"
+              ><div class="mob-ic csl">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" x2="20" y1="19" y2="19" />
+                </svg>
+              </div>
+              Software Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="14" height="20" x="5" y="2" rx="2" />
+                  <path d="M12 18h.01" />
+                </svg>
+              </div>
+              Mobile App Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cs">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
+                  />
+                </svg>
+              </div>
+              Cloud Solutions</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ca">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                  />
+                  <path d="M9 18h6" />
+                </svg>
+              </div>
+              IT Consulting</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ce">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="7" height="7" x="3" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="14" rx="1" />
+                  <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
+              </div>
+              ERP Solutions</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                </svg>
+              </div>
+              CRM Development</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic crd">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              Cyber Security</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="16" height="16" x="4" y="4" rx="2" />
+                  <rect width="6" height="6" x="9" y="9" rx="1" />
+                  <path d="M15 2v2" />
+                  <path d="M9 2v2" />
+                </svg>
+              </div>
+              AI &amp; Automation</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="co">
+          Company
+          <svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-co">
+          <div class="mob-acc-items">
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 16v-4" />
+                  <path d="M12 8h.01" />
+                </svg>
+              </div>
+              About Us</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <polyline points="16 11 18 13 22 9" />
+                </svg>
+              </div>
+              Our Team</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" />
+                  <circle cx="9" cy="9" r="2" />
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                </svg>
+              </div>
+              Portfolio</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ce">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" x2="18" y1="20" y2="10" />
+                  <line x1="12" x2="12" y1="20" y2="4" />
+                  <line x1="6" x2="6" y1="20" y2="14" />
+                </svg>
+              </div>
+              Case Studies</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic co">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                  />
+                  <path
+                    d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+                  />
+                </svg>
+              </div>
+              Careers</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ct">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                </svg>
+              </div>
+              Blog</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic ca">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              Testimonials</a
+            >
+            <a href="#" class="mob-link"
+              ><div class="mob-ic cgr">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              Contact Us</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="mob-cta">
+        <a href="#" class="btn-cta-nav">
+          Get Free Consultation
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- ════════════════════════════════════════════════════
+     HERO (unchanged)
+════════════════════════════════════════════════════ -->
+    <section class="hero">
+      <!-- ── Background tech icons (parallax layer) ── -->
+      <div class="hero-bg" id="heroBg">
+        <!-- 1. Code brackets -->
+        <div class="bg-icon" data-depth="0.08" style="top: 10%; left: 3.5%">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -8deg; --fd: 7s; --fdy: 0s"
+          >
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+        </div>
+
+        <!-- 2. Cloud -->
+        <div class="bg-icon" data-depth="0.05" style="top: 6%; left: 21%">
+          <svg
+            width="38"
+            height="38"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 5deg; --fd: 6s; --fdy: 1s"
+          >
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+          </svg>
+        </div>
+
+        <!-- 3. Terminal -->
+        <div class="bg-icon" data-depth="0.10" style="top: 24%; left: 5%">
+          <svg
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -15deg; --fd: 8.5s; --fdy: 0.5s"
+          >
+            <polyline points="4 17 10 11 4 5" />
+            <line x1="12" x2="20" y1="19" y2="19" />
+          </svg>
+        </div>
+
+        <!-- 4. WiFi -->
+        <div class="bg-icon" data-depth="0.07" style="top: 12%; right: 5.5%">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 8deg; --fd: 7.5s; --fdy: 1.5s"
+          >
+            <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+            <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+            <line x1="12" x2="12.01" y1="20" y2="20" />
+          </svg>
+        </div>
+
+        <!-- 5. Globe -->
+        <div class="bg-icon" data-depth="0.09" style="top: 7%; right: 19%">
+          <svg
+            width="54"
+            height="54"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -5deg; --fd: 6.5s; --fdy: 0.8s"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" x2="22" y1="12" y2="12" />
+            <path
+              d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+            />
+          </svg>
+        </div>
+
+        <!-- 6. Smartphone -->
+        <div class="bg-icon" data-depth="0.06" style="top: 37%; left: 2%">
+          <svg
+            width="34"
+            height="34"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 10deg; --fd: 8.5s; --fdy: 2s"
+          >
+            <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+            <path d="M12 18h.01" />
+          </svg>
+        </div>
+
+        <!-- 7. CPU -->
+        <div class="bg-icon" data-depth="0.08" style="top: 28%; right: 4%">
+          <svg
+            width="46"
+            height="46"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -12deg; --fd: 7s; --fdy: 0.3s"
+          >
+            <rect width="16" height="16" x="4" y="4" rx="2" />
+            <rect width="6" height="6" x="9" y="9" rx="1" />
+            <path d="M15 2v2" />
+            <path d="M15 20v2" />
+            <path d="M2 15h2" />
+            <path d="M20 15h2" />
+            <path d="M2 9h2" />
+            <path d="M20 9h2" />
+            <path d="M9 2v2" />
+            <path d="M9 20v2" />
+          </svg>
+        </div>
+
+        <!-- 8. Database -->
+        <div class="bg-icon" data-depth="0.07" style="top: 50%; left: 6%">
+          <svg
+            width="38"
+            height="38"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 6deg; --fd: 9s; --fdy: 1.2s"
+          >
+            <ellipse cx="12" cy="5" rx="9" ry="3" />
+            <path d="M3 5V19a9 3 0 0 0 18 0V5" />
+            <path d="M3 12a9 3 0 0 0 18 0" />
+          </svg>
+        </div>
+
+        <!-- 9. Lock -->
+        <div class="bg-icon" data-depth="0.06" style="top: 44%; right: 7%">
+          <svg
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -8deg; --fd: 7.5s; --fdy: 0.7s"
+          >
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+
+        <!-- 10. Settings -->
+        <div class="bg-icon" data-depth="0.09" style="top: 60%; left: 1.5%">
+          <svg
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 15deg; --fd: 6s; --fdy: 1.8s"
+          >
+            <path
+              d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+            />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </div>
+
+        <!-- 11. Bar Chart -->
+        <div class="bg-icon" data-depth="0.07" style="top: 56%; right: 3.5%">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -6deg; --fd: 8s; --fdy: 0.4s"
+          >
+            <line x1="18" x2="18" y1="20" y2="10" />
+            <line x1="12" x2="12" y1="20" y2="4" />
+            <line x1="6" x2="6" y1="20" y2="14" />
+          </svg>
+        </div>
+
+        <!-- 12. Search -->
+        <div class="bg-icon" data-depth="0.08" style="top: 73%; left: 5%">
+          <svg
+            width="38"
+            height="38"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 8deg; --fd: 7s; --fdy: 2.2s"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </div>
+
+        <!-- 13. Layers -->
+        <div class="bg-icon" data-depth="0.06" style="top: 68%; right: 6%">
+          <svg
+            width="42"
+            height="42"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -10deg; --fd: 6.5s; --fdy: 1s"
+          >
+            <path
+              d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+            />
+            <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+            <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+          </svg>
+        </div>
+
+        <!-- 14. Share / Network -->
+        <div class="bg-icon" data-depth="0.05" style="top: 83%; left: 15%">
+          <svg
+            width="34"
+            height="34"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 5deg; --fd: 8.5s; --fdy: 0.6s"
+          >
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+            <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+          </svg>
+        </div>
+
+        <!-- 15. Zap / Lightning -->
+        <div class="bg-icon" data-depth="0.04" style="top: 17%; left: 39%">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: -4deg; --fd: 7s; --fdy: 1.4s"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+        </div>
+
+        <!-- 16. Monitor -->
+        <div class="bg-icon" data-depth="0.06" style="top: 79%; right: 14%">
+          <svg
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="--fr: 12deg; --fd: 7.5s; --fdy: 0.9s"
+          >
+            <rect width="20" height="14" x="2" y="3" rx="2" />
+            <line x1="8" x2="16" y1="21" y2="21" />
+            <line x1="12" x2="12" y1="17" y2="21" />
+          </svg>
+        </div>
+      </div>
+      <!-- /.hero-bg -->
+
+      <!-- Headline -->
+      <h1 class="h-title">
+        Transform your brand<br />
+        <span class="h-hl">digitally</span> in days.
+      </h1>
+
+      <!-- Step bar -->
+      <div class="step-bar">
+        <div class="step-pill">
+          <span class="s-item">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            Set Your Goals
+          </span>
+          <span class="s-div"></span>
+          <span class="s-item">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+              />
+              <path
+                d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+              />
+            </svg>
+            Launch Campaigns
+          </span>
+          <span class="s-div"></span>
+          <span class="s-item">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" x2="18" y1="20" y2="10" />
+              <line x1="12" x2="12" y1="20" y2="4" />
+              <line x1="6" x2="6" y1="20" y2="14" />
+            </svg>
+            Track &amp; Scale
+          </span>
+        </div>
+        <a href="#" class="step-go">Get Started</a>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="feat-stage">
+        <!-- Card 1 — SEO & Visibility -->
+        <div class="fcard fcard--l">
+          <p class="fc-eye">You only need one partner</p>
+          <h3 class="fc-title">Rank higher,<br />reach more customers</h3>
+          <div class="fc-illo">
+            <svg
+              viewBox="0 0 240 185"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Laptop -->
+              <rect
+                x="60"
+                y="98"
+                width="120"
+                height="78"
+                rx="8"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                fill="white"
+              />
+              <rect
+                x="68"
+                y="106"
+                width="104"
+                height="56"
+                rx="4"
+                fill="#dff0fb"
+              />
+              <!-- Trend line on screen -->
+              <polyline
+                points="74,154 90,142 108,147 128,128 160,132"
+                stroke="#45bfe5"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle cx="160" cy="132" r="4" fill="#45bfe5" />
+              <!-- Laptop base -->
+              <path
+                d="M48 178 Q120 183 192 178"
+                stroke="#0f172a"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <!-- Person head -->
+              <circle
+                cx="120"
+                cy="52"
+                r="22"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                fill="white"
+              />
+              <circle cx="112" cy="49" r="2.5" fill="#0f172a" />
+              <circle cx="128" cy="49" r="2.5" fill="#0f172a" />
+              <path
+                d="M111 59 Q120 65 129 59"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- Body & arms -->
+              <path
+                d="M98 74 Q120 86 142 74"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <line
+                x1="98"
+                y1="74"
+                x2="80"
+                y2="108"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="142"
+                y1="74"
+                x2="160"
+                y2="108"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- Left bubble (search) -->
+              <rect
+                x="10"
+                y="54"
+                width="50"
+                height="33"
+                rx="16"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                fill="white"
+              />
+              <circle
+                cx="27"
+                cy="70"
+                r="7"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                fill="none"
+              />
+              <line
+                x1="32"
+                y1="75"
+                x2="38"
+                y2="81"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+              <!-- Right bubble (text/rank) -->
+              <rect
+                x="178"
+                y="38"
+                width="54"
+                height="33"
+                rx="16"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                fill="white"
+              />
+              <line
+                x1="188"
+                y1="58"
+                x2="222"
+                y2="58"
+                stroke="#0f172a"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <line
+                x1="190"
+                y1="52"
+                x2="220"
+                y2="52"
+                stroke="#0f172a"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                opacity="0.4"
+              />
+              <!-- Sparkle -->
+              <path
+                d="M54 30 L56 24 L58 30 L64 28 L58 32 L60 38 L56 34 L52 38 L54 32 L48 28 Z"
+                fill="#fbbf24"
+                opacity="0.9"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 2 — Campaigns (center, front) -->
+        <div class="fcard fcard--m">
+          <p class="fc-eye">You only need one partner</p>
+          <h3 class="fc-title">Campaigns that<br />drive real conversions</h3>
+          <div class="fc-illo">
+            <svg
+              viewBox="0 0 240 185"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Stairs -->
+              <path
+                d="M18 165 H72 V137 H126 V109 H180 V81"
+                stroke="#e2e8f0"
+                stroke-width="3.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- Person head -->
+              <circle
+                cx="150"
+                cy="80"
+                r="19"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                fill="white"
+              />
+              <circle cx="143" cy="77" r="2.2" fill="#0f172a" />
+              <circle cx="157" cy="77" r="2.2" fill="#0f172a" />
+              <path
+                d="M143 86 Q150 91 157 86"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- Body -->
+              <path
+                d="M131 99 Q150 110 169 99"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- Front arm down -->
+              <line
+                x1="131"
+                y1="99"
+                x2="120"
+                y2="120"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- Back arm holding megaphone -->
+              <line
+                x1="169"
+                y1="100"
+                x2="188"
+                y2="86"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- Megaphone body -->
+              <path
+                d="M185 79 L198 70 L198 102 L185 93 Z"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                stroke-linejoin="round"
+                fill="white"
+              />
+              <!-- Megaphone bell -->
+              <path
+                d="M198 73 L220 63 L220 109 L198 99"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                stroke-linejoin="round"
+                fill="#dff0fb"
+              />
+              <!-- Sound waves -->
+              <path
+                d="M223 76 Q231 86 223 96"
+                stroke="#45bfe5"
+                stroke-width="2"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path
+                d="M227 71 Q238 86 227 101"
+                stroke="#45bfe5"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- Legs -->
+              <line
+                x1="142"
+                y1="110"
+                x2="132"
+                y2="137"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="158"
+                y1="110"
+                x2="167"
+                y2="137"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- Sparkle -->
+              <path
+                d="M38 52 L40 46 L42 52 L48 50 L42 54 L44 60 L40 56 L36 60 L38 54 L32 50 Z"
+                fill="#fbbf24"
+                opacity="0.85"
+              />
+              <circle
+                cx="88"
+                cy="148"
+                r="4.5"
+                stroke="#0f172a"
+                stroke-width="1.5"
+                fill="none"
+              />
+              <circle
+                cx="62"
+                cy="120"
+                r="3"
+                stroke="#0f172a"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 3 — ROI & Results -->
+        <div class="fcard fcard--r">
+          <p class="fc-eye">You only need one partner</p>
+          <h3 class="fc-title">Measurable ROI,<br />every single time</h3>
+          <div class="fc-illo">
+            <svg
+              viewBox="0 0 240 185"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Bar chart -->
+              <rect
+                x="18"
+                y="124"
+                width="22"
+                height="44"
+                rx="4"
+                fill="#dff0fb"
+                stroke="#45bfe5"
+                stroke-width="1.8"
+              />
+              <rect
+                x="48"
+                y="106"
+                width="22"
+                height="62"
+                rx="4"
+                fill="#dff0fb"
+                stroke="#45bfe5"
+                stroke-width="1.8"
+              />
+              <rect
+                x="78"
+                y="84"
+                width="22"
+                height="84"
+                rx="4"
+                fill="#bde5f7"
+                stroke="#45bfe5"
+                stroke-width="1.8"
+              />
+              <line
+                x1="12"
+                y1="170"
+                x2="110"
+                y2="170"
+                stroke="#e2e8f0"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+              <!-- Person 1 (left) -->
+              <circle
+                cx="152"
+                cy="52"
+                r="19"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                fill="white"
+              />
+              <circle cx="145" cy="49" r="2.2" fill="#0f172a" />
+              <circle cx="159" cy="49" r="2.2" fill="#0f172a" />
+              <path
+                d="M145 58 Q152 63 159 58"
+                stroke="#0f172a"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path
+                d="M133 71 Q152 82 171 71"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <line
+                x1="133"
+                y1="71"
+                x2="122"
+                y2="100"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- High-five arm right -->
+              <line
+                x1="171"
+                y1="72"
+                x2="188"
+                y2="60"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- Legs -->
+              <line
+                x1="144"
+                y1="100"
+                x2="136"
+                y2="130"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="160"
+                y1="100"
+                x2="167"
+                y2="130"
+                stroke="#0f172a"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <!-- Person 2 (right) -->
+              <circle
+                cx="210"
+                cy="38"
+                r="16"
+                stroke="#0f172a"
+                stroke-width="2"
+                fill="white"
+              />
+              <circle cx="204" cy="35" r="2" fill="#0f172a" />
+              <circle cx="216" cy="35" r="2" fill="#0f172a" />
+              <path
+                d="M204 43 Q210 47 216 43"
+                stroke="#0f172a"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path
+                d="M194 54 Q210 64 226 54"
+                stroke="#0f172a"
+                stroke-width="2"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <!-- High-five arm left -->
+              <line
+                x1="194"
+                y1="55"
+                x2="188"
+                y2="61"
+                stroke="#0f172a"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="194"
+                y1="64"
+                x2="186"
+                y2="96"
+                stroke="#0f172a"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="224"
+                y1="64"
+                x2="230"
+                y2="96"
+                stroke="#0f172a"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <!-- Star burst at high-five -->
+              <path
+                d="M186 56 L188 50 L190 56 L196 54 L190 58 L192 64 L188 60 L184 64 L186 58 L180 54 Z"
+                fill="#fbbf24"
+              />
+              <!-- Confetti -->
+              <circle cx="130" cy="24" r="3" fill="#45bfe5" />
+              <rect
+                x="165"
+                y="12"
+                width="5"
+                height="5"
+                rx="1"
+                fill="#fbbf24"
+                transform="rotate(20 165 12)"
+              />
+              <circle cx="200" cy="18" r="2.5" fill="#f87171" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- .feat-stage -->
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         ABOUT SECTION
+    ════════════════════════════════════════════════════ -->
+    <section class="about" id="about">
+      <div class="about-inner">
+        <!-- Header -->
+        <div class="about-header">
+          <div class="sec-eye">About Tinqbit</div>
+          <h2 class="about-h2">
+            We're the digital partner that makes your brand unstoppable
+          </h2>
+          <p class="about-lead">
+            From ambitious startups to established enterprises, we combine
+            creative strategy, cutting-edge technology, and data intelligence to
+            deliver results that move the needle — every single time.
+          </p>
+        </div>
+
+        <!-- Stats strip -->
+        <div class="stats-strip">
+          <div class="stat-cell">
+            <span class="stat-num">8<span class="accent">+</span></span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-num">200<span class="accent">+</span></span>
+            <span class="stat-label">Happy Clients</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-num">500<span class="accent">+</span></span>
+            <span class="stat-label">Projects Delivered</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-num">50<span class="accent">+</span></span>
+            <span class="stat-label">Expert Team</span>
+          </div>
+        </div>
+
+        <!-- Two-column split -->
+        <div class="about-split">
+          <!-- Left: text -->
+          <div class="about-text">
+            <h3 class="split-sub">
+              Built on strategy.<br />Powered by technology.
+            </h3>
+            <p>
+              Tinqbit is a full-service digital marketing and IT solutions
+              agency headquartered in the heart of the tech ecosystem. We were
+              founded on a simple belief: that every business, regardless of
+              size, deserves world-class digital execution that delivers
+              measurable, lasting growth.
+            </p>
+            <p>
+              Our multi-disciplinary team of marketers, developers, designers,
+              and data analysts work in tight cross-functional pods — ensuring
+              every campaign and every product we ship is both beautiful and
+              commercially effective.
+            </p>
+
+            <ul class="diff-list">
+              <li>
+                <span class="chk">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                Data-driven strategy tailored to your specific industry
+              </li>
+              <li>
+                <span class="chk">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                End-to-end ownership from planning to reporting
+              </li>
+              <li>
+                <span class="chk">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                Transparent pricing with no hidden fees, ever
+              </li>
+              <li>
+                <span class="chk">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                Dedicated account manager for every client
+              </li>
+            </ul>
+
+            <a href="#" class="about-link">
+              Learn Our Story
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right: visual -->
+          <div class="about-visual">
+            <!-- Floating badge 1 — top-right -->
+            <div class="vis-badge">
+              <div class="badge-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                  <polyline points="16 7 22 7 22 13" />
+                </svg>
+              </div>
+              <div class="badge-text">
+                <span class="badge-val">98%</span>
+                <span class="badge-sub">Client Retention Rate</span>
+              </div>
+            </div>
+
+            <!-- Main gradient card -->
+            <div class="vis-main">
+              <div class="vis-ring-inner"></div>
+              <blockquote>
+                We don't just run campaigns — we build the engine that keeps
+                your brand growing long after the first win.
+              </blockquote>
+              <div class="vis-author">
+                <div class="vis-avatar">TQ</div>
+                <div class="vis-author-info">
+                  <span class="vis-author-name">Tinqbit Leadership</span>
+                  <span class="vis-author-role">Founders & Strategy Team</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating badge 2 — bottom-left -->
+            <div class="vis-badge">
+              <div class="badge-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              <div class="badge-text">
+                <span class="badge-val">#1 Ranked</span>
+                <span class="badge-sub">Digital Agency 2024</span>
+              </div>
+            </div>
+          </div>
+          <!-- .about-visual -->
+        </div>
+        <!-- .about-split -->
+
+        <!-- Values grid -->
+        <div class="values-section">
+          <div class="values-head">
+            <div class="sec-eye">Our Values</div>
+            <h3 class="values-h3">
+              The principles that guide everything we do
+            </h3>
+            <p class="values-sub">
+              Six core values that shape our culture, our decisions, and the
+              work we deliver.
+            </p>
+          </div>
+
+          <div class="values-grid">
+            <div class="val-card">
+              <div class="val-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" x2="18" y1="20" y2="10" />
+                  <line x1="12" x2="12" y1="20" y2="4" />
+                  <line x1="6" x2="6" y1="20" y2="14" />
+                </svg>
+              </div>
+              <div class="val-title">Results-First</div>
+              <div class="val-desc">
+                Every decision we make is tied to a measurable outcome. Vanity
+                metrics don't interest us — growth does.
+              </div>
+            </div>
+
+            <div class="val-card">
+              <div class="val-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+              <div class="val-title">Full Transparency</div>
+              <div class="val-desc">
+                You see everything — budgets, performance, strategy. No black
+                boxes, no guesswork, no surprises.
+              </div>
+            </div>
+
+            <div class="val-card">
+              <div class="val-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </div>
+              <div class="val-title">Continuous Innovation</div>
+              <div class="val-desc">
+                The digital landscape never stands still, and neither do we. We
+                invest in learning so you stay ahead.
+              </div>
+            </div>
+
+            <div class="val-card">
+              <div class="val-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="val-title">True Partnership</div>
+              <div class="val-desc">
+                We embed ourselves in your vision. Your goals become our goals —
+                your wins are our wins.
+              </div>
+            </div>
+
+            <div class="val-card">
+              <div class="val-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <div class="val-title">Deep Expertise</div>
+              <div class="val-desc">
+                Specialists, not generalists. Every team member is a domain
+                expert who has shipped real results.
+              </div>
+            </div>
+
+            <div class="val-card">
+              <div class="val-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div class="val-title">Integrity Always</div>
+              <div class="val-desc">
+                We say what we mean, deliver what we promise, and own our
+                mistakes. Trust is earned through every interaction.
+              </div>
+            </div>
+          </div>
+          <!-- .values-grid -->
+        </div>
+        <!-- .values-section -->
+      </div>
+      <!-- .about-inner -->
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         CONTACT SECTION
+    ════════════════════════════════════════════════════ -->
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <!-- ── Left: contact details ── -->
+        <div class="contact-info">
+          <div class="sec-eye">Get In Touch</div>
+          <h2 class="contact-h2">Let's build something great together</h2>
+          <p class="contact-lead">
+            Have a project in mind or just want to explore how we can help? Drop
+            us a message — our team typically responds within 2 business hours.
+          </p>
+
+          <div class="cdet-list">
+            <!-- Address -->
+            <div class="cdet">
+              <div class="cdet-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="cdet-body">
+                <span class="cdet-label">Our Office</span>
+                <span class="cdet-value"
+                  >12/A Digital Avenue, Tech Park<br />Innovation District,
+                  Kochi — 682 030, Kerala</span
+                >
+              </div>
+            </div>
+
+            <!-- Email -->
+            <a href="mailto:hello@tinqbit.com" class="cdet">
+              <div class="cdet-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              <div class="cdet-body">
+                <span class="cdet-label">Email Us</span>
+                <span class="cdet-value">hello@tinqbit.com</span>
+              </div>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+919876543210" class="cdet">
+              <div class="cdet-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div class="cdet-body">
+                <span class="cdet-label">Call Us</span>
+                <span class="cdet-value">+91 98765 43210</span>
+              </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noopener"
+              class="cdet"
+            >
+              <div class="cdet-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  />
+                </svg>
+              </div>
+              <div class="cdet-body">
+                <span class="cdet-label">WhatsApp</span>
+                <span class="cdet-value">+91 98765 43210</span>
+              </div>
+            </a>
+          </div>
+          <!-- .cdet-list -->
+
+          <!-- WhatsApp quick CTA -->
+          <a
+            href="https://wa.me/919876543210?text=Hi%20Tinqbit%2C%20I%27d%20like%20to%20discuss%20a%20project"
+            target="_blank"
+            rel="noopener"
+            class="wa-badge"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+              />
+            </svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+        <!-- .contact-info -->
+
+        <!-- ── Right: form ── -->
+        <div class="contact-form-wrap">
+          <div class="form-head">
+            <h3>Send us a message</h3>
+            <p>Fill in the details below and we'll get back to you shortly.</p>
+          </div>
+
+          <form action="#" method="POST" novalidate>
+            <div class="form-grid">
+              <!-- Name -->
+              <div class="form-group">
+                <label for="c-name">Full Name <span>*</span></label>
+                <input
+                  id="c-name"
+                  name="name"
+                  type="text"
+                  class="form-control-c"
+                  placeholder="John Smith"
+                  required
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="c-email">Email Address <span>*</span></label>
+                <input
+                  id="c-email"
+                  name="email"
+                  type="email"
+                  class="form-control-c"
+                  placeholder="john@company.com"
+                  required
+                />
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label for="c-phone">Phone Number</label>
+                <input
+                  id="c-phone"
+                  name="phone"
+                  type="tel"
+                  class="form-control-c"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+
+              <!-- Company -->
+              <div class="form-group">
+                <label for="c-company">Company / Organisation</label>
+                <input
+                  id="c-company"
+                  name="company"
+                  type="text"
+                  class="form-control-c"
+                  placeholder="Your Company Ltd."
+                />
+              </div>
+
+              <!-- Message -->
+              <div class="form-group full">
+                <label for="c-message">Message <span>*</span></label>
+                <textarea
+                  id="c-message"
+                  name="message"
+                  class="form-control-c"
+                  placeholder="Tell us about your project, goals, or any questions you have…"
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-submit">
+              <p class="form-note">
+                We respect your privacy.<br />Your data is never shared with
+                third parties.
+              </p>
+              <button type="submit" class="btn-send">
+                Send Message
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- .contact-form-wrap -->
+      </div>
+      <!-- .contact-inner -->
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
+      <!-- Top bar -->
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <!-- Logo + tagline -->
+          <div>
+            <a href="#" class="footer-logo">
+              <img src="/logo_full.png" alt="Tinqbit" />
+            </a>
+            <p class="footer-tagline">Digital Marketing &amp; IT Solutions</p>
+          </div>
+
+          <!-- Quick nav links -->
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="#">Digital Marketing</a>
+            <a href="#">Web Development</a>
+            <a href="#">IT Solutions</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <!-- Social icons -->
+          <div class="footer-social">
+            <!-- LinkedIn -->
+            <a
+              href="#"
+              class="soc-btn"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+            <!-- Twitter / X -->
+            <a
+              href="#"
+              class="soc-btn"
+              aria-label="Twitter"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a
+              href="#"
+              class="soc-btn"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a
+              href="#"
+              class="soc-btn"
+              aria-label="Facebook"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- .footer-top -->
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <!-- Copyright -->
+          <p class="footer-copy">
+            &copy; <span id="fyear"></span>
+            <strong>Tinqbit Pvt. Ltd.</strong> All rights reserved.
+          </p>
+
+          <!-- Legal links -->
+          <div class="footer-legal">
+            <a href="#">Terms &amp; Conditions</a>
+            <span class="sep"></span>
+            <a href="#">Privacy Policy</a>
+            <span class="sep"></span>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+      <!-- .footer-bottom -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      /* ── Scroll shadow ── */
+      const navbar = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          navbar.classList.toggle("scrolled", window.scrollY > 8);
+        },
+        { passive: true },
+      );
+
+      /* ── Mobile drawer ── */
+      const burger = document.getElementById("navBurger");
+      const drawer = document.getElementById("mobDrawer");
+      const backdrop = document.getElementById("navBackdrop");
+
+      function openDrawer() {
+        burger.classList.add("open");
+        drawer.classList.add("open");
+        backdrop.classList.add("active");
+        document.body.classList.add("no-scroll");
+      }
+
+      function closeDrawer() {
+        burger.classList.remove("open");
+        drawer.classList.remove("open");
+        backdrop.classList.remove("active");
+        document.body.classList.remove("no-scroll");
+      }
+
+      burger.addEventListener("click", () => {
+        drawer.classList.contains("open") ? closeDrawer() : openDrawer();
+      });
+
+      backdrop.addEventListener("click", closeDrawer);
+
+      /* ── Mobile accordion (single open) ── */
+      document.querySelectorAll(".mob-acc-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.acc;
+          const body = document.getElementById("acc-" + id);
+          const isOpen = body.classList.contains("open");
+
+          document
+            .querySelectorAll(".mob-acc-body")
+            .forEach((b) => b.classList.remove("open"));
+          document
+            .querySelectorAll(".mob-acc-btn")
+            .forEach((b) => b.classList.remove("active"));
+
+          if (!isOpen) {
+            body.classList.add("open");
+            btn.classList.add("active");
+          }
+        });
+      });
+
+      /* ── Close drawer on ESC ── */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDrawer();
+      });
+
+      /* ── Footer: auto copyright year ── */
+      const fyear = document.getElementById("fyear");
+      if (fyear) fyear.textContent = new Date().getFullYear();
+
+      /* ── Hero background icon parallax ── */
+      (function () {
+        const hero = document.querySelector(".hero");
+        const bgIcons = document.querySelectorAll(".bg-icon");
+        if (!hero || !bgIcons.length) return;
+
+        /* Smoothly lerp current positions toward mouse target */
+        const cur = Array.from(bgIcons).map(() => ({ x: 0, y: 0 }));
+        const tgt = Array.from(bgIcons).map(() => ({ x: 0, y: 0 }));
+        let raf;
+
+        function lerp(a, b, t) {
+          return a + (b - a) * t;
+        }
+
+        function tick() {
+          let stillMoving = false;
+          bgIcons.forEach((icon, i) => {
+            cur[i].x = lerp(cur[i].x, tgt[i].x, 0.06);
+            cur[i].y = lerp(cur[i].y, tgt[i].y, 0.06);
+            icon.style.transform = `translate(${cur[i].x.toFixed(2)}px, ${cur[i].y.toFixed(2)}px)`;
+            if (
+              Math.abs(cur[i].x - tgt[i].x) > 0.05 ||
+              Math.abs(cur[i].y - tgt[i].y) > 0.05
+            ) {
+              stillMoving = true;
+            }
+          });
+          if (stillMoving) raf = requestAnimationFrame(tick);
+        }
+
+        hero.addEventListener(
+          "mousemove",
+          (e) => {
+            const rect = hero.getBoundingClientRect();
+            const mx =
+              (e.clientX - rect.left - rect.width / 2) /
+              (rect.width / 2); /* -1 … 1 */
+            const my =
+              (e.clientY - rect.top - rect.height / 2) /
+              (rect.height / 2); /* -1 … 1 */
+            const RANGE = 48; /* max pixel travel */
+            bgIcons.forEach((icon, i) => {
+              const depth = parseFloat(icon.dataset.depth) || 0.06;
+              tgt[i].x = mx * depth * RANGE;
+              tgt[i].y = my * depth * RANGE;
+            });
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(tick);
+          },
+          { passive: true },
+        );
+
+        hero.addEventListener("mouseleave", () => {
+          bgIcons.forEach((_, i) => {
+            tgt[i].x = 0;
+            tgt[i].y = 0;
+          });
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(tick);
+        });
+      })();
+    </script>
+  </body>
+</html>
