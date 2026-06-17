@@ -1,0 +1,113 @@
+# Tinqbit
+
+> Tinqbit is a Kerala-based full-spectrum digital and technology company offering Digital Marketing, Web Development, IT Solutions, and Advanced Technologies (AI & ML, IoT, Blockchain, Embedded Systems).
+
+Tinqbit was founded with the mission of helping businesses grow through technology. With 5+ years of experience, 40+ happy clients, 50+ projects delivered, and a 15+ member expert team, Tinqbit serves startups, SMEs, and enterprises across industries. The company is headquartered in Kerala, India, and operates across all four major pillars of digital transformation.
+
+## Company
+
+- **Founded:** 2019
+- **Headquarters:** Kerala, India
+- **Team:** 15+ specialists across marketing, engineering, design, and advanced technology
+- **Clients:** 40+ across India and internationally
+- **Projects Delivered:** 50+
+- **Contact:** info@tinqbit.com
+- **Website:** https://tinqbit.com
+
+## Leadership
+
+- **Nikhil A** — CEO & Co-Founder
+- **Sreejith Shaji** — CTO & Co-Founder
+- **Ajith K R** — COO & Co-Founder
+
+## Services
+
+### Digital Marketing
+- SEO (Search Engine Optimization)
+- Social Media Marketing
+- Meta Advertising (Facebook & Instagram Ads)
+- Content Marketing
+- Email Marketing
+- Branding & Identity
+
+### Web Development
+- Custom Website Development
+- E-commerce Development
+- Web Application Development
+- UI/UX Design
+- Website Maintenance
+- Website Redesign
+
+### IT Solutions
+- Custom Software Development
+- Mobile App Development (iOS & Android)
+- Cloud Solutions
+- IT Consulting
+- ERP Solutions
+- CRM Development
+
+### Advanced Technologies
+- AI & Machine Learning
+- IoT (Internet of Things)
+- Blockchain Development
+- Embedded Systems
+
+## Key Pages
+
+- [Home](https://tinqbit.com/index.html): Overview of all services, company stats, about section, and client testimonials
+- [About Us](https://tinqbit.com/about-us.html): Company story, vision & mission, journey timeline, and client logos
+- [Services](https://tinqbit.com/services.html): Full list of all four service pillars
+- [Digital Marketing](https://tinqbit.com/digital-marketing.html): Overview of all digital marketing services
+- [Web Development](https://tinqbit.com/web-development.html): Overview of all web development services
+- [IT Solutions](https://tinqbit.com/it-solution.html): Overview of all IT solutions
+- [Advanced Technologies](https://tinqbit.com/advanced-technologies.html): AI, IoT, Blockchain, and Embedded Systems
+- [Works / Portfolio](https://tinqbit.com/works.html): Completed projects across industries
+- [Team](https://tinqbit.com/team.html): Meet the Tinqbit team
+- [Testimonials](https://tinqbit.com/testimonials.html): Client feedback and success stories
+- [Blog](https://tinqbit.com/blog/index.html): Articles on digital marketing, technology, and business growth
+- [Careers](https://tinqbit.com/careers.html): Open positions and company culture
+- [Contact](https://tinqbit.com/contact.html): Get in touch with Tinqbit
+
+## Service Detail Pages
+
+- [SEO Services](https://tinqbit.com/services/seo-services.html)
+- [Social Media Marketing](https://tinqbit.com/services/social-media-marketing.html)
+- [Meta Advertising](https://tinqbit.com/services/meta-advertising.html)
+- [Content Marketing](https://tinqbit.com/services/content-marketing.html)
+- [Email Marketing](https://tinqbit.com/services/email-marketing.html)
+- [Branding](https://tinqbit.com/services/branding.html)
+- [AI Search Optimization](https://tinqbit.com/services/ai-search-optimization.html)
+- [Custom Website Development](https://tinqbit.com/services/custom-website-development.html)
+- [E-commerce Development](https://tinqbit.com/services/e-commerce-development.html)
+- [Web Application Development](https://tinqbit.com/services/web-application-development.html)
+- [UI/UX Design](https://tinqbit.com/services/ui-ux-design.html)
+- [Website Maintenance](https://tinqbit.com/services/website-maintenance.html)
+- [Website Redesign](https://tinqbit.com/services/website-redesign.html)
+- [Software Development](https://tinqbit.com/services/software-development.html)
+- [Mobile App Development](https://tinqbit.com/services/mobile-app-development.html)
+- [Cloud Solutions](https://tinqbit.com/services/cloud-solutions.html)
+- [IT Consulting](https://tinqbit.com/services/it-consulting.html)
+- [ERP Solutions](https://tinqbit.com/services/erp-solutions.html)
+- [CRM Development](https://tinqbit.com/services/crm-development.html)
+- [AI & Machine Learning](https://tinqbit.com/services/ai-and-ml.html)
+- [IoT Solutions](https://tinqbit.com/services/iot.html)
+- [Blockchain Development](https://tinqbit.com/services/blockchain.html)
+- [Embedded Systems](https://tinqbit.com/services/embedded-systems.html)
+
+## Portfolio Highlights
+
+- **Travit** — Next-gen travel planning platform (Flutter, Supabase, PostgreSQL)
+- **KFE Banking Software** — Financial transaction processing system (.NET)
+- **Behive OT Module** — Operational technology module (React JS, ASP.NET Core, SQL Server)
+- **Nammude Vipani** — E-commerce marketplace (React, PHP, MySQL, AWS)
+- **Fundget** — Buy Now Pay Later (BNPL) fintech solution
+- **Emcon** — IoT dashboard with cloud-based sensor calibration (React JS, Node.js, PostgreSQL, AWS, MQTT)
+- **SeaBit** — Ship crew safety system with wearable tracking (React JS, Node.js, PostgreSQL, AWS, MQTT)
+- **CMR Software** — School management system for Vivekananda Vidya Mandir Kangazha (React JS, Node.js, PostgreSQL, AWS)
+- **Physiqs** — Gamified fitness and decentralized management platform with tokenized rewards
+
+## Legal
+
+- [Privacy Policy](https://tinqbit.com/privacy-policy.html)
+- [Terms & Conditions](https://tinqbit.com/terms-conditions.html)
+- [Cookie Policy](https://tinqbit.com/cookie-policy.html)

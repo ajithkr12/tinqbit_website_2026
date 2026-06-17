@@ -3,7 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cloud Solutions — Tinqbit</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Web Application Development — Tinqbit</title>
+    <meta name="description" content="Web application development services from Tinqbit — complex, high-performance web apps engineered with modern frameworks and scalable architecture that handles growth with ease." />
+    <link rel="canonical" href="https://tinqbit.com/services/web-application-development.html" />
+    <meta property="og:title" content="Web Application Development — Tinqbit" />
+    <meta property="og:description" content="Web application development services from Tinqbit — complex, high-performance web apps engineered with modern frameworks and scalable architecture that handles growth with ease." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tinqbit.com/services/web-application-development.html" />
+    <meta property="og:image" content="https://tinqbit.com/assets/logo_full.png" />
+    <meta property="og:site_name" content="Tinqbit" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web Application Development — Tinqbit" />
+    <meta name="twitter:description" content="Web application development services from Tinqbit — complex, high-performance web apps engineered with modern frameworks and scalable architecture that handles growth with ease." />
+    <meta name="twitter:image" content="https://tinqbit.com/assets/logo_full.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Service",
+            "name": "Web Application Development",
+            "description": "Web application development services from Tinqbit — complex, high-performance web apps engineered with modern frameworks and scalable architecture that handles growth with ease.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Tinqbit",
+              "url": "https://tinqbit.com"
+            },
+            "areaServed": "Worldwide",
+            "url": "https://tinqbit.com/services/web-application-development.html"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://tinqbit.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://tinqbit.com/services.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Web Application Development",
+                "item": "https://tinqbit.com/services/web-application-development.html"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -50,6 +109,9 @@
       body.no-scroll {
         overflow: hidden;
       }
+            /* ════════════════════════════════════════════════════
+       NAVBAR
+    ════════════════════════════════════════════════════ */
       .navbar-main {
         position: fixed;
         top: 0;
@@ -64,9 +126,11 @@
         transition: box-shadow 0.3s;
         font-family: "Manrope", sans-serif;
       }
+
       .navbar-main.scrolled {
         box-shadow: 0 4px 32px rgba(15, 23, 42, 0.09);
       }
+
       .nav-wrap {
         max-width: 1280px;
         margin: 0 auto;
@@ -76,19 +140,56 @@
         padding: 0 1.5rem;
         gap: 0.5rem;
       }
+
+      /* ── Logo ── */
       .nav-logo {
         display: flex;
         align-items: center;
         text-decoration: none;
         flex-shrink: 0;
         margin-right: 1.5rem;
+        position: relative;
+        height: 52px;
+        width: 249px;
+        transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
       .nav-logo img {
+        position: absolute;
+        left: 0;
+        top: 0;
         height: 52px;
         width: auto;
         display: block;
         object-fit: contain;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
       }
+
+      .nav-logo .logo-icon {
+        opacity: 0;
+        transform: scale(0.8) rotate(-12deg);
+        pointer-events: none;
+      }
+
+      .navbar-main.scrolled .nav-logo {
+        width: 52px;
+      }
+
+      .navbar-main.scrolled .logo-full {
+        opacity: 0;
+        transform: scale(0.8) rotate(12deg);
+        pointer-events: none;
+      }
+
+      .navbar-main.scrolled .logo-icon {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        pointer-events: auto;
+      }
+
+      /* ── Nav items ── */
       .nav-list {
         display: flex;
         align-items: center;
@@ -96,8 +197,9 @@
         height: 100%;
         flex: 1;
         justify-content: center;
-        margin-bottom: 0;
+        margin-bottom: 0px;
       }
+
       .nav-item {
         height: 100%;
         display: flex;
@@ -105,6 +207,7 @@
         justify-content: center;
         position: static;
       }
+
       .nav-trigger {
         display: flex;
         align-items: center;
@@ -123,6 +226,7 @@
         position: relative;
         transition: color 0.2s;
       }
+
       .nav-trigger::after {
         content: "";
         position: absolute;
@@ -135,12 +239,14 @@
         border-radius: 2px;
         transition: transform 0.22s ease;
       }
+
       .nav-item:hover .nav-trigger {
         color: var(--gfrom);
       }
       .nav-item:hover .nav-trigger::after {
         transform: translateX(-50%) scaleX(1);
       }
+
       .nav-trigger .chev {
         width: 14px;
         height: 14px;
@@ -150,10 +256,15 @@
           opacity 0.22s;
         flex-shrink: 0;
       }
+
       .nav-item:hover .nav-trigger .chev {
         transform: rotate(180deg);
         opacity: 1;
       }
+
+      /* ════════════════════════════════════════════════════
+       MEGA MENU
+    ════════════════════════════════════════════════════ */
       .mega {
         position: fixed;
         top: var(--nav-h);
@@ -174,17 +285,20 @@
           transform 0.2s ease,
           visibility 0.2s;
       }
+
       .nav-item:hover > .mega,
       .mega:hover {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
       }
+
       .mega-wrap {
         max-width: 1280px;
         margin: 0 auto;
         padding: 1.75rem 2rem 2rem;
       }
+
       .mega-eyebrow {
         font-size: 0.62rem;
         font-weight: 700;
@@ -193,11 +307,13 @@
         color: var(--nav-sub);
         margin-bottom: 1rem;
       }
+
       .mega-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4px;
       }
+
       .mi {
         display: flex;
         align-items: flex-start;
@@ -207,9 +323,11 @@
         text-decoration: none;
         transition: background 0.14s ease;
       }
+
       .mi:hover {
         background: var(--nav-hover);
       }
+
       .mi-ic {
         width: 36px;
         height: 36px;
@@ -219,6 +337,7 @@
         justify-content: center;
         flex-shrink: 0;
       }
+
       .mi-name {
         display: block;
         font-size: 0.83rem;
@@ -228,6 +347,7 @@
         transition: color 0.14s;
         font-family: "Manrope", sans-serif;
       }
+
       .mi-desc {
         display: block;
         font-size: 0.71rem;
@@ -236,9 +356,12 @@
         line-height: 1.3;
         font-family: "Manrope", sans-serif;
       }
+
       .mi:hover .mi-name {
         color: var(--gfrom);
       }
+
+      /* Icon palette */
       .ci {
         background: #dff0fb;
         color: #1e3a5a;
@@ -299,6 +422,8 @@
         background: #dff0fb;
         color: #1490c8;
       }
+
+      /* ── CTA Button ── */
       .btn-cta-nav {
         display: inline-flex;
         align-items: center;
@@ -322,6 +447,7 @@
           box-shadow 0.2s;
         box-shadow: 0 4px 16px rgba(30, 58, 90, 0.28);
       }
+
       .btn-cta-nav::before {
         content: "";
         position: absolute;
@@ -337,17 +463,21 @@
         );
         transition: left 0.45s ease;
       }
+
       .btn-cta-nav:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 28px rgba(30, 58, 90, 0.38);
         color: #fff;
       }
+
       .btn-cta-nav:hover::before {
         left: 160%;
       }
       .btn-cta-nav:active {
         transform: translateY(0);
       }
+
+      /* ── Hamburger ── */
       .nav-burger {
         display: none;
         flex-direction: column;
@@ -363,9 +493,11 @@
         flex-shrink: 0;
         transition: background 0.2s;
       }
+
       .nav-burger:hover {
         background: var(--nav-hover);
       }
+
       .nav-burger span {
         display: block;
         width: 18px;
@@ -374,6 +506,7 @@
         border-radius: 2px;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
       .nav-burger.open span:nth-child(1) {
         transform: translateY(6.5px) rotate(45deg);
       }
@@ -384,6 +517,10 @@
       .nav-burger.open span:nth-child(3) {
         transform: translateY(-6.5px) rotate(-45deg);
       }
+
+      /* ════════════════════════════════════════════════════
+       MOBILE DRAWER
+    ════════════════════════════════════════════════════ */
       .mob-drawer {
         position: fixed;
         top: var(--nav-h);
@@ -399,15 +536,18 @@
         font-family: "Manrope", sans-serif;
         -webkit-overflow-scrolling: touch;
       }
+
       .mob-drawer.open {
         transform: translateX(0);
       }
+
       .mob-acc {
         border: 1px solid rgba(15, 23, 42, 0.08);
         border-radius: 12px;
         overflow: hidden;
         margin-bottom: 0.55rem;
       }
+
       .mob-acc-btn {
         display: flex;
         align-items: center;
@@ -423,22 +563,26 @@
         font-family: "Manrope", sans-serif;
         transition: background 0.15s;
       }
+
       .mob-acc-btn:hover {
         background: #f8fafc;
       }
       .mob-acc-btn.active {
         color: var(--gfrom);
       }
+
       .mob-acc-btn .ac {
         opacity: 0.4;
         transition:
           transform 0.22s,
           opacity 0.22s;
       }
+
       .mob-acc-btn.active .ac {
         transform: rotate(180deg);
         opacity: 1;
       }
+
       .mob-acc-body {
         max-height: 0;
         overflow: hidden;
@@ -446,12 +590,15 @@
         background: #f4f9fd;
         border-top: 1px solid rgba(30, 58, 90, 0.06);
       }
+
       .mob-acc-body.open {
         max-height: 700px;
       }
+
       .mob-acc-items {
         padding: 0.5rem 0.75rem 0.75rem;
       }
+
       .mob-link {
         display: flex;
         align-items: center;
@@ -467,10 +614,12 @@
           background 0.14s,
           color 0.14s;
       }
+
       .mob-link:hover {
         background: #dff0fb;
         color: var(--gfrom);
       }
+
       .mob-ic {
         width: 26px;
         height: 26px;
@@ -480,9 +629,11 @@
         justify-content: center;
         flex-shrink: 0;
       }
+
       .mob-cta {
         padding: 1.25rem 0 0;
       }
+
       .mob-cta .btn-cta-nav {
         width: 100%;
         justify-content: center;
@@ -490,6 +641,7 @@
         padding: 0.88rem;
         font-size: 0.9rem;
       }
+
       .nav-backdrop {
         position: fixed;
         inset: 0;
@@ -501,10 +653,12 @@
           opacity 0.3s,
           visibility 0.3s;
       }
+
       .nav-backdrop.active {
         opacity: 1;
         visibility: visible;
       }
+
       @media (max-width: 1024px) {
         .nav-list {
           display: none;
@@ -516,6 +670,7 @@
           display: flex;
         }
       }
+
       .hero {
         background: #0b1929;
         position: relative;
@@ -1149,17 +1304,92 @@
         left: -100px;
         pointer-events: none;
       }
+      .contact::after {
+        content: "";
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(30, 58, 90, 0.06),
+          transparent 70%
+        );
+        bottom: -80px;
+        right: -60px;
+        pointer-events: none;
+      }
+
+      /* Decorative floating icons */
+      .contact-bg-icon {
+        position: absolute;
+        fill: none;
+        stroke: var(--navy);
+        stroke-width: 1.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .contact-bg-icon.cyan {
+        stroke: var(--cyan);
+      }
+      .contact-bg-icon.mail {
+        width: 90px;
+        height: 90px;
+        top: 6%;
+        left: 5%;
+        transform: rotate(-12deg);
+      }
+      .contact-bg-icon.phone {
+        width: 64px;
+        height: 64px;
+        top: 62%;
+        left: 9%;
+        transform: rotate(14deg);
+      }
+      .contact-bg-icon.chat {
+        width: 76px;
+        height: 76px;
+        top: 12%;
+        right: 7%;
+        transform: rotate(8deg);
+      }
+      .contact-bg-icon.pin {
+        width: 68px;
+        height: 68px;
+        bottom: 10%;
+        right: 13%;
+        transform: rotate(-10deg);
+      }
+      .contact-bg-icon.send {
+        width: 56px;
+        height: 56px;
+        bottom: 22%;
+        left: 22%;
+        transform: rotate(18deg);
+      }
+      @media (max-width: 900px) {
+        .contact-bg-icon {
+          display: none;
+        }
+      }
+
       .contact-inner {
         max-width: 1160px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1.15fr;
+        display: flex;
+        flex-direction: column;
         gap: 4rem;
-        align-items: start;
         position: relative;
         z-index: 1;
       }
+      .contact-info {
+        text-align: center;
+      }
       .contact-info .sec-eye {
+        justify-content: center;
         margin-bottom: 1rem;
       }
       .contact-h2 {
@@ -1176,96 +1406,154 @@
         font-size: 0.92rem;
         color: var(--muted);
         line-height: 1.75;
-        margin-bottom: 2.2rem;
-        max-width: 400px;
+        max-width: 620px;
+        margin: 0 auto;
       }
-      .cdet-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.9rem;
-        margin-bottom: 2rem;
+
+      /* ── Global offices ── */
+      .offices-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
       }
-      .cdet {
-        display: flex;
-        align-items: flex-start;
-        gap: 13px;
-        padding: 1rem 1.15rem;
-        background: var(--white);
-        border: 1.5px solid var(--border);
-        border-radius: 13px;
-        text-decoration: none;
+
+      .office-card {
+        background: #fff;
+        border: 1.5px solid #e0eef6;
+        border-radius: 18px;
+        padding: 1.8rem 1.6rem;
+        text-align: center;
         transition:
           border-color 0.22s,
           box-shadow 0.22s,
           transform 0.22s;
       }
-      .cdet:hover {
-        border-color: var(--cyan);
-        box-shadow: 0 6px 22px rgba(30, 58, 90, 0.09);
-        transform: translateX(4px);
+
+      .office-card:hover {
+        border-color: #45bfe5;
+        box-shadow: 0 10px 30px rgba(30, 58, 90, 0.09);
+        transform: translateY(-4px);
       }
-      .cdet-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        background: var(--tint);
-        color: var(--navy);
+
+      .office-flag {
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 0.6rem;
+      }
+
+      .office-name {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #0f1f2e;
+        margin-bottom: 0.5rem;
+      }
+
+      .office-address {
+        font-family: "Sora", sans-serif;
+        font-size: 0.85rem;
+        color: #5e7a8e;
+        line-height: 1.65;
+        margin-bottom: 1.2rem;
+        min-height: 3.3rem;
+      }
+
+      .office-links {
         display: flex;
-        align-items: center;
+        flex-direction: row;
         justify-content: center;
-        flex-shrink: 0;
-        transition:
-          background 0.22s,
-          color 0.22s;
+        gap: 0.7rem;
       }
-      .cdet:hover .cdet-icon {
-        background: var(--navy);
-        color: #fff;
-      }
-      .cdet-label {
-        font-family: "Manrope", sans-serif;
-        font-size: 0.64rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        display: block;
-        margin-bottom: 2px;
-      }
-      .cdet-value {
-        font-family: "Manrope", sans-serif;
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: var(--dark);
-        display: block;
-        line-height: 1.4;
-      }
-      .wa-badge {
+
+      .office-link {
+        position: relative;
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        font-family: "Manrope", sans-serif;
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: #fff;
-        background: #25d366;
-        border-radius: 50px;
-        padding: 0.46rem 0.95rem;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        color: #1e3a5a;
+        background: #dff0fb;
+        border-radius: 50%;
         text-decoration: none;
-        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
         transition:
           transform 0.2s,
-          box-shadow 0.2s;
+          box-shadow 0.2s,
+          background 0.2s,
+          color 0.2s;
       }
-      .wa-badge:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+
+      .office-link .office-link-text {
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: #1e3a5a;
         color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        white-space: nowrap;
+        padding: 0.4rem 0.75rem;
+        border-radius: 8px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s,
+          visibility 0.2s;
+        z-index: 5;
       }
+
+      .office-link .office-link-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: #1e3a5a;
+      }
+
+      .office-link:hover .office-link-text {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .office-link:hover {
+        background: #1e3a5a;
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .office-link.wa {
+        color: #fff;
+        background: #25d366;
+        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+      }
+
+      .office-link.wa:hover {
+        background: #1ebe5b;
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+      }
+
+      @media (max-width: 900px) {
+        .offices-grid {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+        }
+      }
+
       .contact-form-wrap {
         background: var(--white);
         border-radius: 22px;
         padding: 2.6rem 2.4rem;
+        max-width: 1160px;
+        width: 100%;
+        margin: 0 auto;
         box-shadow: 0 12px 44px rgba(30, 58, 90, 0.09);
         border: 1.5px solid var(--border);
       }
@@ -1377,7 +1665,6 @@
       }
       @media (max-width: 900px) {
         .contact-inner {
-          grid-template-columns: 1fr;
           gap: 2.5rem;
         }
       }
@@ -1427,13 +1714,13 @@
         color: rgba(255, 255, 255, 0.38);
         margin-top: 6px;
       }
-      .footer-nav-links {
+      .footer-nav {
         display: flex;
         align-items: center;
         gap: 0.25rem;
         flex-wrap: wrap;
       }
-      .footer-nav-links a {
+      .footer-nav a {
         font-family: "Manrope", sans-serif;
         font-size: 0.78rem;
         font-weight: 500;
@@ -1445,11 +1732,11 @@
           color 0.2s,
           background 0.2s;
       }
-      .footer-nav-links a:hover {
+      .footer-nav a:hover {
         color: var(--cyan);
         background: rgba(69, 191, 229, 0.08);
       }
-      .footer-socials {
+      .footer-social {
         display: flex;
         align-items: center;
         gap: 7px;
@@ -1536,18 +1823,46 @@
           flex-wrap: wrap;
         }
       }
+      .form-feedback {
+        margin-top: 1rem;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: none;
+      }
+      .form-feedback.is-success,
+      .form-feedback.is-error {
+        display: block;
+      }
+      .form-feedback.is-success {
+        color: #059669;
+      }
+      .form-feedback.is-error {
+        color: #dc2626;
+      }
     </style>
-  </head>
+      <script src="/scripts/preloader.js"></script>
+</head>
   <body>
-    <header class="navbar-main" id="navbar">
+<div id="tq-preloader" aria-hidden="true" style="position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;background:#0b1929;">
+  <div class="tq-pl-logo"><img src="/assets/favicon.png" alt="Tinqbit"></div>
+  <div class="tq-pl-track"><div class="tq-pl-fill"></div></div>
+</div>
+        <header class="navbar-main" id="navbar">
       <div class="nav-wrap">
-        <a href="index.html" class="nav-logo"
-          ><img src="/logo_full.png" alt="Tinqbit"
-        /></a>
+        <!-- Logo -->
+        <a href="/index.html" class="nav-logo">
+          <img src="/assets/logo_full.png" alt="Tinqbit" class="logo-full" />
+          <img src="/assets/logo.png" alt="Tinqbit" class="logo-icon" />
+        </a>
+
+        <!-- Desktop nav -->
         <ul class="nav-list">
+          <!-- Digital Marketing -->
           <li class="nav-item">
             <button class="nav-trigger">
-              Digital Marketing<svg
+              Digital Marketing
+              <svg
                 class="chev"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -1563,8 +1878,8 @@
               <div class="mega-wrap">
                 <p class="mega-eyebrow">Digital Marketing Services</p>
                 <div class="mega-grid">
-                  <a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic ci">
+                  <a href="/services/seo-services.html" class="mi">
+                    <div class="mi-ic ci">
                       <svg
                         width="16"
                         height="16"
@@ -1584,9 +1899,11 @@
                       ><span class="mi-desc"
                         >Rank higher, grow organically</span
                       >
-                    </div></a
-                  ><a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic cs">
+                    </div>
+                  </a>
+
+                  <a href="/services/ai-search-optimization.html" class="mi">
+                    <div class="mi-ic cs">
                       <svg
                         width="16"
                         height="16"
@@ -1598,17 +1915,20 @@
                         stroke-linejoin="round"
                       >
                         <path
-                          d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                          d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"
                         />
-                        <circle cx="12" cy="10" r="3" />
                       </svg>
                     </div>
                     <div>
-                      <span class="mi-name">Local SEO</span
-                      ><span class="mi-desc">Dominate local searches</span>
-                    </div></a
-                  ><a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic cp">
+                      <span class="mi-name">AI Search Optimization</span
+                      ><span class="mi-desc"
+                        >Get found in AI &amp; LLM search</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="/services/social-media-marketing.html" class="mi">
+                    <div class="mi-ic cp">
                       <svg
                         width="16"
                         height="16"
@@ -1631,9 +1951,11 @@
                       ><span class="mi-desc"
                         >Build &amp; engage your audience</span
                       >
-                    </div></a
-                  ><a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic co">
+                    </div>
+                  </a>
+
+                  <a href="/services/meta-advertising.html" class="mi">
+                    <div class="mi-ic co">
                       <svg
                         width="16"
                         height="16"
@@ -1644,16 +1966,20 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
-                        <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
-                        <path d="m13 13 6 6" />
+                        <path d="m3 11 18-5v12L3 14v-3z" />
+                        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
                       </svg>
                     </div>
                     <div>
-                      <span class="mi-name">PPC Advertising</span
-                      ><span class="mi-desc">ROI-driven paid campaigns</span>
-                    </div></a
-                  ><a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic ce">
+                      <span class="mi-name">Meta Advertising</span
+                      ><span class="mi-desc"
+                        >Targeted ads on Facebook &amp; Instagram</span
+                      >
+                    </div>
+                  </a>
+
+                  <a href="/services/content-marketing.html" class="mi">
+                    <div class="mi-ic ce">
                       <svg
                         width="16"
                         height="16"
@@ -1668,14 +1994,18 @@
                           d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
                         />
                         <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" x2="8" y1="13" y2="13" />
+                        <line x1="16" x2="8" y1="17" y2="17" />
                       </svg>
                     </div>
                     <div>
                       <span class="mi-name">Content Marketing</span
                       ><span class="mi-desc">Stories that convert</span>
-                    </div></a
-                  ><a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic cb">
+                    </div>
+                  </a>
+
+                  <a href="/services/email-marketing.html" class="mi">
+                    <div class="mi-ic cb">
                       <svg
                         width="16"
                         height="16"
@@ -1693,9 +2023,10 @@
                     <div>
                       <span class="mi-name">Email Marketing</span
                       ><span class="mi-desc">Nurture leads at scale</span>
-                    </div></a
-                  ><a href="digital-marketing.html" class="mi"
-                    ><div class="mi-ic crd">
+                    </div>
+                  </a>
+                  <a href="/services/branding.html" class="mi">
+                    <div class="mi-ic cv">
                       <svg
                         width="16"
                         height="16"
@@ -1706,21 +2037,29 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path
+                          d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
+                        />
+                        <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
                       </svg>
                     </div>
                     <div>
-                      <span class="mi-name">Online Reputation</span
-                      ><span class="mi-desc">Protect your brand online</span>
-                    </div></a
-                  >
+                      <span class="mi-name">Branding</span
+                      ><span class="mi-desc"
+                        >Build a brand that stands out</span
+                      >
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
           </li>
+
+          <!-- Web Development -->
           <li class="nav-item">
             <button class="nav-trigger">
-              Web Development<svg
+              Web Development
+              <svg
                 class="chev"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -1736,8 +2075,8 @@
               <div class="mega-wrap">
                 <p class="mega-eyebrow">Web Development Services</p>
                 <div class="mega-grid">
-                  <a href="web-development.html" class="mi"
-                    ><div class="mi-ic cb">
+                  <a href="/services/custom-website-development.html" class="mi">
+                    <div class="mi-ic cb">
                       <svg
                         width="16"
                         height="16"
@@ -1758,9 +2097,11 @@
                       ><span class="mi-desc"
                         >Pixel-perfect, performance-first</span
                       >
-                    </div></a
-                  ><a href="web-development.html" class="mi"
-                    ><div class="mi-ic ce">
+                    </div>
+                  </a>
+
+                  <a href="/services/e-commerce-development.html" class="mi">
+                    <div class="mi-ic ce">
                       <svg
                         width="16"
                         height="16"
@@ -1781,30 +2122,11 @@
                     <div>
                       <span class="mi-name">E-Commerce Dev</span
                       ><span class="mi-desc">Sell more, convert better</span>
-                    </div></a
-                  ><a href="web-development.html" class="mi"
-                    ><div class="mi-ic ci">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <rect width="18" height="18" x="3" y="3" rx="2" />
-                        <path d="M3 9h18" />
-                        <path d="M9 21V9" />
-                      </svg>
                     </div>
-                    <div>
-                      <span class="mi-name">WordPress Development</span
-                      ><span class="mi-desc">Powerful, flexible CMS sites</span>
-                    </div></a
-                  ><a href="web-development.html" class="mi"
-                    ><div class="mi-ic cv">
+                  </a>
+
+                  <a href="/services/web-application-development.html" class="mi">
+                    <div class="mi-ic cv">
                       <svg
                         width="16"
                         height="16"
@@ -1822,9 +2144,11 @@
                     <div>
                       <span class="mi-name">Web Application Dev</span
                       ><span class="mi-desc">Scalable, robust web apps</span>
-                    </div></a
-                  ><a href="web-development.html" class="mi"
-                    ><div class="mi-ic cp">
+                    </div>
+                  </a>
+
+                  <a href="/services/ui-ux-design.html" class="mi">
+                    <div class="mi-ic cp">
                       <svg
                         width="16"
                         height="16"
@@ -1838,6 +2162,12 @@
                         <path
                           d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
                         />
+                        <path
+                          d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"
+                        />
+                        <path
+                          d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"
+                        />
                       </svg>
                     </div>
                     <div>
@@ -1845,9 +2175,11 @@
                       ><span class="mi-desc"
                         >Intuitive, stunning interfaces</span
                       >
-                    </div></a
-                  ><a href="web-development.html" class="mi"
-                    ><div class="mi-ic ca">
+                    </div>
+                  </a>
+
+                  <a href="/services/website-maintenance.html" class="mi">
+                    <div class="mi-ic ca">
                       <svg
                         width="16"
                         height="16"
@@ -1866,9 +2198,11 @@
                     <div>
                       <span class="mi-name">Website Maintenance</span
                       ><span class="mi-desc">Always fast, always secure</span>
-                    </div></a
-                  ><a href="web-development.html" class="mi"
-                    ><div class="mi-ic ct">
+                    </div>
+                  </a>
+
+                  <a href="/services/website-redesign.html" class="mi">
+                    <div class="mi-ic ct">
                       <svg
                         width="16"
                         height="16"
@@ -1883,20 +2217,27 @@
                           d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
                         />
                         <path d="M21 3v5h-5" />
+                        <path
+                          d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+                        />
+                        <path d="M8 16H3v5" />
                       </svg>
                     </div>
                     <div>
                       <span class="mi-name">Website Redesign</span
                       ><span class="mi-desc">Refresh, modernise, convert</span>
-                    </div></a
-                  >
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
           </li>
+
+          <!-- IT Solutions -->
           <li class="nav-item">
             <button class="nav-trigger">
-              IT Solutions<svg
+              IT Solutions
+              <svg
                 class="chev"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -1912,8 +2253,8 @@
               <div class="mega-wrap">
                 <p class="mega-eyebrow">IT Solutions &amp; Services</p>
                 <div class="mega-grid">
-                  <a href="software-development.html" class="mi"
-                    ><div class="mi-ic csl">
+                  <a href="/services/software-development.html" class="mi">
+                    <div class="mi-ic csl">
                       <svg
                         width="16"
                         height="16"
@@ -1933,9 +2274,11 @@
                       ><span class="mi-desc"
                         >Custom software, built to scale</span
                       >
-                    </div></a
-                  ><a href="mobile-app-development.html" class="mi"
-                    ><div class="mi-ic cb">
+                    </div>
+                  </a>
+
+                  <a href="/services/mobile-app-development.html" class="mi">
+                    <div class="mi-ic cb">
                       <svg
                         width="16"
                         height="16"
@@ -1962,9 +2305,11 @@
                       ><span class="mi-desc"
                         >iOS &amp; Android, native or hybrid</span
                       >
-                    </div></a
-                  ><a href="cloud-solutions.html" class="mi"
-                    ><div class="mi-ic cs">
+                    </div>
+                  </a>
+
+                  <a href="/services/cloud-solutions.html" class="mi">
+                    <div class="mi-ic cs">
                       <svg
                         width="16"
                         height="16"
@@ -1983,9 +2328,11 @@
                     <div>
                       <span class="mi-name">Cloud Solutions</span
                       ><span class="mi-desc">Migrate, optimise, automate</span>
-                    </div></a
-                  ><a href="it-consulting.html" class="mi"
-                    ><div class="mi-ic ca">
+                    </div>
+                  </a>
+
+                  <a href="/services/it-consulting.html" class="mi">
+                    <div class="mi-ic ca">
                       <svg
                         width="16"
                         height="16"
@@ -2006,9 +2353,11 @@
                     <div>
                       <span class="mi-name">IT Consulting</span
                       ><span class="mi-desc">Strategy-led tech advisory</span>
-                    </div></a
-                  ><a href="erp-solutions.html" class="mi"
-                    ><div class="mi-ic ce">
+                    </div>
+                  </a>
+
+                  <a href="/services/erp-solutions.html" class="mi">
+                    <div class="mi-ic ce">
                       <svg
                         width="16"
                         height="16"
@@ -2028,9 +2377,11 @@
                     <div>
                       <span class="mi-name">ERP Solutions</span
                       ><span class="mi-desc">Streamline every operation</span>
-                    </div></a
-                  ><a href="crm-development.html" class="mi"
-                    ><div class="mi-ic ci">
+                    </div>
+                  </a>
+
+                  <a href="/services/crm-development.html" class="mi">
+                    <div class="mi-ic ci">
                       <svg
                         width="16"
                         height="16"
@@ -2052,9 +2403,32 @@
                       ><span class="mi-desc"
                         >Know &amp; grow your customers</span
                       >
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic crd">
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger">
+              Advanced Technologies<svg
+                class="chev"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="mega">
+              <div class="mega-wrap">
+                <p class="mega-eyebrow">Advanced Technology Solutions</p>
+                <div class="mega-grid">
+                  <a href="/services/ai-and-ml.html" class="mi"
+                    ><div class="mi-ic cv">
                       <svg
                         width="16"
                         height="16"
@@ -2065,23 +2439,44 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
-                        <rect
-                          width="18"
-                          height="11"
-                          x="3"
-                          y="11"
-                          rx="2"
-                          ry="2"
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                          d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"
                         />
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                       </svg>
                     </div>
                     <div>
-                      <span class="mi-name">Cyber Security</span
-                      ><span class="mi-desc">Protect, detect, respond</span>
+                      <span class="mi-name">AI &amp; Machine Learning</span
+                      ><span class="mi-desc">Intelligent systems at scale</span>
                     </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic cv">
+                  >
+                  <a href="/services/blockchain.html" class="mi"
+                    ><div class="mi-ic cp">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect width="7" height="7" x="3" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="3" rx="1" />
+                        <rect width="7" height="7" x="14" y="14" rx="1" />
+                        <rect width="7" height="7" x="3" y="14" rx="1" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">Blockchain</span
+                      ><span class="mi-desc"
+                        >Decentralised &amp; secure systems</span
+                      >
+                    </div></a
+                  >
+                  <a href="/services/embedded-systems.html" class="mi"
+                    ><div class="mi-ic co">
                       <svg
                         width="16"
                         height="16"
@@ -2095,21 +2490,57 @@
                         <rect width="16" height="16" x="4" y="4" rx="2" />
                         <rect width="6" height="6" x="9" y="9" rx="1" />
                         <path d="M15 2v2" />
+                        <path d="M15 20v2" />
+                        <path d="M2 15h2" />
+                        <path d="M2 9h2" />
+                        <path d="M20 15h2" />
+                        <path d="M20 9h2" />
                         <path d="M9 2v2" />
+                        <path d="M9 20v2" />
                       </svg>
                     </div>
                     <div>
-                      <span class="mi-name">AI &amp; Automation</span
-                      ><span class="mi-desc">Intelligent systems at scale</span>
+                      <span class="mi-name">Embedded Systems</span
+                      ><span class="mi-desc"
+                        >Hardware meets smart software</span
+                      >
+                    </div></a
+                  >
+                  <a href="/services/iot.html" class="mi"
+                    ><div class="mi-ic ct">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                        <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                        <circle cx="12" cy="12" r="2" />
+                        <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                        <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="mi-name">IoT Solutions</span
+                      ><span class="mi-desc"
+                        >Connected devices &amp; smart data</span
+                      >
                     </div></a
                   >
                 </div>
               </div>
             </div>
           </li>
+          <!-- Company -->
           <li class="nav-item">
             <button class="nav-trigger">
-              Company<svg
+              Company
+              <svg
                 class="chev"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -2125,8 +2556,8 @@
               <div class="mega-wrap">
                 <p class="mega-eyebrow">About Tinqbit</p>
                 <div class="mega-grid">
-                  <a href="index.html#about" class="mi"
-                    ><div class="mi-ic ci">
+                  <a href="/about-us.html" class="mi">
+                    <div class="mi-ic ci">
                       <svg
                         width="16"
                         height="16"
@@ -2147,9 +2578,11 @@
                       ><span class="mi-desc"
                         >Our story, mission &amp; values</span
                       >
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic cb">
+                    </div>
+                  </a>
+
+                  <a href="/team.html" class="mi">
+                    <div class="mi-ic cb">
                       <svg
                         width="16"
                         height="16"
@@ -2168,9 +2601,11 @@
                     <div>
                       <span class="mi-name">Our Team</span
                       ><span class="mi-desc">The people behind the work</span>
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic cp">
+                    </div>
+                  </a>
+
+                  <a href="/works.html" class="mi">
+                    <div class="mi-ic cp">
                       <svg
                         width="16"
                         height="16"
@@ -2194,32 +2629,13 @@
                       </svg>
                     </div>
                     <div>
-                      <span class="mi-name">Portfolio</span
+                      <span class="mi-name">Works</span
                       ><span class="mi-desc">Work we're proud of</span>
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic ce">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <line x1="18" x2="18" y1="20" y2="10" />
-                        <line x1="12" x2="12" y1="20" y2="4" />
-                        <line x1="6" x2="6" y1="20" y2="14" />
-                      </svg>
                     </div>
-                    <div>
-                      <span class="mi-name">Case Studies</span
-                      ><span class="mi-desc">Real results, real clients</span>
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic co">
+                  </a>
+
+                  <a href="/careers.html" class="mi">
+                    <div class="mi-ic co">
                       <svg
                         width="16"
                         height="16"
@@ -2241,9 +2657,11 @@
                     <div>
                       <span class="mi-name">Careers</span
                       ><span class="mi-desc">Join our growing team</span>
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic ct">
+                    </div>
+                  </a>
+
+                  <a href="/blog/" class="mi">
+                    <div class="mi-ic ct">
                       <svg
                         width="16"
                         height="16"
@@ -2265,9 +2683,11 @@
                       ><span class="mi-desc"
                         >Insights &amp; industry trends</span
                       >
-                    </div></a
-                  ><a href="#" class="mi"
-                    ><div class="mi-ic ca">
+                    </div>
+                  </a>
+
+                  <a href="/testimonials.html" class="mi">
+                    <div class="mi-ic ca">
                       <svg
                         width="16"
                         height="16"
@@ -2286,9 +2706,11 @@
                     <div>
                       <span class="mi-name">Testimonials</span
                       ><span class="mi-desc">What our clients say</span>
-                    </div></a
-                  ><a href="#contact" class="mi"
-                    ><div class="mi-ic cgr">
+                    </div>
+                  </a>
+
+                  <a href="/contact.html" class="mi">
+                    <div class="mi-ic cgr">
                       <svg
                         width="16"
                         height="16"
@@ -2307,15 +2729,19 @@
                     <div>
                       <span class="mi-name">Contact Us</span
                       ><span class="mi-desc">Let's start a conversation</span>
-                    </div></a
-                  >
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
           </li>
         </ul>
-        <a href="#contact" class="btn-cta-nav"
-          >Get Free Consultation<svg
+        <!-- /nav-list -->
+
+        <!-- CTA -->
+        <a href="#contact" class="btn-cta-nav">
+          Get Free Consultation
+          <svg
             width="14"
             height="14"
             viewBox="0 0 24 24"
@@ -2326,17 +2752,26 @@
             stroke-linejoin="round"
           >
             <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" /></svg
-        ></a>
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <!-- Hamburger -->
         <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </header>
+
+    <!-- ════════════════════════════════════════════════════
+     MOBILE DRAWER
+════════════════════════════════════════════════════ -->
     <div class="mob-drawer" id="mobDrawer">
+      <!-- Digital Marketing -->
       <div class="mob-acc">
         <button class="mob-acc-btn" data-acc="dm">
-          Digital Marketing<svg
+          Digital Marketing
+          <svg
             class="ac"
             width="16"
             height="16"
@@ -2352,7 +2787,7 @@
         </button>
         <div class="mob-acc-body" id="acc-dm">
           <div class="mob-acc-items">
-            <a href="digital-marketing.html" class="mob-link"
+            <a href="/services/seo-services.html" class="mob-link"
               ><div class="mob-ic ci">
                 <svg
                   width="13"
@@ -2369,7 +2804,47 @@
                 </svg>
               </div>
               SEO Services</a
-            ><a href="digital-marketing.html" class="mob-link"
+            >
+            <a href="/services/ai-search-optimization.html" class="mob-link"
+              ><div class="mob-ic cs">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"
+                  />
+                </svg>
+              </div>
+              AI Search Optimization</a
+            >
+            <a href="/services/branding.html" class="mob-link"
+              ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
+                  />
+                  <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+                </svg>
+              </div>
+              Branding</a
+            >
+            <a href="/services/social-media-marketing.html" class="mob-link"
               ><div class="mob-ic cp">
                 <svg
                   width="13"
@@ -2389,7 +2864,8 @@
                 </svg>
               </div>
               Social Media Marketing</a
-            ><a href="digital-marketing.html" class="mob-link"
+            >
+            <a href="/services/meta-advertising.html" class="mob-link"
               ><div class="mob-ic co">
                 <svg
                   width="13"
@@ -2401,12 +2877,14 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                  <path d="m3 11 18-5v12L3 14v-3z" />
+                  <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
                 </svg>
               </div>
-              PPC Advertising</a
-            ><a href="digital-marketing.html" class="mob-link"
-              ><div class="mob-ic crd">
+              Meta Advertising</a
+            >
+            <a href="/services/content-marketing.html" class="mob-link"
+              ><div class="mob-ic ce">
                 <svg
                   width="13"
                   height="13"
@@ -2417,17 +2895,40 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path
+                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                  />
                 </svg>
               </div>
-              Online Reputation Management</a
+              Content Marketing</a
+            >
+            <a href="/services/email-marketing.html" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              Email Marketing</a
             >
           </div>
         </div>
       </div>
+
+      <!-- Web Development -->
       <div class="mob-acc">
         <button class="mob-acc-btn" data-acc="wd">
-          Web Development<svg
+          Web Development
+          <svg
             class="ac"
             width="16"
             height="16"
@@ -2443,7 +2944,7 @@
         </button>
         <div class="mob-acc-body" id="acc-wd">
           <div class="mob-acc-items">
-            <a href="web-development.html" class="mob-link"
+            <a href="/services/custom-website-development.html" class="mob-link"
               ><div class="mob-ic cb">
                 <svg
                   width="13"
@@ -2461,7 +2962,8 @@
                 </svg>
               </div>
               Custom Website Development</a
-            ><a href="web-development.html" class="mob-link"
+            >
+            <a href="/services/e-commerce-development.html" class="mob-link"
               ><div class="mob-ic ce">
                 <svg
                   width="13"
@@ -2481,7 +2983,8 @@
                 </svg>
               </div>
               E-Commerce Development</a
-            ><a href="web-development.html" class="mob-link"
+            >
+            <a href="/services/web-application-development.html" class="mob-link"
               ><div class="mob-ic cv">
                 <svg
                   width="13"
@@ -2498,7 +3001,46 @@
                 </svg>
               </div>
               Web Application Development</a
-            ><a href="web-development.html" class="mob-link"
+            >
+            <a href="/services/ui-ux-design.html" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+                  />
+                </svg>
+              </div>
+              UI/UX Design</a
+            >
+            <a href="/services/website-maintenance.html" class="mob-link"
+              ><div class="mob-ic ca">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                  />
+                </svg>
+              </div>
+              Website Maintenance</a
+            >
+            <a href="/services/website-redesign.html" class="mob-link"
               ><div class="mob-ic ct">
                 <svg
                   width="13"
@@ -2521,9 +3063,12 @@
           </div>
         </div>
       </div>
+
+      <!-- IT Solutions -->
       <div class="mob-acc">
         <button class="mob-acc-btn" data-acc="it">
-          IT Solutions<svg
+          IT Solutions
+          <svg
             class="ac"
             width="16"
             height="16"
@@ -2539,7 +3084,7 @@
         </button>
         <div class="mob-acc-body" id="acc-it">
           <div class="mob-acc-items">
-            <a href="software-development.html" class="mob-link"
+            <a href="/services/software-development.html" class="mob-link"
               ><div class="mob-ic csl">
                 <svg
                   width="13"
@@ -2556,7 +3101,8 @@
                 </svg>
               </div>
               Software Development</a
-            ><a href="mobile-app-development.html" class="mob-link"
+            >
+            <a href="/services/mobile-app-development.html" class="mob-link"
               ><div class="mob-ic cb">
                 <svg
                   width="13"
@@ -2573,7 +3119,8 @@
                 </svg>
               </div>
               Mobile App Development</a
-            ><a href="cloud-solutions.html" class="mob-link"
+            >
+            <a href="/services/cloud-solutions.html" class="mob-link"
               ><div class="mob-ic cs">
                 <svg
                   width="13"
@@ -2591,8 +3138,9 @@
                 </svg>
               </div>
               Cloud Solutions</a
-            ><a href="it-consulting.html" class="mob-link"
-              ><div class="mob-ic crd">
+            >
+            <a href="/services/it-consulting.html" class="mob-link"
+              ><div class="mob-ic ca">
                 <svg
                   width="13"
                   height="13"
@@ -2603,13 +3151,117 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <rect width="18" height="11" x="3" y="11" rx="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  <path
+                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                  />
+                  <path d="M9 18h6" />
                 </svg>
               </div>
               IT Consulting</a
-            ><a href="erp-solutions.html" class="mob-link"
+            >
+            <a href="/services/erp-solutions.html" class="mob-link"
+              ><div class="mob-ic ce">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="7" height="7" x="3" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="14" rx="1" />
+                  <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
+              </div>
+              ERP Solutions</a
+            >
+            <a href="/services/crm-development.html" class="mob-link"
+              ><div class="mob-ic ci">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                </svg>
+              </div>
+              CRM Development</a
+            >
+
+          </div>
+        </div>
+      </div>
+      <div class="mob-acc">
+        <button class="mob-acc-btn" data-acc="at">
+          Advanced Technologies<svg
+            class="ac"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="mob-acc-body" id="acc-at">
+          <div class="mob-acc-items">
+            <a href="/services/ai-and-ml.html" class="mob-link"
               ><div class="mob-ic cv">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"
+                  />
+                </svg>
+              </div>
+              AI &amp; Machine Learning</a
+            >
+            <a href="/services/blockchain.html" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="7" height="7" x="3" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="14" rx="1" />
+                  <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
+              </div>
+              Blockchain</a
+            >
+            <a href="/services/embedded-systems.html" class="mob-link"
+              ><div class="mob-ic co">
                 <svg
                   width="13"
                   height="13"
@@ -2623,12 +3275,19 @@
                   <rect width="16" height="16" x="4" y="4" rx="2" />
                   <rect width="6" height="6" x="9" y="9" rx="1" />
                   <path d="M15 2v2" />
+                  <path d="M15 20v2" />
+                  <path d="M2 15h2" />
+                  <path d="M2 9h2" />
+                  <path d="M20 15h2" />
+                  <path d="M20 9h2" />
                   <path d="M9 2v2" />
+                  <path d="M9 20v2" />
                 </svg>
               </div>
-              ERP Solutions</a
-            ><a href="crm-development.html" class="mob-link"
-              ><div class="mob-ic csl">
+              Embedded Systems</a
+            >
+            <a href="/services/iot.html" class="mob-link"
+              ><div class="mob-ic ct">
                 <svg
                   width="13"
                   height="13"
@@ -2639,18 +3298,23 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <polyline points="4 17 10 11 4 5" />
-                  <line x1="12" x2="20" y1="19" y2="19" />
+                  <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                  <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                  <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
                 </svg>
               </div>
-              CRM Development</a
+              IoT Solutions</a
             >
           </div>
         </div>
       </div>
+      <!-- Company -->
       <div class="mob-acc">
         <button class="mob-acc-btn" data-acc="co">
-          Company<svg
+          Company
+          <svg
             class="ac"
             width="16"
             height="16"
@@ -2666,7 +3330,7 @@
         </button>
         <div class="mob-acc-body" id="acc-co">
           <div class="mob-acc-items">
-            <a href="index.html#about" class="mob-link"
+            <a href="/about-us.html" class="mob-link"
               ><div class="mob-ic ci">
                 <svg
                   width="13"
@@ -2684,7 +3348,46 @@
                 </svg>
               </div>
               About Us</a
-            ><a href="#" class="mob-link"
+            >
+            <a href="/team.html" class="mob-link"
+              ><div class="mob-ic cb">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <polyline points="16 11 18 13 22 9" />
+                </svg>
+              </div>
+              Our Team</a
+            >
+            <a href="/works.html" class="mob-link"
+              ><div class="mob-ic cp">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" />
+                  <circle cx="9" cy="9" r="2" />
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                </svg>
+              </div>
+              Works</a
+            >
+            <a href="/careers.html" class="mob-link"
               ><div class="mob-ic co">
                 <svg
                   width="13"
@@ -2705,7 +3408,45 @@
                 </svg>
               </div>
               Careers</a
-            ><a href="#contact" class="mob-link"
+            >
+            <a href="/blog/" class="mob-link"
+              ><div class="mob-ic ct">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                </svg>
+              </div>
+              Blog</a
+            >
+            <a href="/testimonials.html" class="mob-link"
+              ><div class="mob-ic ca">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+              </div>
+              Testimonials</a
+            >
+            <a href="/contact.html" class="mob-link"
               ><div class="mob-ic cgr">
                 <svg
                   width="13"
@@ -2727,9 +3468,11 @@
           </div>
         </div>
       </div>
+
       <div class="mob-cta">
-        <a href="#contact" class="btn-cta-nav"
-          >Get Free Consultation<svg
+        <a href="#contact" class="btn-cta-nav">
+          Get Free Consultation
+          <svg
             width="14"
             height="14"
             viewBox="0 0 24 24"
@@ -2740,26 +3483,29 @@
             stroke-linejoin="round"
           >
             <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" /></svg
-        ></a>
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
       </div>
     </div>
+
     <div class="nav-backdrop" id="navBackdrop"></div>
+
 
     <section class="hero">
       <div class="hero-blob1"></div>
       <div class="hero-blob2"></div>
       <div class="hero-inner">
         <div>
-          <div class="hero-eyebrow">Cloud Solutions</div>
+          <div class="hero-eyebrow">Web Application Development</div>
           <h1 class="hero-h1">
-            Cloud infrastructure that <span class="hl">scales</span> with your
-            business
+            Build web applications that
+            <span class="hl">scale with your business</span>
           </h1>
           <p class="hero-desc">
-            We migrate, optimise, and manage cloud infrastructure across AWS,
-            Azure, and Google Cloud. Transform your operations with secure,
-            scalable, and cost-efficient cloud solutions.
+            We design and build complex, high-performance web applications
+            using modern frameworks — robust, secure, and architected to
+            handle growth from day one.
           </p>
           <div class="hero-actions">
             <a href="#contact" class="btn-hero-primary"
@@ -2803,7 +3549,7 @@
                 stroke-linejoin="round"
               >
                 <polyline points="20 6 9 17 4 12" /></svg
-              >500+ Workloads Migrated</span
+              >180+ Applications Built</span
             >
             <span class="trust-item"
               ><svg
@@ -2817,7 +3563,7 @@
                 stroke-linejoin="round"
               >
                 <polyline points="20 6 9 17 4 12" /></svg
-              >99.99% Uptime SLA</span
+              >99.9% Uptime SLA</span
             >
             <span class="trust-item"
               ><svg
@@ -2831,7 +3577,7 @@
                 stroke-linejoin="round"
               >
                 <polyline points="20 6 9 17 4 12" /></svg
-              >AWS &amp; Azure Certified</span
+              >Built to Scale</span
             >
           </div>
         </div>
@@ -2849,17 +3595,16 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path
-                    d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
-                  />
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
                 </svg>
               </div>
             </div>
           </div>
           <div class="metric-card">
-            <div class="mc-label">Workloads Migrated</div>
-            <div class="mc-value">500<span class="pos">+</span></div>
-            <div class="mc-sub">to cloud infrastructure</div>
+            <div class="mc-label">Applications Built</div>
+            <div class="mc-value">180<span class="pos">+</span></div>
+            <div class="mc-sub">across industries</div>
             <div class="mc-bars">
               <span style="height: 50%"></span><span style="height: 62%"></span
               ><span style="height: 74%"></span><span style="height: 84%"></span
@@ -2870,8 +3615,8 @@
           </div>
           <div class="metric-card">
             <div class="mc-label">Uptime SLA</div>
-            <div class="mc-value">99.99<span class="pos">%</span></div>
-            <div class="mc-sub">with zero downtime</div>
+            <div class="mc-value">99.9<span class="pos">%</span></div>
+            <div class="mc-sub">for production apps</div>
             <div class="mc-bars">
               <span style="height: 65%"></span><span style="height: 74%"></span
               ><span style="height: 82%"></span><span style="height: 88%"></span
@@ -2881,9 +3626,9 @@
             </div>
           </div>
           <div class="metric-card">
-            <div class="mc-label">Cloud Platforms</div>
-            <div class="mc-value">3<span class="pos"></span></div>
-            <div class="mc-sub">AWS, Azure, GCP</div>
+            <div class="mc-label">Avg API Response</div>
+            <div class="mc-value">&lt;200<span class="pos">ms</span></div>
+            <div class="mc-sub">for core endpoints</div>
             <div class="mc-bars">
               <span style="height: 60%"></span><span style="height: 70%"></span
               ><span style="height: 78%"></span><span style="height: 85%"></span
@@ -2900,11 +3645,11 @@
       <div class="sec-wrap">
         <div class="sec-header">
           <div class="sec-eye">What We Deliver</div>
-          <h2 class="sec-h2">Cloud Solutions services</h2>
+          <h2 class="sec-h2">Web application development services</h2>
           <p class="sec-lead">
-            From cloud migration and architecture to DevOps and managed
-            services, we ensure your infrastructure is optimised, secure, and
-            future-ready.
+            From custom platforms to enterprise-grade systems, we design,
+            build, and scale web applications that are secure, performant,
+            and ready for real-world growth.
           </p>
         </div>
         <div class="srv-grid">
@@ -2920,13 +3665,15 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
               </svg>
             </div>
-            <div class="srv-title">Cloud Migration</div>
+            <div class="srv-title">Custom Web App Development</div>
             <div class="srv-desc">
-              Seamless migration of legacy applications and infrastructure to
-              AWS, Azure, or Google Cloud with zero downtime.
+              Tailored web applications built around your exact workflows and
+              business logic — designed for usability, speed, and long-term
+              maintainability.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -2955,18 +3702,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <polyline
-                  points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"
-                />
-                <polyline points="12 12 20 7.5" />
-                <polyline points="12 12 12 21" />
-                <polyline points="12 12 4 7.5" />
+                <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+                <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+                <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
               </svg>
             </div>
-            <div class="srv-title">Cloud Architecture</div>
+            <div class="srv-title">SaaS Platform Development</div>
             <div class="srv-desc">
-              Design scalable, reliable, and secure cloud architectures tailored
-              to your business needs and workloads.
+              End-to-end SaaS products with multi-tenancy, subscription
+              billing, and role-based access — built to onboard your first
+              customer and your ten-thousandth.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -2984,7 +3729,7 @@
             ></a>
           </div>
           <div class="srv-card">
-            <div class="srv-icon" style="background: #d8f0fb; color: #45bfe5">
+            <div class="srv-icon" style="background: #d8f0fb; color: #1490c8">
               <svg
                 width="22"
                 height="22"
@@ -2995,16 +3740,15 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <circle cx="12" cy="12" r="1" />
-                <path
-                  d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"
-                />
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
               </svg>
             </div>
-            <div class="srv-title">DevOps &amp; Automation</div>
+            <div class="srv-title">API Development &amp; Integration</div>
             <div class="srv-desc">
-              CI/CD pipelines, infrastructure-as-code, and automated deployment
-              for faster, reliable releases.
+              RESTful and GraphQL APIs, third-party integrations, and webhooks
+              that connect your application to the tools and services your
+              business relies on.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -3033,13 +3777,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                <path d="M3 12A9 3 0 0 0 21 12" />
               </svg>
             </div>
-            <div class="srv-title">Cloud Security</div>
+            <div class="srv-title">Database Design &amp; Architecture</div>
             <div class="srv-desc">
-              Implement robust security policies, compliance frameworks, and
-              threat detection across your cloud environment.
+              Scalable, well-indexed database schemas and data models that
+              keep queries fast and your application's data consistent as it
+              grows.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -3068,14 +3815,15 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <line x1="12" x2="12" y1="2" y2="22" />
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                <path d="M12 18h.01" />
               </svg>
             </div>
-            <div class="srv-title">Cost Optimisation</div>
+            <div class="srv-title">Progressive Web Apps (PWA)</div>
             <div class="srv-desc">
-              Analyse usage patterns and right-size resources to significantly
-              reduce cloud spending without sacrificing performance.
+              Installable, offline-capable web apps with native-like
+              performance — one codebase that works seamlessly across desktop
+              and mobile.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -3104,14 +3852,14 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
+                <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
               </svg>
             </div>
-            <div class="srv-title">Cloud Monitoring</div>
+            <div class="srv-title">Real-Time Applications</div>
             <div class="srv-desc">
-              Real-time monitoring, alerting, and logging to ensure optimal
-              performance and rapid incident response.
+              Live dashboards, chat, notifications, and collaborative features
+              powered by WebSockets and event-driven architecture for instant
+              updates.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -3140,15 +3888,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path
-                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                />
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="M3 9h18" />
+                <path d="M9 21V9" />
               </svg>
             </div>
-            <div class="srv-title">Disaster Recovery</div>
+            <div class="srv-title">Admin Dashboards &amp; Internal Tools</div>
             <div class="srv-desc">
-              Comprehensive backup and disaster recovery strategies to protect
-              your data and ensure business continuity.
+              Custom admin panels and internal tools that give your team the
+              controls, reporting, and automation they need to run the
+              business.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -3177,14 +3926,14 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M9 12l2 2 4-4" />
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
               </svg>
             </div>
-            <div class="srv-title">Managed Cloud Services</div>
+            <div class="srv-title">Cloud-Native &amp; Microservices Architecture</div>
             <div class="srv-desc">
-              End-to-end management of cloud infrastructure, maintenance,
-              updates, and ongoing optimisation.
+              Containerized, cloud-native architectures with independently
+              deployable services — built for resilience, scalability, and
+              faster releases.
             </div>
             <a href="#contact" class="srv-link"
               >Get Started<svg
@@ -3208,11 +3957,12 @@
     <section class="tech-stack" id="tech">
       <div class="sec-wrap">
         <div class="sec-header">
-          <div class="sec-eye">Our Technology</div>
-          <h2 class="sec-h2">Technologies we master</h2>
+          <div class="sec-eye">Our Toolkit</div>
+          <h2 class="sec-h2">Technologies that power scalable applications</h2>
           <p class="sec-lead">
-            We leverage industry-leading platforms and tools to deliver
-            enterprise-grade cloud solutions.
+            We build on proven, modern frameworks and cloud-native
+            infrastructure — choosing the right stack for your application's
+            performance, security, and growth needs.
           </p>
         </div>
         <div class="tech-grid">
@@ -3228,13 +3978,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <path d="M2 10h20" />
+                <rect width="20" height="14" x="2" y="3" rx="2" />
+                <line x1="8" x2="16" y1="21" y2="21" />
+                <line x1="12" x2="12" y1="17" y2="21" />
               </svg>
             </div>
-            <div class="tech-badge-name">Amazon Web Services (AWS)</div>
+            <div class="tech-badge-name">Frontend Frameworks (React, Next.js, Vue)</div>
             <div class="tech-badge-desc">
-              EC2, S3, RDS, Lambda, CloudFormation for scalable infrastructure
+              Fast, interactive user interfaces built with the frameworks
+              best suited to your product — from marketing sites to complex
+              single-page apps
             </div>
           </div>
           <div class="tech-badge">
@@ -3249,13 +4002,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <path d="M2 10h20" />
+                <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
+                <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
+                <line x1="6" x2="6" y1="6" y2="6" />
+                <line x1="6" x2="6" y1="18" y2="18" />
               </svg>
             </div>
-            <div class="tech-badge-name">Microsoft Azure</div>
+            <div class="tech-badge-name">Backend Development (Node.js, NestJS, Express)</div>
             <div class="tech-badge-desc">
-              VMs, App Service, SQL Database, Azure DevOps
+              Robust server-side logic and APIs built on battle-tested
+              JavaScript and TypeScript frameworks for reliability at scale
             </div>
           </div>
           <div class="tech-badge">
@@ -3270,13 +4026,36 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <path d="M2 10h20" />
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                <path d="M3 12A9 3 0 0 0 21 12" />
               </svg>
             </div>
-            <div class="tech-badge-name">Google Cloud Platform (GCP)</div>
+            <div class="tech-badge-name">Databases (PostgreSQL, MongoDB, Redis)</div>
             <div class="tech-badge-desc">
-              Compute Engine, App Engine, BigQuery, Kubernetes
+              The right data layer for the job — relational, document, and
+              in-memory stores tuned for speed and data integrity
+            </div>
+          </div>
+          <div class="tech-badge">
+            <div class="tech-badge-icon cb">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z" />
+              </svg>
+            </div>
+            <div class="tech-badge-name">Cloud Infrastructure (AWS, Azure, GCP)</div>
+            <div class="tech-badge-desc">
+              Applications deployed on resilient cloud infrastructure with
+              auto-scaling, monitoring, and disaster recovery built in
             </div>
           </div>
           <div class="tech-badge">
@@ -3291,14 +4070,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
-                />
+                <path d="m7.5 4.27 9 5.15" />
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                <path d="m3.3 7 8.7 5 8.7-5" />
+                <path d="M12 22V12" />
               </svg>
             </div>
-            <div class="tech-badge-name">Kubernetes &amp; Docker</div>
+            <div class="tech-badge-name">Containers &amp; Orchestration (Docker, Kubernetes)</div>
             <div class="tech-badge-desc">
-              Container orchestration and deployment automation
+              Consistent, portable deployments across environments, with
+              orchestration that scales services up and down on demand
             </div>
           </div>
           <div class="tech-badge">
@@ -3313,13 +4094,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 7v5l3 3" />
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
               </svg>
             </div>
-            <div class="tech-badge-name">Terraform &amp; CloudFormation</div>
+            <div class="tech-badge-name">
+              REST &amp; GraphQL APIs
+            </div>
             <div class="tech-badge-desc">
-              Infrastructure-as-code for repeatable deployments
+              Well-documented, versioned APIs that make it easy to connect
+              your application with web, mobile, and third-party clients
             </div>
           </div>
           <div class="tech-badge">
@@ -3334,35 +4118,17 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <line x1="18" x2="18" y1="20" y2="10" />
-                <line x1="12" x2="12" y1="20" y2="4" />
-                <line x1="6" x2="6" y1="20" y2="14" />
+                <path d="m18 16 4-4-4-4" />
+                <path d="m6 8-4 4 4 4" />
+                <path d="m14.5 4-5 16" />
               </svg>
             </div>
-            <div class="tech-badge-name">Monitoring &amp; Logging</div>
-            <div class="tech-badge-desc">
-              CloudWatch, DataDog, Prometheus, ELK Stack
+            <div class="tech-badge-name">
+              TypeScript &amp; Modern JavaScript
             </div>
-          </div>
-          <div class="tech-badge">
-            <div class="tech-badge-icon csl">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                <polyline points="17 6 23 6 23 12" />
-              </svg>
-            </div>
-            <div class="tech-badge-name">CI/CD Platforms</div>
             <div class="tech-badge-desc">
-              Jenkins, GitLab CI, GitHub Actions, AWS CodePipeline
+              Type-safe, maintainable code across the stack that reduces bugs
+              and makes large codebases easier to evolve
             </div>
           </div>
           <div class="tech-badge">
@@ -3377,12 +4143,18 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <line x1="6" x2="6" y1="3" y2="15" />
+                <circle cx="18" cy="6" r="3" />
+                <circle cx="6" cy="18" r="3" />
+                <path d="M18 9a9 9 0 0 1-9 9" />
               </svg>
             </div>
-            <div class="tech-badge-name">Security &amp; Compliance</div>
+            <div class="tech-badge-name">
+              CI/CD &amp; DevOps Pipelines
+            </div>
             <div class="tech-badge-desc">
-              IAM, VPC, SSL/TLS, HIPAA, SOC 2, PCI-DSS compliance
+              Automated testing, builds, and deployments so new features
+              ship safely and frequently, with minimal manual effort
             </div>
           </div>
         </div>
@@ -3393,337 +4165,108 @@
       <div class="sec-wrap">
         <div class="sec-header">
           <div class="sec-eye">Client Stories</div>
-          <h2 class="sec-h2">Cloud transformations that drive results</h2>
-          <p class="sec-lead">
-            Here's what CTOs and enterprise leaders say after partnering with
-            Tinqbit for cloud solutions.
-          </p>
+          <h2 class="sec-h2">Built for scale, trusted in production</h2>
+          <p class="sec-lead">Here's what our clients say about working with Tinqbit.</p>
         </div>
         <div class="testi-grid">
           <div class="tcard">
             <span class="tcard-quote-mark">"</span>
-            <div class="tcard-stars">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-            </div>
-            <p class="tcard-text">
-              Tinqbit migrated our entire data centre to AWS in 8 weeks with
-              zero downtime. Their DevOps team set up best practices that cut
-              our infrastructure costs by 40% annually.
-            </p>
+            <div class="tcard-stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <p class="tcard-text">Tinqbit has been a genuine partner throughout our digital journey. They took time to understand our business, brought fresh thinking to every challenge, and delivered results that have made a measurable difference to our growth.</p>
             <div class="tcard-author">
-              <div class="tcard-avatar">DK</div>
+              <div class="tcard-avatar">RK</div>
               <div>
-                <span class="tcard-name">Deepak Kumar</span
-                ><span class="tcard-role">CTO, TechCorp India</span>
+                <span class="tcard-name">Rahul Krishnan</span>
+                <span class="tcard-role">CEO, TechBridge Ventures</span>
               </div>
             </div>
           </div>
           <div class="tcard">
             <span class="tcard-quote-mark">"</span>
-            <div class="tcard-stars">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-            </div>
-            <p class="tcard-text">
-              Their cloud architecture design was exactly what we needed for
-              scaling. Load times dropped by 60% and we achieved 99.99% uptime.
-              Highly recommend their managed services.
-            </p>
+            <div class="tcard-stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <p class="tcard-text">The CRM system Tinqbit built has completely transformed how we manage our workflows. Processes that used to take hours are now automated and trackable in real time. It's exactly what our team needed to scale efficiently.</p>
             <div class="tcard-author">
-              <div class="tcard-avatar">SG</div>
+              <div class="tcard-avatar">SS</div>
               <div>
-                <span class="tcard-name">Shreya Gupta</span
-                ><span class="tcard-role"
-                  >VP Engineering, DataFlow Systems</span
-                >
+                <span class="tcard-name">Sreejith Sasidharan</span>
+                <span class="tcard-role">Managing Director, i2go Global, Edappally</span>
               </div>
             </div>
           </div>
           <div class="tcard">
             <span class="tcard-quote-mark">"</span>
-            <div class="tcard-stars">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                /></svg
-              ><svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-            </div>
-            <p class="tcard-text">
-              Security and compliance were critical for us. Tinqbit implemented
-              enterprise-grade cloud security with automated backups. We're now
-              fully SOC 2 compliant with zero incidents.
-            </p>
+            <div class="tcard-stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <p class="tcard-text">Tinqbit built the software platform for our IoT product and handled it with real technical depth. The dashboard, data pipeline, and device integration all worked seamlessly from day one. They understood our hardware constraints and delivered something our team is genuinely proud of.</p>
             <div class="tcard-author">
-              <div class="tcard-avatar">AV</div>
+              <div class="tcard-avatar">ST</div>
               <div>
-                <span class="tcard-name">Ameya Verma</span
-                ><span class="tcard-role"
-                  >Chief Security Officer, FinTech Plus</span
-                >
+                <span class="tcard-name">Sreejith T.S</span>
+                <span class="tcard-role">Managing Partner, Emcon India, Thammanam, Ernakulam</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact">
+      <svg class="contact-bg-icon mail" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      <svg class="contact-bg-icon phone cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <svg class="contact-bg-icon chat" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <svg class="contact-bg-icon pin cyan" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <svg class="contact-bg-icon send" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
       <div class="contact-inner">
         <div class="contact-info">
           <div class="sec-eye">Get In Touch</div>
-          <h2 class="contact-h2">Ready for cloud transformation?</h2>
+          <h2 class="contact-h2">Have a web application idea? Let's build it.</h2>
           <p class="contact-lead">
-            Tell us about your infrastructure goals. Our cloud architects will
-            outline a migration plan and ROI within 24 hours.
+            Tell us about your project and what you're looking to build. Our
+            team will get back to you with a tailored proposal within 24
+            hours.
           </p>
-          <div class="cdet-list">
-            <div class="cdet">
-              <div class="cdet-icon">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div>
-                <span class="cdet-label">Our Office</span
-                ><span class="cdet-value"
-                  >12/A Digital Avenue, Tech Park<br />Innovation District,
-                  Kochi — 682 030</span
-                >
-              </div>
+        </div>
+        <div class="offices-grid">
+          <div class="office-card">
+            <div class="office-flag">🇮🇳</div>
+            <h4 class="office-name">India (HQ)</h4>
+            <p class="office-address">
+              PMRA-24, Paruthelipalam - Marottichuvadu Rd, Marottichuvadu, Edappally, Kochi, Ernakulam, Kerala 682024, India
+            </p>
+            <div class="office-links">
+              <a href="tel:+918848279751" class="office-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span class="office-link-text">+91 88482 79751</span>
+              </a>
+              <a href="https://wa.me/918848279751" target="_blank" rel="noopener" class="office-link wa">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                <span class="office-link-text">WhatsApp: +91 88482 79751</span>
+              </a>
+              <a href="mailto:info@tinqbit.com" class="office-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span class="office-link-text">info@tinqbit.com</span>
+              </a>
             </div>
-            <a href="mailto:hello@tinqbit.com" class="cdet"
-              ><div class="cdet-icon">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect width="20" height="16" x="2" y="4" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-              </div>
-              <div>
-                <span class="cdet-label">Email Us</span
-                ><span class="cdet-value">hello@tinqbit.com</span>
-              </div></a
-            >
-            <a href="tel:+919876543210" class="cdet"
-              ><div class="cdet-icon">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <span class="cdet-label">Call Us</span
-                ><span class="cdet-value">+91 98765 43210</span>
-              </div></a
-            >
-            <a
-              href="https://wa.me/919876543210"
-              target="_blank"
-              rel="noopener"
-              class="cdet"
-              ><div class="cdet-icon">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <span class="cdet-label">WhatsApp</span
-                ><span class="cdet-value">+91 98765 43210</span>
-              </div></a
-            >
           </div>
-          <a
-            href="https://wa.me/919876543210"
-            target="_blank"
-            rel="noopener"
-            class="wa-badge"
-            ><svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
-              /></svg
-            >Chat on WhatsApp</a
-          >
+
+          <div class="office-card">
+            <div class="office-flag">🇦🇪</div>
+            <h4 class="office-name">Dubai, UAE</h4>
+            <p class="office-address" style="font-style:italic;opacity:.6;">Coming Soon</p>
+          </div>
+
+          <div class="office-card">
+            <div class="office-flag">🇩🇪</div>
+            <h4 class="office-name">Germany</h4>
+            <p class="office-address" style="font-style:italic;opacity:.6;">Coming Soon</p>
+          </div>
         </div>
         <div class="contact-form-wrap">
           <div class="form-head">
-            <h3>Request a cloud consultation</h3>
+            <h3>Start your project</h3>
             <p>
-              Tell us about your infrastructure needs and we'll outline a cloud
-              strategy within 24 hours.
+              Tell us about your application idea or existing project, and
+              we'll outline an approach and timeline within 24 hours.
             </p>
           </div>
           <form action="#" method="POST" novalidate>
@@ -3757,7 +4300,7 @@
                   name="phone"
                   type="tel"
                   class="fc"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 88482 79751"
                 />
               </div>
               <div class="form-group">
@@ -3774,24 +4317,24 @@
                 <label for="c-service">Service You're Interested In</label
                 ><select id="c-service" name="service" class="fc">
                   <option value="" disabled selected>Select a service…</option>
-                  <option>Cloud Migration</option>
-                  <option>Cloud Architecture</option>
-                  <option>DevOps &amp; Automation</option>
-                  <option>Cloud Security</option>
-                  <option>Cost Optimisation</option>
-                  <option>Cloud Monitoring</option>
-                  <option>Disaster Recovery</option>
-                  <option>Managed Cloud Services</option>
+                  <option>Custom Web App Development</option>
+                  <option>SaaS Platform Development</option>
+                  <option>API Development &amp; Integration</option>
+                  <option>Database Design &amp; Architecture</option>
+                  <option>Progressive Web Apps (PWA)</option>
+                  <option>Real-Time Applications</option>
+                  <option>Admin Dashboards &amp; Internal Tools</option>
+                  <option>Cloud-Native &amp; Microservices Architecture</option>
                 </select>
               </div>
               <div class="form-group full">
                 <label for="c-message"
-                  >Tell us about your infrastructure needs <span>*</span></label
+                  >Tell us about your project <span>*</span></label
                 ><textarea
                   id="c-message"
                   name="message"
                   class="fc"
-                  placeholder="What are your cloud goals? Current infrastructure? Which platforms interest you?"
+                  placeholder="What are you trying to build? Do you have an existing application, technical requirements, or a target timeline we should know about?"
                   required
                 ></textarea>
               </div>
@@ -3826,19 +4369,20 @@
       <div class="footer-top">
         <div class="footer-top-inner">
           <div>
-            <a href="index.html" class="footer-logo"
-              ><img src="/logo_full.png" alt="Tinqbit"
+            <a href="/index.html" class="footer-logo"
+              ><img src="/assets/logo_full.png" alt="Tinqbit"
             /></a>
             <p class="footer-tagline">Digital Marketing &amp; IT Solutions</p>
           </div>
-          <nav class="footer-nav-links">
-            <a href="index.html">Home</a
-            ><a href="digital-marketing.html">Digital Marketing</a
-            ><a href="web-development.html">Web Development</a
-            ><a href="index.html#about">About</a><a href="#contact">Contact</a>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/digital-marketing.html">Digital Marketing</a>
+            <a href="/web-development.html">Web Development</a>
+            <a href="/it-solution.html">IT Solutions</a>
+            <a href="/advanced-technologies.html">Advanced Technologies</a>
+            <a href="/about-us.html">About Us</a>
           </nav>
-          <div class="footer-socials">
-            <a href="#" class="soc-btn" aria-label="LinkedIn"
+          <div class="footer-social">
+            <a href="https://in.linkedin.com/company/tinqbit" target="_blank" rel="noopener" class="soc-btn" aria-label="LinkedIn"
               ><svg
                 width="14"
                 height="14"
@@ -3860,7 +4404,7 @@
                 <path
                   d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
                 /></svg></a
-            ><a href="#" class="soc-btn" aria-label="Instagram"
+            ><a href="https://www.instagram.com/tinqbit.official/" target="_blank" rel="noopener" class="soc-btn" aria-label="Instagram"
               ><svg
                 width="14"
                 height="14"
@@ -3892,12 +4436,12 @@
         <div class="footer-bottom-inner">
           <p class="footer-copy">
             &copy; <span id="fyear"></span>
-            <strong>Tinqbit Digital Pvt. Ltd.</strong> All rights reserved.
+            <strong>Tinqbit Pvt. Ltd.</strong> All rights reserved.
           </p>
           <div class="footer-legal">
-            <a href="#">Terms &amp; Conditions</a><span class="dot"></span
-            ><a href="#">Privacy Policy</a><span class="dot"></span
-            ><a href="#">Cookie Policy</a>
+            <a href="/terms-conditions.html">Terms &amp; Conditions</a><span class="dot"></span
+            ><a href="/privacy-policy.html">Privacy Policy</a><span class="dot"></span
+            ><a href="/cookie-policy.html">Cookie Policy</a>
           </div>
         </div>
       </div>
@@ -3952,5 +4496,7 @@
       const fyear = document.getElementById("fyear");
       if (fyear) fyear.textContent = new Date().getFullYear();
     </script>
+    <script src="/scripts/form-handler.js" defer></script>
+  <script src="/scripts/chatbot-widget.js" defer></script>
   </body>
 </html>
