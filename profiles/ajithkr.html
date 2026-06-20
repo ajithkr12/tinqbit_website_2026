@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Ajith K R — COO, Tinqbit</title>
+    <meta
+      name="description"
+      content="Digital business card for Ajith K R, COO CEO & Co-Founder Co-Founder of Tinqbit."
+    />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="manifest" href="ajithkr.webmanifest">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Ajith K R">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
+    <meta name="theme-color" content="#0b1929">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0b1929;
+        --surf: rgba(255, 255, 255, 0.05);
+        --border: rgba(69, 191, 229, 0.15);
+        --accent: #45bfe5;
+        --mid: #1490c8;
+        --text: #eef5fa;
+        --muted: rgba(238, 245, 250, 0.5);
+        --grad: linear-gradient(135deg, #1490c8, #45bfe5);
+      }
+
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        margin: 0%;
+        padding: 0%;
+      }
+
+      body {
+        background: var(--bg);
+        font-family: "Sora", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(69, 191, 229, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 26px 26px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ── Card: exact device dimensions ── */
+      .card {
+        position: relative;
+        z-index: 1;
+        width: 100vw;
+        max-width: 560px;
+        height: 100svh;
+        max-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* ── Logo — top-left corner over photo ── */
+      .card-logo {
+        position: absolute;
+        top: env(safe-area-inset-top, 1rem);
+        left: 0;
+        right: 0;
+        padding: 1rem 1.25rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        z-index: 10;
+      }
+
+      .card-logo img {
+        height: 24px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.85;
+      }
+
+      .card-logo-name {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: rgba(238, 245, 250, 0.55);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* ── Photo — fills remaining space ── */
+      .card-photo {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      .card-photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+
+      .card-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 25, 41, 0.35) 0%,
+          transparent 28%,
+          rgba(11, 25, 41, 0.5) 62%,
+          #0b1929 100%
+        );
+      }
+
+      /* ── Name / title at bottom of photo ── */
+      .card-identity {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 1.25rem 1.2rem;
+        z-index: 2;
+      }
+
+      .card-name {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.75rem, 7.5vw, 2.2rem);
+        font-weight: 800;
+        color: var(--text);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+      }
+
+      .card-title {
+        font-family: "Sora", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: var(--accent);
+        margin-top: 0.25rem;
+      }
+
+      /* ── Body — fixed, compact ── */
+      .card-body {
+        flex-shrink: 0;
+        padding: 0.5rem 1rem
+          calc(env(safe-area-inset-bottom, 0.75rem) + 0.75rem);
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        background: var(--bg);
+      }
+
+      /* ── Contact rows ── */
+      .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 0.85rem;
+        background: var(--surf);
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .contact-row:active {
+        background: rgba(69, 191, 229, 0.1);
+        border-color: rgba(69, 191, 229, 0.3);
+      }
+
+      .c-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .c-icon.ph {
+        background: linear-gradient(135deg, #059669, #0d9488);
+      }
+      .c-icon.wa {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+      }
+      .c-icon.em {
+        background: linear-gradient(135deg, #1490c8, #45bfe5);
+      }
+      .c-icon.li {
+        background: linear-gradient(135deg, #0a66c2, #0077b5);
+      }
+      .c-icon.web {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      }
+
+      .c-text {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .c-label {
+        font-size: 0.62rem;
+        color: var(--muted);
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 0.12rem;
+      }
+
+      .c-value {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .c-arrow {
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+
+      /* ── Actions ── */
+      .card-actions {
+        display: flex;
+        gap: 0.55rem;
+        margin-top: 0.1rem;
+      }
+
+      .btn-save {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0.85rem 1rem;
+        background: var(--grad);
+        border: none;
+        border-radius: 13px;
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: opacity 0.15s;
+      }
+
+      .btn-save:active {
+        opacity: 0.82;
+      }
+
+      .btn-share {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surf);
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        color: var(--accent);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background 0.15s;
+        flex-shrink: 0;
+      }
+
+      .btn-share:active {
+        background: rgba(69, 191, 229, 0.1);
+      }
+
+      /* ── Toast ── */
+      .toast {
+        position: fixed;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(60px);
+        background: rgba(20, 144, 200, 0.95);
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 0.6rem 1.2rem;
+        border-radius: 100px;
+        white-space: nowrap;
+        opacity: 0;
+        transition:
+          transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.26s;
+        z-index: 999;
+        pointer-events: none;
+      }
+
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+
+      /* ── Desktop: floating card ── */
+      @media (min-width: 480px) {
+        body {
+          overflow: auto;
+          align-items: center;
+          padding: 2rem 1rem;
+        }
+        .card {
+          height: min(860px, calc(100svh - 4rem));
+          max-height: calc(100svh - 4rem);
+          border-radius: 28px;
+          box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .btn-save,
+        .btn-share,
+        .contact-row,
+        .toast {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <!-- Logo — top of card -->
+      <div class="card-logo">
+        <img src="/assets/logo_full.png" alt="Tinqbit" />
+      </div>
+
+      <!-- Photo -->
+      <div class="card-photo">
+        <img src="/assets/teams/ajith.webp" alt="Ajith K R" />
+        <div class="card-identity">
+          <div class="card-name">Ajith K R</div>
+          <div class="card-title">COO &amp; Co-Founder</div>
+        </div>
+      </div>
+
+      <!-- Contacts -->
+      <div class="card-body">
+        <a href="tel:+919995347744" class="contact-row">
+          <div class="c-icon ph">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+          </div>
+          <div class="c-text">
+            <div class="c-label">Phone</div>
+            <div class="c-value">+91 99953 47744</div>
+          </div>
+          <svg
+            class="c-arrow"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <a
+          href="https://wa.me/919995307744"
+          target="_blank"
+          rel="noopener"
+          class="contact-row"
+        >
+          <div class="c-icon wa">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+              />
+            </svg>
+          </div>
+          <div class="c-text">
+            <div class="c-label">WhatsApp</div>
+            <div class="c-value">+91 99953 07744</div>
+          </div>
+          <svg
+            class="c-arrow"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <a href="mailto:ajithkr@tinqbit.com" class="contact-row">
+          <div class="c-icon em">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </div>
+          <div class="c-text">
+            <div class="c-label">Email</div>
+            <div class="c-value">ajithkr@tinqbit.com</div>
+          </div>
+          <svg
+            class="c-arrow"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/ajith-kr/"
+          target="_blank"
+          rel="noopener"
+          class="contact-row"
+        >
+          <div class="c-icon li">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </div>
+          <div class="c-text">
+            <div class="c-label">LinkedIn</div>
+            <div class="c-value">linkedin.com/in/ajith-kr</div>
+          </div>
+          <svg
+            class="c-arrow"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <a
+          href="https://tinqbit.com"
+          target="_blank"
+          rel="noopener"
+          class="contact-row"
+        >
+          <div class="c-icon web">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+              <path d="M2 12h20" />
+            </svg>
+          </div>
+          <div class="c-text">
+            <div class="c-label">Website</div>
+            <div class="c-value">tinqbit.com</div>
+          </div>
+          <svg
+            class="c-arrow"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+
+        <div class="card-actions">
+          <button class="btn-save" onclick="saveContact()">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+              />
+              <polyline points="17 21 17 13 7 13 7 21" />
+              <polyline points="7 3 7 8 15 8" />
+            </svg>
+            Save Contact
+          </button>
+          <button class="btn-share" onclick="shareCard()" aria-label="Share">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      function showToast(msg) {
+        var t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(function () {
+          t.classList.remove("show");
+        }, 2200);
+      }
+
+      function saveContact() {
+        var vcf = [
+          "BEGIN:VCARD",
+          "VERSION:3.0",
+          "N:KR;Ajith;;;",
+          "FN:Ajith K R",
+          "ORG:Tinqbit",
+          "TITLE:COO CEO & Co-Founder Co-Founder",
+          "TEL;TYPE=CELL,VOICE:+919995347744",
+          "EMAIL;TYPE=WORK:ajithkr@tinqbit.com",
+          "URL:https://www.linkedin.com/in/ajith-kr/",
+          "URL:https://tinqbit.com",
+          "END:VCARD",
+        ].join("\r\n");
+        var blob = new Blob([vcf], { type: "text/vcard" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "ajith-kr-tinqbit.vcf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Contact saved!");
+      }
+
+      function fallbackCopy(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast("Link copied!");
+        } catch (e) {
+          showToast("Copy: " + text);
+        }
+        document.body.removeChild(ta);
+      }
+
+      function shareCard() {
+        var url = window.location.href;
+        if (navigator.share) {
+          navigator
+            .share({ title: "Ajith K R — COO, Tinqbit", url: url })
+            .catch(function () {});
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(url)
+            .then(function () {
+              showToast("Link copied!");
+            })
+            .catch(function () {
+              fallbackCopy(url);
+            });
+        } else {
+          fallbackCopy(url);
+        }
+      }
+    </script>
+  </body>
+</html>

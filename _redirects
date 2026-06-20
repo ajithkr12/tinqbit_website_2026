@@ -1,0 +1,5 @@
+# Clean URLs — strip .html extension
+/profiles/nikhil          /profiles/nikhil.html          200
+/profiles/ajithkr         /profiles/ajithkr.html         200
+/profiles/sreejithshaji   /profiles/sreejithshaji.html   200
+/profiles/vimal           /profiles/vimal.html           200
