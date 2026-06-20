@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Page Not Found — Tinqbit</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Head back to Tinqbit's homepage or explore our services." />
+    <meta name="robots" content="noindex, follow" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #1e3a5a; --cyan: #45bfe5; --mid: #1490c8;
+        --light: #eef5fa; --white: #ffffff; --dark: #0f1f2e;
+        --muted: #5e7a8e; --tint: #dff0fb; --border: #e0eef6;
+        --grad: linear-gradient(135deg, #1e3a5a, #1490c8);
+        --nav-h: 100px; --nav-bg: rgba(255,255,255,0.97);
+        --nav-text: #0f1f2e; --nav-sub: #5e7a8e;
+        --nav-hover: #e6f2fa; --nav-border: rgba(30,58,90,0.09);
+        --gfrom: #1e3a5a; --gto: #1490c8;
+      }
+      *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: "Sora", sans-serif; color: var(--dark); background: var(--white); overflow-x: hidden; padding-top: var(--nav-h); }
+      body.no-scroll { overflow: hidden; }
+
+      /* ── NAVBAR ── */
+      .navbar-main { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid var(--nav-border); transition: box-shadow 0.3s; font-family: "Manrope", sans-serif; }
+      .navbar-main.scrolled { box-shadow: 0 4px 32px rgba(15,23,42,0.09); }
+      .nav-wrap { max-width: 1280px; margin: 0 auto; height: 100%; display: flex; align-items: center; padding: 0 1.5rem; gap: 0.5rem; }
+      .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; margin-right: 1.5rem; position: relative; height: 52px; width: 249px; transition: width 0.35s cubic-bezier(0.4,0,0.2,1); }
+      .nav-logo img { position: absolute; left: 0; top: 0; height: 52px; width: auto; display: block; object-fit: contain; transition: opacity 0.3s ease, transform 0.3s ease; }
+      .nav-logo .logo-icon { opacity: 0; transform: scale(0.8) rotate(-12deg); pointer-events: none; }
+      .navbar-main.scrolled .nav-logo { width: 52px; }
+      .navbar-main.scrolled .logo-full { opacity: 0; transform: scale(0.8) rotate(12deg); pointer-events: none; }
+      .navbar-main.scrolled .logo-icon { opacity: 1; transform: scale(1) rotate(0deg); pointer-events: auto; }
+      .nav-list { display: flex; align-items: center; list-style: none; height: 100%; flex: 1; justify-content: center; margin-bottom: 0; }
+      .nav-item { height: 100%; display: flex; align-items: center; justify-content: center; position: static; }
+      .nav-trigger { display: flex; align-items: center; justify-content: center; gap: 4px; height: 100%; padding: 0 0.8rem; font-size: 0.84rem; font-weight: 600; color: var(--nav-text); background: none; border: none; cursor: pointer; font-family: "Manrope", sans-serif; white-space: nowrap; position: relative; transition: color 0.2s; }
+      .nav-trigger::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scaleX(0); width: 22px; height: 2.5px; background: linear-gradient(90deg,var(--gfrom),var(--gto)); border-radius: 2px; transition: transform 0.22s ease; }
+      .nav-item:hover .nav-trigger { color: var(--gfrom); }
+      .nav-item:hover .nav-trigger::after { transform: translateX(-50%) scaleX(1); }
+      .nav-trigger .chev { width: 14px; height: 14px; opacity: 0.45; transition: transform 0.22s ease, opacity 0.22s; flex-shrink: 0; }
+      .nav-item:hover .nav-trigger .chev { transform: rotate(180deg); opacity: 1; }
+      .mega { position: fixed; top: var(--nav-h); left: 0; right: 0; background: #fff; border-top: 1px solid rgba(0,0,0,0.06); box-shadow: 0 24px 64px rgba(15,23,42,0.12), 0 8px 24px rgba(15,23,42,0.06); border-radius: 0 0 20px 20px; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(-12px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; }
+      .nav-item:hover > .mega, .mega:hover { opacity: 1; visibility: visible; transform: translateY(0); }
+      .mega-wrap { max-width: 1280px; margin: 0 auto; padding: 1.75rem 2rem 2rem; }
+      .mega-eyebrow { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--nav-sub); margin-bottom: 1rem; }
+      .mega-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; }
+      .mi { display: flex; align-items: flex-start; gap: 11px; padding: 0.7rem 0.65rem; border-radius: 11px; text-decoration: none; transition: background 0.14s ease; }
+      .mi:hover { background: var(--nav-hover); }
+      .mi-ic { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .mi-name { display: block; font-size: 0.83rem; font-weight: 600; color: var(--nav-text); line-height: 1.3; transition: color 0.14s; font-family: "Manrope", sans-serif; }
+      .mi-desc { display: block; font-size: 0.71rem; color: var(--nav-sub); margin-top: 2px; line-height: 1.3; font-family: "Manrope", sans-serif; }
+      .mi:hover .mi-name { color: var(--gfrom); }
+      .ci { background: #dff0fb; color: #1e3a5a; }
+      .cv { background: #d8edf8; color: #1490c8; }
+      .cb { background: #dff0fb; color: #1490c8; }
+      .cs { background: #d8f0fb; color: #45bfe5; }
+      .ce { background: #ecfdf5; color: #059669; }
+      .ct { background: #f0fdfa; color: #0d9488; }
+      .co { background: #fff7ed; color: #ea580c; }
+      .ca { background: #fffbeb; color: #d97706; }
+      .cp { background: #fdf4ff; color: #c026d3; }
+      .csl { background: #f8fafc; color: #475569; }
+      .cgr { background: #dff0fb; color: #1490c8; }
+      .btn-cta-nav { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg,var(--gfrom),var(--gto)); color: #fff; font-family: "Manrope", sans-serif; font-size: 0.82rem; font-weight: 700; text-decoration: none; border: none; border-radius: 10px; padding: 0.58rem 1.1rem; white-space: nowrap; cursor: pointer; flex-shrink: 0; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(30,58,90,0.28); }
+      .btn-cta-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(30,58,90,0.38); color: #fff; }
+      .nav-burger { display: none; flex-direction: column; gap: 5px; width: 40px; height: 40px; align-items: center; justify-content: center; background: none; border: 1px solid rgba(15,23,42,0.1); border-radius: 9px; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
+      .nav-burger:hover { background: var(--nav-hover); }
+      .nav-burger span { display: block; width: 18px; height: 1.5px; background: var(--nav-text); border-radius: 2px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
+      .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+      .mob-drawer { position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: #fff; z-index: 998; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); padding: 1.25rem 1rem 3rem; font-family: "Manrope", sans-serif; -webkit-overflow-scrolling: touch; }
+      .mob-drawer.open { transform: translateX(0); }
+      .mob-acc { border: 1px solid rgba(15,23,42,0.08); border-radius: 12px; overflow: hidden; margin-bottom: 0.55rem; }
+      .mob-acc-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.85rem 1rem; font-size: 0.875rem; font-weight: 700; color: var(--nav-text); background: #fff; border: none; cursor: pointer; font-family: "Manrope", sans-serif; transition: background 0.15s; }
+      .mob-acc-btn:hover { background: #f8fafc; }
+      .mob-acc-btn.active { color: var(--gfrom); }
+      .mob-acc-btn .ac { opacity: 0.4; transition: transform 0.22s, opacity 0.22s; }
+      .mob-acc-btn.active .ac { transform: rotate(180deg); opacity: 1; }
+      .mob-acc-body { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1); background: #f4f9fd; border-top: 1px solid rgba(30,58,90,0.06); }
+      .mob-acc-body.open { max-height: 700px; }
+      .mob-acc-items { padding: 0.5rem 0.75rem 0.75rem; }
+      .mob-link { display: flex; align-items: center; gap: 10px; padding: 0.55rem 0.6rem; border-radius: 8px; text-decoration: none; color: var(--nav-text); font-size: 0.83rem; font-weight: 500; font-family: "Manrope", sans-serif; transition: background 0.14s, color 0.14s; }
+      .mob-link:hover { background: #dff0fb; color: var(--gfrom); }
+      .mob-ic { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .mob-cta { padding: 1.25rem 0 0; }
+      .mob-cta .btn-cta-nav { width: 100%; justify-content: center; border-radius: 12px; padding: 0.88rem; font-size: 0.9rem; }
+      .nav-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.3); z-index: 997; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+      .nav-backdrop.active { opacity: 1; visibility: visible; }
+      @media (max-width: 1024px) { .nav-list { display: none; } .btn-cta-nav { display: none; } .nav-burger { display: flex; } }
+
+      /* ── 404 SECTION ── */
+      .err-section {
+        background: #0b1929;
+        min-height: calc(100vh - var(--nav-h));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 1.5rem;
+      }
+      .err-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(69,191,229,.1) 1px, transparent 1px);
+        background-size: 32px 32px;
+        pointer-events: none;
+      }
+      .err-blob1 { position: absolute; width: 600px; height: 480px; border-radius: 50%; background: rgba(20,144,200,.14); filter: blur(90px); top: -120px; left: -140px; pointer-events: none; }
+      .err-blob2 { position: absolute; width: 440px; height: 380px; border-radius: 50%; background: rgba(69,191,229,.09); filter: blur(90px); bottom: -100px; right: -80px; pointer-events: none; }
+      .err-inner {
+        max-width: 720px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .err-code {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(7rem, 20vw, 14rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.06em;
+        background: linear-gradient(135deg, #45bfe5 0%, #1490c8 50%, #1e3a5a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        user-select: none;
+      }
+      .err-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-bottom: 1.2rem;
+      }
+      .err-eyebrow::before,
+      .err-eyebrow::after { content: ""; height: 1.5px; border-radius: 2px; background: var(--cyan); }
+      .err-eyebrow::before { width: 24px; }
+      .err-eyebrow::after { width: 14px; }
+      .err-h1 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.7rem, 4vw, 2.8rem);
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        margin-bottom: 1.1rem;
+      }
+      .err-desc {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(0.88rem, 1.4vw, 1rem);
+        color: rgba(255,255,255,0.55);
+        line-height: 1.75;
+        max-width: 480px;
+        margin: 0 auto 2.4rem;
+      }
+      .err-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+        margin-bottom: 3.5rem;
+      }
+      .btn-err-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--grad);
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 11px;
+        padding: 0.85rem 1.7rem;
+        box-shadow: 0 6px 22px rgba(30,58,90,0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .btn-err-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(30,58,90,0.5); color: #fff; }
+      .btn-err-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(255,255,255,0.75);
+        font-family: "Manrope", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1.5px solid rgba(255,255,255,0.18);
+        border-radius: 11px;
+        padding: 0.83rem 1.5rem;
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+      }
+      .btn-err-outline:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(69,191,229,0.07); }
+
+      /* ── Quick links ── */
+      .err-links-label {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.3);
+        margin-bottom: 1rem;
+      }
+      .err-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+      }
+      .err-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0.45rem 0.9rem;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.09);
+        color: rgba(255,255,255,0.6);
+        font-family: "Manrope", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.18s, border-color 0.18s, color 0.18s;
+      }
+      .err-link:hover { background: rgba(69,191,229,0.1); border-color: rgba(69,191,229,0.3); color: var(--cyan); }
+
+      /* ── FOOTER ── */
+      .site-footer { background: #0d1b2a; }
+      .footer-top { border-bottom: 1px solid rgba(255,255,255,.07); padding: 2.5rem 1.5rem; }
+      .footer-top-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+      .footer-logo img { height: 32px; width: auto; filter: brightness(0) invert(1); opacity: .85; }
+      .footer-tagline { font-family: "Sora", sans-serif; font-size: .78rem; color: rgba(255,255,255,.38); margin-top: 6px; }
+      .footer-nav { display: flex; align-items: center; gap: .25rem; flex-wrap: wrap; }
+      .footer-nav a { font-family: "Manrope", sans-serif; font-size: .78rem; font-weight: 500; color: rgba(255,255,255,.45); text-decoration: none; padding: .28rem .6rem; border-radius: 6px; transition: color .2s, background .2s; }
+      .footer-nav a:hover { color: var(--cyan); background: rgba(69,191,229,.08); }
+      .footer-social { display: flex; align-items: center; gap: 7px; }
+      .soc-btn { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.5); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+      .soc-btn:hover { background: rgba(69,191,229,.15); color: var(--cyan); border-color: rgba(69,191,229,.3); }
+      .footer-bottom { padding: 1.1rem 1.5rem; }
+      .footer-bottom-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+      .footer-copy { font-family: "Sora", sans-serif; font-size: .76rem; color: rgba(255,255,255,.3); line-height: 1.5; }
+      .footer-copy strong { color: rgba(255,255,255,.5); font-weight: 600; }
+      .footer-legal { display: flex; align-items: center; gap: 6px; }
+      .footer-legal a { font-family: "Manrope", sans-serif; font-size: .73rem; font-weight: 600; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; white-space: nowrap; }
+      .footer-legal a:hover { color: var(--cyan); }
+      .footer-legal .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,.2); flex-shrink: 0; }
+      @media (max-width: 768px) { .footer-top-inner { flex-direction: column; align-items: flex-start; } .footer-bottom-inner { flex-direction: column; align-items: center; text-align: center; } .footer-legal { justify-content: center; flex-wrap: wrap; } }
+      @media (max-width: 520px) { .err-section { padding: 3.5rem 1.25rem; } }
+    </style>
+    <script src="/scripts/preloader.js"></script>
+  </head>
+  <body>
+
+    <div id="tq-preloader" aria-hidden="true" style="position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;background:#0b1929;">
+      <div class="tq-pl-logo"><img src="/assets/favicon.png" alt="Tinqbit"></div>
+      <div class="tq-pl-track"><div class="tq-pl-fill"></div></div>
+    </div>
+
+    <!-- ── NAVBAR ── -->
+    <header class="navbar-main" id="navbar">
+      <div class="nav-wrap">
+        <a href="/index.html" class="nav-logo">
+          <img src="/assets/logo_full.png" alt="Tinqbit" class="logo-full" />
+          <img src="/assets/logo.png" alt="Tinqbit" class="logo-icon" />
+        </a>
+
+        <ul class="nav-list">
+          <!-- Digital Marketing -->
+          <li class="nav-item">
+            <button class="nav-trigger">Digital Marketing<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="mega"><div class="mega-wrap"><p class="mega-eyebrow">Digital Marketing Services</p><div class="mega-grid">
+              <a href="/services/seo-services.html" class="mi"><div class="mi-ic ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><div><span class="mi-name">SEO Services</span><span class="mi-desc">Rank higher, grow organically</span></div></a>
+              <a href="/services/ai-search-optimization.html" class="mi"><div class="mi-ic cs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"/></svg></div><div><span class="mi-name">AI Search Optimization</span><span class="mi-desc">Get found in AI &amp; LLM search</span></div></a>
+              <a href="/services/social-media-marketing.html" class="mi"><div class="mi-ic cp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></div><div><span class="mi-name">Social Media Marketing</span><span class="mi-desc">Build &amp; engage your audience</span></div></a>
+              <a href="/services/meta-advertising.html" class="mi"><div class="mi-ic co"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div><div><span class="mi-name">Meta Advertising</span><span class="mi-desc">Targeted ads on Facebook &amp; Instagram</span></div></a>
+              <a href="/services/content-marketing.html" class="mi"><div class="mi-ic ce"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg></div><div><span class="mi-name">Content Marketing</span><span class="mi-desc">Stories that convert</span></div></a>
+              <a href="/services/email-marketing.html" class="mi"><div class="mi-ic cb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><span class="mi-name">Email Marketing</span><span class="mi-desc">Nurture leads at scale</span></div></a>
+              <a href="/services/branding.html" class="mi"><div class="mi-ic cv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg></div><div><span class="mi-name">Branding</span><span class="mi-desc">Build a brand that stands out</span></div></a>
+            </div></div></div>
+          </li>
+
+          <!-- Web Development -->
+          <li class="nav-item">
+            <button class="nav-trigger">Web Development<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="mega"><div class="mega-wrap"><p class="mega-eyebrow">Web Development Services</p><div class="mega-grid">
+              <a href="/services/custom-website-development.html" class="mi"><div class="mi-ic cb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div><div><span class="mi-name">Custom Website Dev</span><span class="mi-desc">Pixel-perfect, performance-first</span></div></a>
+              <a href="/services/e-commerce-development.html" class="mi"><div class="mi-ic ce"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div><div><span class="mi-name">E-Commerce Dev</span><span class="mi-desc">Sell more, convert better</span></div></a>
+              <a href="/services/web-application-development.html" class="mi"><div class="mi-ic cv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><span class="mi-name">Web Application Dev</span><span class="mi-desc">Scalable, robust web apps</span></div></a>
+              <a href="/services/ui-ux-design.html" class="mi"><div class="mi-ic cp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></div><div><span class="mi-name">UI/UX Design</span><span class="mi-desc">Intuitive, stunning interfaces</span></div></a>
+              <a href="/services/website-maintenance.html" class="mi"><div class="mi-ic ca"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div><span class="mi-name">Website Maintenance</span><span class="mi-desc">Always fast, always secure</span></div></a>
+              <a href="/services/website-redesign.html" class="mi"><div class="mi-ic ct"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></div><div><span class="mi-name">Website Redesign</span><span class="mi-desc">Refresh, modernise, convert</span></div></a>
+            </div></div></div>
+          </li>
+
+          <!-- IT Solutions -->
+          <li class="nav-item">
+            <button class="nav-trigger">IT Solutions<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="mega"><div class="mega-wrap"><p class="mega-eyebrow">IT Solutions &amp; Services</p><div class="mega-grid">
+              <a href="/services/software-development.html" class="mi"><div class="mi-ic csl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg></div><div><span class="mi-name">Software Development</span><span class="mi-desc">Custom software, built to scale</span></div></a>
+              <a href="/services/mobile-app-development.html" class="mi"><div class="mi-ic cb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div><div><span class="mi-name">Mobile App Development</span><span class="mi-desc">iOS &amp; Android, native or hybrid</span></div></a>
+              <a href="/services/cloud-solutions.html" class="mi"><div class="mi-ic cs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></div><div><span class="mi-name">Cloud Solutions</span><span class="mi-desc">Migrate, optimise, automate</span></div></a>
+              <a href="/services/it-consulting.html" class="mi"><div class="mi-ic ca"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><div><span class="mi-name">IT Consulting</span><span class="mi-desc">Strategy-led tech advisory</span></div></a>
+              <a href="/services/erp-solutions.html" class="mi"><div class="mi-ic ce"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div><div><span class="mi-name">ERP Solutions</span><span class="mi-desc">Streamline every operation</span></div></a>
+              <a href="/services/crm-development.html" class="mi"><div class="mi-ic ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><span class="mi-name">CRM Development</span><span class="mi-desc">Know &amp; grow your customers</span></div></a>
+            </div></div></div>
+          </li>
+
+          <!-- Advanced Technologies -->
+          <li class="nav-item">
+            <button class="nav-trigger">Advanced Technologies<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="mega"><div class="mega-wrap"><p class="mega-eyebrow">Advanced Technology Solutions</p><div class="mega-grid">
+              <a href="/services/ai-and-ml.html" class="mi"><div class="mi-ic cv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><div><span class="mi-name">AI &amp; Machine Learning</span><span class="mi-desc">Intelligent automation &amp; insights</span></div></a>
+              <a href="/services/blockchain.html" class="mi"><div class="mi-ic cp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div><div><span class="mi-name">Blockchain</span><span class="mi-desc">Decentralised, secure solutions</span></div></a>
+              <a href="/services/embedded-systems.html" class="mi"><div class="mi-ic co"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><div><span class="mi-name">Embedded Systems</span><span class="mi-desc">Hardware-level engineering</span></div></a>
+              <a href="/services/iot.html" class="mi"><div class="mi-ic ct"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg></div><div><span class="mi-name">IoT Solutions</span><span class="mi-desc">Connected devices &amp; platforms</span></div></a>
+            </div></div></div>
+          </li>
+
+          <!-- Company -->
+          <li class="nav-item">
+            <button class="nav-trigger">Company<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="mega"><div class="mega-wrap"><p class="mega-eyebrow">Company</p><div class="mega-grid">
+              <a href="/about-us.html" class="mi"><div class="mi-ic ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div><span class="mi-name">About Us</span><span class="mi-desc">Our story, mission &amp; values</span></div></a>
+              <a href="/team.html" class="mi"><div class="mi-ic cb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg></div><div><span class="mi-name">Our Team</span><span class="mi-desc">Meet the people behind Tinqbit</span></div></a>
+              <a href="/works.html" class="mi"><div class="mi-ic cp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div><div><span class="mi-name">Works</span><span class="mi-desc">Projects we're proud of</span></div></a>
+              <a href="/careers.html" class="mi"><div class="mi-ic co"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div><div><span class="mi-name">Careers</span><span class="mi-desc">Join our growing team</span></div></a>
+              <a href="/blog/" class="mi"><div class="mi-ic ct"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><div><span class="mi-name">Blog</span><span class="mi-desc">Insights &amp; industry trends</span></div></a>
+              <a href="/contact.html" class="mi"><div class="mi-ic cgr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><span class="mi-name">Contact Us</span><span class="mi-desc">Let's start a conversation</span></div></a>
+            </div></div></div>
+          </li>
+        </ul>
+
+        <a href="/contact.html" class="btn-cta-nav">Get Free Consultation<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <button class="nav-burger" id="navBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <!-- ── MOBILE DRAWER ── -->
+    <div class="mob-drawer" id="mobDrawer">
+      <div class="mob-acc"><button class="mob-acc-btn" data-acc="dm">Digital Marketing<svg class="ac" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mob-acc-body" id="acc-dm"><div class="mob-acc-items"><a href="/services/seo-services.html" class="mob-link"><div class="mob-ic ci"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>SEO Services</a><a href="/services/ai-search-optimization.html" class="mob-link"><div class="mob-ic cs"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"/></svg></div>AI Search Optimization</a><a href="/services/branding.html" class="mob-link"><div class="mob-ic cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg></div>Branding</a><a href="/services/social-media-marketing.html" class="mob-link"><div class="mob-ic cp"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></div>Social Media Marketing</a><a href="/services/meta-advertising.html" class="mob-link"><div class="mob-ic co"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>Meta Advertising</a><a href="/services/content-marketing.html" class="mob-link"><div class="mob-ic ce"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg></div>Content Marketing</a><a href="/services/email-marketing.html" class="mob-link"><div class="mob-ic cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>Email Marketing</a></div></div></div>
+      <div class="mob-acc"><button class="mob-acc-btn" data-acc="wd">Web Development<svg class="ac" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mob-acc-body" id="acc-wd"><div class="mob-acc-items"><a href="/services/custom-website-development.html" class="mob-link"><div class="mob-ic cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>Custom Website Development</a><a href="/services/e-commerce-development.html" class="mob-link"><div class="mob-ic ce"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div>E-Commerce Development</a><a href="/services/web-application-development.html" class="mob-link"><div class="mob-ic cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>Web Application Development</a><a href="/services/ui-ux-design.html" class="mob-link"><div class="mob-ic cp"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/></svg></div>UI/UX Design</a><a href="/services/website-maintenance.html" class="mob-link"><div class="mob-ic ca"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>Website Maintenance</a><a href="/services/website-redesign.html" class="mob-link"><div class="mob-ic ct"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>Website Redesign</a></div></div></div>
+      <div class="mob-acc"><button class="mob-acc-btn" data-acc="it">IT Solutions<svg class="ac" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mob-acc-body" id="acc-it"><div class="mob-acc-items"><a href="/services/software-development.html" class="mob-link"><div class="mob-ic csl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg></div>Software Development</a><a href="/services/mobile-app-development.html" class="mob-link"><div class="mob-ic cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></div>Mobile App Development</a><a href="/services/cloud-solutions.html" class="mob-link"><div class="mob-ic cs"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></div>Cloud Solutions</a><a href="/services/it-consulting.html" class="mob-link"><div class="mob-ic ca"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/></svg></div>IT Consulting</a><a href="/services/erp-solutions.html" class="mob-link"><div class="mob-ic ce"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div>ERP Solutions</a><a href="/services/crm-development.html" class="mob-link"><div class="mob-ic ci"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>CRM Development</a></div></div></div>
+      <div class="mob-acc"><button class="mob-acc-btn" data-acc="at">Advanced Technologies<svg class="ac" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mob-acc-body" id="acc-at"><div class="mob-acc-items"><a href="/services/ai-and-ml.html" class="mob-link"><div class="mob-ic cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>AI &amp; Machine Learning</a><a href="/services/blockchain.html" class="mob-link"><div class="mob-ic cp"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div>Blockchain</a><a href="/services/embedded-systems.html" class="mob-link"><div class="mob-ic co"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div>Embedded Systems</a><a href="/services/iot.html" class="mob-link"><div class="mob-ic ct"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg></div>IoT Solutions</a></div></div></div>
+      <div class="mob-acc"><button class="mob-acc-btn" data-acc="co">Company<svg class="ac" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mob-acc-body" id="acc-co"><div class="mob-acc-items"><a href="/about-us.html" class="mob-link"><div class="mob-ic ci"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>About Us</a><a href="/team.html" class="mob-link"><div class="mob-ic cb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg></div>Our Team</a><a href="/works.html" class="mob-link"><div class="mob-ic cp"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>Works</a><a href="/careers.html" class="mob-link"><div class="mob-ic co"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>Careers</a><a href="/blog/" class="mob-link"><div class="mob-ic ct"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>Blog</a><a href="/testimonials.html" class="mob-link"><div class="mob-ic ca"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>Testimonials</a><a href="/contact.html" class="mob-link"><div class="mob-ic cgr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>Contact Us</a></div></div></div>
+      <div class="mob-cta"><a href="/contact.html" class="btn-cta-nav">Get Free Consultation<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- ── 404 ── -->
+    <section class="err-section">
+      <div class="err-blob1"></div>
+      <div class="err-blob2"></div>
+      <div class="err-inner">
+        <div class="err-code">404</div>
+        <div class="err-eyebrow">Page Not Found</div>
+        <h1 class="err-h1">Looks like you've ventured<br>off the map</h1>
+        <p class="err-desc">The page you're looking for may have been moved, renamed, or no longer exists. Let's get you back on track.</p>
+        <div class="err-actions">
+          <a href="/index.html" class="btn-err-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Back to Home
+          </a>
+          <a href="/contact.html" class="btn-err-outline">
+            Contact Us
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+        <p class="err-links-label">Or explore a popular page</p>
+        <div class="err-links">
+          <a href="/services.html" class="err-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Services
+          </a>
+          <a href="/works.html" class="err-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            Works
+          </a>
+          <a href="/blog/" class="err-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            Blog
+          </a>
+          <a href="/about-us.html" class="err-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            About Us
+          </a>
+          <a href="/careers.html" class="err-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+            Careers
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <div>
+            <a href="/index.html" class="footer-logo"><img src="/assets/logo_full.png" alt="Tinqbit" /></a>
+            <p class="footer-tagline">Digital Marketing &amp; IT Solutions</p>
+          </div>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/digital-marketing.html">Digital Marketing</a>
+            <a href="/web-development.html">Web Development</a>
+            <a href="/it-solution.html">IT Solutions</a>
+            <a href="/advanced-technologies.html">Advanced Technologies</a>
+            <a href="/about-us.html">About Us</a>
+          </nav>
+          <div class="footer-social">
+            <a href="https://in.linkedin.com/company/tinqbit" target="_blank" rel="noopener" class="soc-btn" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="soc-btn" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://www.instagram.com/tinqbit.official/" target="_blank" rel="noopener" class="soc-btn" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+            <a href="#" class="soc-btn" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">&copy; <span id="fyear"></span> <strong>Tinqbit Pvt. Ltd.</strong> All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="/terms-conditions.html">Terms &amp; Conditions</a><span class="dot"></span><a href="/privacy-policy.html">Privacy Policy</a><span class="dot"></span><a href="/cookie-policy.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Navbar scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => navbar.classList.toggle("scrolled", window.scrollY > 8), { passive: true });
+
+      // Mobile drawer
+      const burger = document.getElementById("navBurger"),
+            drawer = document.getElementById("mobDrawer"),
+            backdrop = document.getElementById("navBackdrop");
+      function openDrawer() { burger.classList.add("open"); drawer.classList.add("open"); backdrop.classList.add("active"); document.body.classList.add("no-scroll"); }
+      function closeDrawer() { burger.classList.remove("open"); drawer.classList.remove("open"); backdrop.classList.remove("active"); document.body.classList.remove("no-scroll"); }
+      burger.addEventListener("click", () => drawer.classList.contains("open") ? closeDrawer() : openDrawer());
+      backdrop.addEventListener("click", closeDrawer);
+
+      // Mobile accordion
+      document.querySelectorAll(".mob-acc-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.acc, body = document.getElementById("acc-" + id);
+          const isOpen = body.classList.contains("open");
+          document.querySelectorAll(".mob-acc-body.open").forEach(b => b.classList.remove("open"));
+          document.querySelectorAll(".mob-acc-btn.active").forEach(b => b.classList.remove("active"));
+          if (!isOpen) { body.classList.add("open"); btn.classList.add("active"); }
+        });
+      });
+
+      // Footer year
+      document.getElementById("fyear").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
