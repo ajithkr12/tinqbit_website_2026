@@ -8,6 +8,134 @@
 
 const BLOG_POSTS = [
   {
+    slug: "repair-kochi-website-performance-case-study",
+    title: "Case Study: How Tinqbit Took Repair Kochi's Website From a 36 to a 96 Performance Score",
+    category: "Web Development",
+    categoryClass: "ct",
+    tags: ["Case Study", "Web Development", "Performance Optimization"],
+    author: "Alfiya",
+    authorRole: "Digital Marketing Executive",
+    authorInitials: "AL",
+    date: "2026-08-10",
+    dateLabel: "August 10, 2026",
+    readTime: "5 min read",
+    gradient: "linear-gradient(135deg,#15803d,#65a30d)",
+    icon: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+    excerpt: "A performance audit of Repair Kochi's website revealed a Performance score of just 36/100. Here's how Tinqbit rebuilt the site's speed and technical foundation to push it to 96 — without touching its core content.",
+    intro: "A website is often the first interaction a potential customer has with a business — and for Repair Kochi, a trusted home renovation service operating across Kerala and Southern Karnataka, that first impression was falling short. Despite years of quality renovation work, their website was slow, difficult to navigate, and underperforming on the metrics that matter most for converting visitors into leads. As a web development company in Kochi, Tinqbit specialises in fixing exactly these kinds of performance and SEO issues for local businesses. This case study breaks down how Tinqbit diagnosed the problem and rebuilt the site's performance from the ground up.",
+    sections: [
+      {
+        id: "about-repair-kochi",
+        level: "h2",
+        heading: "About Repair Kochi",
+        paragraphs: [
+          "Repair Kochi, part of Architect I K Sham & Associates, is a well-known name in home renovation, interior design, and MEP services across Kerala and Southern Karnataka. Their portfolio showcases everything from old-home renovations to full interior transformations — work that deserves a website capable of showing it off properly."
+        ]
+      },
+      {
+        id: "the-challenge",
+        level: "h2",
+        heading: "The Challenge",
+        paragraphs: [
+          "An initial performance audit of Repair Kochi's website surfaced some critical issues:"
+        ],
+        list: [
+          "Performance: 36/100 — pages were slow to load, particularly on mobile devices, where the majority of visitors first land",
+          "Best Practices: 65/100 — underlying technical issues were holding the site back",
+          "Accessibility: 74/100 and SEO: 75/100 — both had noticeable room for improvement"
+        ]
+      },
+      {
+        id: "what-it-meant",
+        level: "h3",
+        heading: "What This Meant for the Business",
+        paragraphs: [
+          "In practical terms, these scores translated into real, measurable friction for the business:"
+        ],
+        list: [
+          "Visitors were likely leaving before a page even finished loading",
+          "The renovation portfolio wasn't making the strong first impression it deserved",
+          "Weaker SEO performance meant fewer potential customers finding the site through search in the first place"
+        ]
+      },
+      {
+        id: "the-solution",
+        level: "h2",
+        heading: "The Solution",
+        paragraphs: [
+          "For a business built on trust and visible quality of work, a slow, underperforming website was actively working against the brand. Tinqbit's approach focused on fixing the technical foundation of the site without altering its core content or renovation showcase. The key steps included:"
+        ],
+        list: [
+          "Image optimization — compressing and properly sizing images across the site so pages load significantly faster without any visible drop in quality",
+          "Layout and alignment fixes — correcting inconsistent spacing and alignment issues for a cleaner, more professional appearance",
+          "Core performance fixes — resolving the underlying technical bottlenecks that were slowing the site down",
+          "Full-spectrum verification — checking improvements not just for speed, but across accessibility, best practices, and SEO as well"
+        ],
+        image: {
+          gradient: "linear-gradient(135deg,#15803d,#65a30d)",
+          icon: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+          caption: "Fixing the technical foundation without touching the renovation showcase"
+        }
+      },
+      {
+        id: "the-results",
+        level: "h2",
+        heading: "The Results",
+        paragraphs: [
+          "A follow-up audit after the rework showed measurable improvement across every metric, on both mobile and desktop. Here's the before-and-after performance breakdown:"
+        ],
+        list: [
+          "Performance — 36 before, up to 76 on mobile and 96 on desktop",
+          "Accessibility — 74 before, up to 92 on mobile and 95 on desktop",
+          "Best Practices — 65 before, up to 100 on both mobile and desktop",
+          "SEO — 75 before, up to 92 on mobile and 100 on desktop"
+        ]
+      },
+      {
+        id: "why-it-matters",
+        level: "h2",
+        heading: "Why It Matters",
+        paragraphs: [
+          "The desktop performance score reached 96, while the mobile score improved by 40 points — from 36 to 76 — and Best Practices and SEO both reached a perfect or near-perfect score. On mobile, where most visitors land first, Performance still more than doubled, moving the site out of the red \"needs improvement\" zone and into the green \"good\" range.",
+          "For a renovation business, most potential customers begin their research by scrolling through project photos on their phone. If a website takes too long to load, that visitor may never see the work at all — regardless of how good it is. By addressing image weight, layout, and speed together, Tinqbit helped Repair Kochi's website finally match the quality of the renovation work it represents."
+        ]
+      },
+      {
+        id: "key-takeaways",
+        level: "h3",
+        heading: "Key Takeaways",
+        paragraphs: [],
+        list: [
+          "Speed is a first impression. A slow website can undo the credibility built through years of quality work.",
+          "Mobile matters most. Most visitors experience a site on their phone first — performance fixes need to prioritise that experience.",
+          "Small technical fixes compound. Image optimization, layout correction, and speed fixes together produced results across performance, accessibility, best practices, and SEO — not just one metric in isolation."
+        ]
+      }
+    ],
+    faq: [
+      {
+        q: "How long did the Repair Kochi performance project take?",
+        a: "Performance rebuilds of this scope — image optimisation, layout fixes, and core technical fixes across a full site — typically take a few weeks from audit to verified results, depending on the number of pages and assets involved."
+      },
+      {
+        q: "What caused the low Performance score in the first place?",
+        a: "The audit traced the low score mainly to unoptimised, oversized images and underlying technical bottlenecks — common issues on sites that have grown organically over time without a periodic performance review."
+      },
+      {
+        q: "Can Tinqbit run a similar audit and fix on my website?",
+        a: "Yes. Tinqbit offers a free website performance check that identifies exactly what's slowing your site down — mirroring the audit that kicked off the Repair Kochi project — before recommending a fix."
+      }
+    ],
+    cta: {
+      heading: "Is Your Website Slow on Mobile?",
+      text: "Get a free website performance check from Tinqbit — a trusted web development company in Kochi. We'll identify what's slowing your website down and show you exactly where it can be improved.",
+      buttonText: "Request Your Free Website Audit",
+      buttonLink: "web-development.html"
+    },
+    related: ["website-redesign-signs", "local-seo-strategies-2026", "cloud-migration-guide-smbs"]
+  },
+
+  {
     slug: "local-seo-strategies-2026",
     title: "10 Local SEO Strategies to Dominate Search in 2026",
     category: "SEO",

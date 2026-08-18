@@ -4397,6 +4397,224 @@
       </div>
     </section>
 
+    <!-- Testimonial Read More Modal + Scripts -->
+    <style>
+      .testimonial-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+      }
+      .testimonial-modal.open {
+        display: flex;
+      }
+      .tm-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.6);
+      }
+      .tm-dialog {
+        position: relative;
+        max-width: 760px;
+        width: 92%;
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.6rem;
+        box-shadow: 0 20px 60px rgba(2, 6, 23, 0.4);
+        z-index: 2001;
+        max-height: 90vh;
+        overflow: auto;
+      }
+      .tm-close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        background: none;
+        border: 0;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #0f172a;
+      }
+      .tm-content {
+        font-family: "Sora", sans-serif;
+        color: #0f172a;
+        line-height: 1.7;
+        font-size: 1rem;
+        white-space: pre-wrap;
+      }
+      .tm-body p { margin: 0 0 0.9rem; }
+      .tm-author {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding-bottom: 0.9rem;
+        border-bottom: 1px solid rgba(15,23,42,0.06);
+        margin-bottom: 0.9rem;
+      }
+      .tm-author .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--grad);
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-family: "Manrope", sans-serif;
+        flex-shrink: 0;
+      }
+      .tm-author .meta {
+        font-family: "Manrope", sans-serif;
+      }
+      .tm-author .meta .name {
+        font-weight: 800;
+        color: #0f172a;
+        display: block;
+      }
+      .tm-author .meta .role {
+        font-size: 0.9rem;
+        color: #475569;
+        display: block;
+      }
+      .read-more {
+        display: inline-block;
+        margin-left: 8px;
+        background: none;
+        border: none;
+        color: var(--cyan);
+        font-weight: 700;
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.85rem;
+        vertical-align: baseline;
+      }
+      .no-scroll { overflow: hidden; }
+    </style>
+
+    <div id="testimonial-modal" class="testimonial-modal" aria-hidden="true">
+      <div class="tm-backdrop" data-action="close"></div>
+      <div class="tm-dialog" role="dialog" aria-modal="true" aria-labelledby="tm-title" aria-describedby="tm-desc">
+        <button class="tm-close" aria-label="Close testimonial" data-action="close">×</button>
+        <div id="tm-desc" class="tm-content"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var WORD_LIMIT = 55; // show ~50-60 words
+
+        function stripHtml(html) {
+          var div = document.createElement('div');
+          div.innerHTML = html;
+          return div.textContent || div.innerText || '';
+        }
+
+        function truncateWords(html, limit) {
+          var text = stripHtml(html);
+          var words = text.split(/\s+/).filter(Boolean);
+          if (words.length <= limit) return { truncated: false, text: html };
+          var truncated = words.slice(0, limit).join(' ');
+          return { truncated: true, text: truncated + '…' };
+        }
+
+        var modal = document.getElementById('testimonial-modal');
+        var modalContent = modal && modal.querySelector('.tm-content');
+        var lastActive = null;
+
+        function initTestimonials() {
+          document.querySelectorAll('.tcard').forEach(function (card) {
+            var p = card.querySelector('.tcard-text');
+            if (!p) return;
+            // store full HTML
+            p.dataset.full = p.innerHTML;
+            // store author HTML (avatar + name + role)
+            var authorEl = card.querySelector('.tcard-author');
+            p.dataset.author = authorEl ? authorEl.innerHTML : '';
+            // try to extract simple name/avatar for dataset too
+            var nameEl = authorEl ? authorEl.querySelector('.tcard-name') : null;
+            var roleEl = authorEl ? authorEl.querySelector('.tcard-role') : null;
+            p.dataset.authorName = nameEl ? nameEl.textContent.trim() : '';
+            p.dataset.authorRole = roleEl ? roleEl.textContent.trim() : '';
+
+            var res = truncateWords(p.innerHTML, WORD_LIMIT);
+            if (res.truncated) {
+              p.innerHTML = res.text;
+              var btn = document.createElement('button');
+              btn.className = 'read-more';
+              btn.type = 'button';
+              btn.textContent = 'Read more';
+              btn.addEventListener('click', function (e) {
+                lastActive = e.currentTarget;
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                // build modal content with author header
+                var authorHTML = '';
+                if (p.dataset.authorName) {
+                  var initials = p.dataset.authorName.split(' ').map(function(s){return s.charAt(0)}).join('').slice(0,2).toUpperCase();
+                  authorHTML = '<div class="tm-author">' +
+                    '<div class="avatar">' + initials + '</div>' +
+                    '<div class="meta"><span class="name">' + (p.dataset.authorName || '') + '</span>' +
+                    '<span class="role">' + (p.dataset.authorRole || '') + '</span></div>' +
+                    '</div>';
+                } else if (p.dataset.author) {
+                  authorHTML = '<div class="tm-author">' + p.dataset.author + '</div>';
+                }
+                // Format full text into readable paragraphs/sentences
+                function formatTextForModal(html) {
+                  var text = stripHtml(html).trim();
+                  if (!text) return '';
+                  var parts = [];
+                  if (/\n/.test(text)) {
+                    parts = text.split(/\n{1,}/).map(function(s){ return s.trim(); }).filter(Boolean);
+                  } else {
+                    // split at sentence endings, preferring a following capital or quote
+                    parts = text.split(/(?<=[.?!])\s+(?=[A-Z0-9"'“”‘’])/g).map(function(s){ return s.trim(); }).filter(Boolean);
+                  }
+                  return parts.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+                }
+
+                var formatted = formatTextForModal(p.dataset.full);
+                modalContent.innerHTML = authorHTML + '<div class="tm-body">' + formatted + '</div>';
+                document.body.classList.add('no-scroll');
+                var close = modal.querySelector('.tm-close');
+                if (close) close.focus();
+              });
+              // insert inside the paragraph so the button appears near the text end
+              p.appendChild(btn);
+            }
+          });
+
+          function closeModal() {
+            if (!modal) return;
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('no-scroll');
+            if (lastActive && lastActive.focus) lastActive.focus();
+            lastActive = null;
+          }
+
+          if (modal) {
+            modal.addEventListener('click', function (e) {
+              if (e.target && e.target.dataset && e.target.dataset.action === 'close') closeModal();
+            });
+            document.addEventListener('keydown', function (e) {
+              if (e.key === 'Escape') closeModal();
+            });
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initTestimonials);
+        } else {
+          initTestimonials();
+        }
+      })();
+    </script>
+
     <!-- ── TRUST BAR ── -->
     <section class="trust-section">
       <div class="trust-bar">
@@ -4432,6 +4650,44 @@
         </div>
 
         <div class="testi-grid">
+                    <div class="tcard">
+            <span class="tcard-quote-mark">"</span>
+            <div class="tcard-stars">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <p class="tcard-text">
+              I’m Architect Sham, CEO of RepairKochi.
+              For RepairKochi, a website is not just an online page. It represents the work we have done over the years and, more importantly, the trust that our customers have placed in us.
+              For some time, however, we felt that the quality of our work was not being properly reflected through our website Repairkochi.com. The mobile experience was slow, and the overall user experience also needed improvement.
+              While we were looking for the right team to revamp our website, Tinqbit approached us.
+              One thing we appreciated from our very first conversation was that, instead of simply suggesting that we change everything, they first took the time to understand our requirements. We wanted to retain our existing brand identity, and we also made it clear that our QR system, which is used by more than 50 team members, should not be affected. They understood these requirements clearly and handled them accordingly.
+              The website is now cleaner, faster, and more mobile-friendly. Seeing the performance score improve from 36 to 96 was a significant result for us.
+              But beyond the numbers, what makes us happiest is the confidence we now have when sharing our website with someone. We can simply say, “Just visit our website to know more about us,” with confidence.
+              Tinqbit felt like much more than a team that redesigned our website. They took the time to understand our brand and worked with us as a technology partner.
+              That is why we would be happy to recommend Tinqbit to anyone looking for a dependable and capable technology partner, not just a website builder.
+            </p>
+            <div class="tcard-author">
+              <div class="tcard-avatar">AS</div>
+              <div>
+                <span class="tcard-name">Architect Sham</span>
+                <span class="tcard-role">CEO, RepairKochi</span>
+              </div>
+            </div>
+          </div>
           <div class="tcard">
             <span class="tcard-quote-mark">"</span>
             <div class="tcard-stars">
@@ -4699,6 +4955,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
