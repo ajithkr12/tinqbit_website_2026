@@ -2,21 +2,18 @@
  * Tinqbit lead form handler.
  *
  * Wires up every contact / quote-request form on the site (anything inside
- * a `.contact-form-wrap`) so it validates and shows feedback on submit.
+ * a `.contact-form-wrap`) so it validates, sends the lead by email via a
+ * Google Apps Script web app, and shows feedback on submit.
  *
- * TODO before launch: this does not send data anywhere yet. Connect a real
- * backend by either:
- *   1. Form service (recommended): sign up for Formspree (formspree.io) or
- *      Web3Forms (web3forms.com), then set FORM_ENDPOINT below to the
- *      endpoint/access-key URL they give you. The fetch() call below will
- *      start working immediately once FORM_ENDPOINT is set.
- *   2. Custom backend: point FORM_ENDPOINT at your own API route that
- *      accepts a POST with FormData/JSON and sends an email/CRM lead.
+ * Setup: deploy google-apps-script/contact-form/Code.gs as a Web App
+ * (Execute as: Me, Who has access: Anyone), then paste the resulting
+ * /exec URL into FORM_ENDPOINT below. See that file's header comment for
+ * full deployment steps.
  */
 (function () {
-  // Set this to your form-service endpoint, e.g.
-  // "https://formspree.io/f/xxxxxxxx" or "https://api.web3forms.com/submit"
-  var FORM_ENDPOINT = "";
+  // Paste your deployed Google Apps Script Web App URL here, e.g.
+  // "https://script.google.com/macros/s/AKfycbx.../exec"
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzIoQ80rLIJYw7n6TqbLgegok1Q2rMvITyXFsem3k3t17LP9aQtgRYJ8jHNA4eE_MP1/exec";
 
   function showFeedback(form, message, isError) {
     var el = form.querySelector(".form-feedback");
@@ -69,10 +66,13 @@
       return;
     }
 
+    var payload = new FormData(form);
+    payload.append("page", document.title + " — " + location.href);
+
     fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: { Accept: "application/json" },
-      body: new FormData(form),
+      body: payload,
     })
       .then(function (response) {
         if (response.ok) {
