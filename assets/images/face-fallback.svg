@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="">
+  <rect width="400" height="500" fill="#0b1929"/>
+  <g fill="none" stroke="#2e5772" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- minimal single-line portrait, used as a static fallback when the
+         tracking video is unavailable -->
+    <path d="M200 120
+             C 150 120, 120 165, 120 215
+             C 120 260, 140 300, 165 325
+             C 150 340, 110 355, 95 400
+             C 90 415, 92 430, 95 445
+             L 305 445
+             C 308 430, 310 415, 305 400
+             C 290 355, 250 340, 235 325
+             C 260 300, 280 260, 280 215
+             C 280 165, 250 120, 200 120 Z"/>
+    <path d="M165 210 C 170 200, 182 200, 186 210" stroke-width="2"/>
+    <path d="M214 210 C 218 200, 230 200, 235 210" stroke-width="2"/>
+    <path d="M196 220 C 194 240, 190 252, 188 258 C 190 263, 196 264, 200 263" stroke-width="1.25"/>
+    <path d="M180 285 C 190 293, 210 293, 220 285" stroke-width="1.5"/>
+  </g>
+</svg>
