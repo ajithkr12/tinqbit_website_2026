@@ -1594,6 +1594,116 @@
         line-height: 1.65;
       }
 
+      /* ── Products ── */
+      .products-section {
+        margin-top: 6rem;
+      }
+
+      .products-grid {
+        display: grid;
+        justify-items: center;
+        gap: 1.5rem;
+      }
+
+      .product-card {
+        width: min(100%, 820px);
+        background: #fff;
+        border: 1px solid #dcebf4;
+        border-radius: 22px;
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        box-shadow: 0 12px 34px rgba(30, 58, 90, 0.08);
+      }
+
+      .product-card:hover {
+        transform: translateY(-6px) scale(1.005);
+        box-shadow: 0 20px 44px rgba(30, 58, 90, 0.13);
+        border-color: #45bfe5;
+      }
+
+      .product-media {
+        aspect-ratio: 16 / 7;
+        background: #eef6fb;
+        overflow: hidden;
+        border-bottom: 1px solid #e0eef6;
+      }
+
+      .product-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.03);
+      }
+
+      .product-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 2.2rem 2.5rem 2.4rem;
+      }
+
+      .product-title {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+        font-weight: 800;
+        color: #0f1f2e;
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.8rem;
+      }
+
+      .product-desc {
+        font-family: "Sora", sans-serif;
+        font-size: 0.9rem;
+        color: #5e7a8e;
+        line-height: 1.75;
+        margin-bottom: 1.5rem;
+        max-width: 520px;
+      }
+
+      .product-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.78rem 1.3rem;
+        border-radius: 12px;
+        background: #1e3a5a;
+        color: #fff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 8px 18px rgba(30, 58, 90, 0.16);
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .product-link:hover {
+        color: #fff;
+        background: #1490c8;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(20, 144, 200, 0.24);
+      }
+
+      .product-link svg {
+        transition: transform 0.2s ease;
+      }
+
+      .product-link:hover svg {
+        transform: translateX(3px);
+      }
+
       /* ── About responsive ── */
       @media (max-width: 900px) {
         .stats-strip {
@@ -1633,6 +1743,15 @@
         }
         .values-grid {
           grid-template-columns: 1fr;
+        }
+        .products-section {
+          margin-top: 4rem;
+        }
+        .product-media {
+          aspect-ratio: 16 / 9;
+        }
+        .product-content {
+          padding: 1.8rem 1.5rem 2rem;
         }
         .vis-main {
           min-height: 300px;
@@ -3371,7 +3490,7 @@
         <!-- /nav-list -->
 
         <!-- CTA -->
-        <a href="#" class="btn-cta-nav">
+        <a href="#contact" class="btn-cta-nav">
           Get Free Consultation
           <svg
             width="14"
@@ -5373,6 +5492,58 @@
           <!-- .values-grid -->
         </div>
         <!-- .values-section -->
+
+        <section class="products-section" aria-labelledby="products-heading">
+          <div class="values-head">
+            <div class="sec-eye">Our Products</div>
+            <h3 class="values-h3" id="products-heading">Tools built for better work</h3>
+            <p class="values-sub">
+              Our product brings everyday operations into one connected workspace.
+            </p>
+          </div>
+
+          <div class="products-grid">
+            <article class="product-card">
+              <div class="product-media">
+                <img
+                  class="product-image"
+                  src="/assets/works/tinquer_crm.webp"
+                  alt="Tinquer Hub CRM dashboard"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-content">
+                <h4 class="product-title">Tinquer Hub — CRM &amp; Task Management Tool</h4>
+                <p class="product-desc">
+                  Manage leads, follow-ups, projects, tasks, and team conversations
+                  in one connected workspace—from the first enquiry to final delivery.
+                </p>
+                <a
+                  class="product-link"
+                  href="https://tinquerhub.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read More
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
       </div>
       <!-- .about-inner -->
     </section>
@@ -5803,7 +5974,7 @@
         <!-- .offices-grid -->
 
         <!-- ── Form ── -->
-        <div class="contact-form-wrap">
+        <div class="contact-form-wrap" id="contact">
           <div class="form-head">
             <h3>Send us a message</h3>
             <p>Fill in the details below and we'll get back to you shortly.</p>

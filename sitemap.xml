@@ -4,7 +4,7 @@
   <!-- Main pages -->
   <url>
     <loc>https://tinqbit.com/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -318,5 +318,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
+  <url>
+    <loc>https://tinqbit.com/blog/blog-single.html?slug=why-we-built-tinqerhub</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
