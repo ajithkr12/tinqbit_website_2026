@@ -6,15 +6,15 @@
     <script>
       (function () {
         var isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent) && !/CriOS/i.test(navigator.userAgent) && !/FxiOS/i.test(navigator.userAgent);
-        var path = window.location.pathname.toLowerCase();
+        var path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+        var currentPage = path.substring(path.lastIndexOf('/') + 1);
+        var targetPage = isSafari && currentPage === 'team_new.html' ? 'team.html' : null;
 
-        if (isSafari && path.endsWith('/team_new.html')) {
-          window.location.replace('/team.html');
-          return;
-        }
-
-        if (!isSafari && path.endsWith('/team.html')) {
-          window.location.replace('/team_new.html');
+        if (targetPage) {
+          var targetUrl = new URL(window.location.href);
+          targetUrl.pathname = targetUrl.pathname.replace(/\/+$/, '');
+          targetUrl.pathname = targetUrl.pathname.substring(0, targetUrl.pathname.lastIndexOf('/') + 1) + targetPage;
+          window.location.replace(targetUrl.href);
         }
       })();
     </script>
