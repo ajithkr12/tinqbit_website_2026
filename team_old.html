@@ -3,38 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      (function () {
-        var isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent) && !/CriOS/i.test(navigator.userAgent) && !/FxiOS/i.test(navigator.userAgent);
-        var path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
-        var currentPage = path.substring(path.lastIndexOf('/') + 1);
-        var targetPage = isSafari && currentPage === 'team_new.html' ? 'team.html' : null;
-
-        if (targetPage) {
-          var targetUrl = new URL(window.location.href);
-          targetUrl.pathname = targetUrl.pathname.replace(/\/+$/, '');
-          targetUrl.pathname = targetUrl.pathname.substring(0, targetUrl.pathname.lastIndexOf('/') + 1) + targetPage;
-          window.location.replace(targetUrl.href);
-        }
-      })();
-    </script>
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
     <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <title>Our Team | Digital Marketing &amp; IT Experts in Kochi</title>
-    <meta name="description" content="Get to know the people behind Tinqbit — designers, engineers, marketers, and strategists building digital marketing and IT solutions from Kochi, Kerala." />
+    <title>Meet Our Team | Tinqbit Digital Marketing &amp; IT Experts</title>
+    <meta name="description" content="Meet the designers, engineers, marketers, and strategists behind Tinqbit — a Kerala-based digital marketing and IT team delivering results worldwide." />
     <link rel="canonical" href="https://tinqbit.com/team.html" />
-    <meta property="og:title" content="Our Team | Digital Marketing &amp; IT Experts in Kochi" />
-    <meta property="og:description" content="Get to know the people behind Tinqbit — designers, engineers, marketers, and strategists building digital marketing and IT solutions from Kochi, Kerala." />
+    <meta property="og:title" content="Meet Our Team | Tinqbit Digital Marketing &amp; IT Experts" />
+    <meta property="og:description" content="Meet the designers, engineers, marketers, and strategists behind Tinqbit — a Kerala-based digital marketing and IT team delivering results worldwide." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tinqbit.com/team.html" />
     <meta property="og:image" content="https://tinqbit.com/assets/logo_full.png" />
     <meta property="og:site_name" content="Tinqbit" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Our Team | Digital Marketing &amp; IT Experts in Kochi" />
-    <meta name="twitter:description" content="Get to know the people behind Tinqbit — designers, engineers, marketers, and strategists building digital marketing and IT solutions from Kochi, Kerala." />
+    <meta name="twitter:title" content="Meet Our Team | Tinqbit Digital Marketing &amp; IT Experts" />
+    <meta name="twitter:description" content="Meet the designers, engineers, marketers, and strategists behind Tinqbit — a Kerala-based digital marketing and IT team delivering results worldwide." />
     <meta name="twitter:image" content="https://tinqbit.com/assets/logo_full.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -619,11 +604,43 @@
 
 
       /* ── HERO ── */
-      .hero { background: #0b1929; position: relative; overflow: hidden; min-height: calc(100vh - var(--nav-h)); }
-      .hero-copy { position: relative; z-index: 3; max-width: 780px; margin: 0 auto; text-align: center; padding: clamp(2.25rem,6vw,3.25rem) 1.5rem 0; }
-      .hero-copy .hero-h1 { font-family: "Manrope", sans-serif; font-weight: 800; font-size: clamp(2.2rem,4.6vw,3.6rem); line-height: 1.14; letter-spacing: -.03em; color: #fff; }
-      .hero-copy .hero-h1 .hl { color: var(--cyan); }
-      @media (max-width: 600px) { .hero-copy { padding-top: 2rem; } }
+      .hero { background: #0b1929; position: relative; overflow: hidden; min-height: calc(100vh - var(--nav-h)); display: flex; align-items: center; padding: 5rem 1.5rem 4rem; }
+      .hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(69,191,229,.12) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; }
+      .hero-blob1, .hero-blob2 { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); }
+      .hero-blob1 { width: 560px; height: 420px; background: rgba(20,144,200,.18); top: -100px; left: -120px; }
+      .hero-blob2 { width: 420px; height: 380px; background: rgba(69,191,229,.12); bottom: -80px; right: -80px; }
+      .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+      .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: "Manrope", sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.2rem; }
+      .hero-eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--cyan); border-radius: 2px; }
+      .hero-h1 { font-family: "Manrope", sans-serif; font-size: clamp(2.4rem,4.5vw,3.8rem); font-weight: 800; color: #fff; line-height: 1.12; letter-spacing: -.035em; margin-bottom: 1.4rem; }
+      .hero-h1 .hl { background: linear-gradient(90deg,#45bfe5,#7dd8f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .hero-desc { font-family: "Sora", sans-serif; font-size: clamp(.88rem,1.3vw,1rem); color: rgba(255,255,255,.6); line-height: 1.75; max-width: 480px; margin-bottom: 2.2rem; }
+      .hero-actions { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; }
+      .btn-hero-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--grad); color: #fff; font-family: "Manrope", sans-serif; font-size: .88rem; font-weight: 700; text-decoration: none; border-radius: 10px; padding: .8rem 1.6rem; box-shadow: 0 6px 20px rgba(30,58,90,.4); transition: transform .2s, box-shadow .2s; }
+      .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(30,58,90,.5); color: #fff; }
+      .btn-hero-outline { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,.8); font-family: "Manrope", sans-serif; font-size: .88rem; font-weight: 600; text-decoration: none; border: 1.5px solid rgba(255,255,255,.2); border-radius: 10px; padding: .78rem 1.4rem; transition: border-color .2s, color .2s, background .2s; }
+      .btn-hero-outline:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(69,191,229,.07); }
+      .hero-trust { display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+      .trust-item { display: flex; align-items: center; gap: 6px; font-family: "Manrope", sans-serif; font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.45); }
+      .trust-item svg { color: var(--cyan); flex-shrink: 0; }
+      .hero-visual { position: relative; height: 420px; display: flex; align-items: center; justify-content: center; }
+      .metric-card { position: absolute; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(12px); border-radius: 16px; padding: 1.2rem 1.4rem; color: #fff; animation: mFloat 5s ease-in-out infinite; min-width: 170px; }
+      .metric-card:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+      .metric-card:nth-child(2) { top: 38%; right: 2%; animation-delay: 1.2s; }
+      .metric-card:nth-child(3) { bottom: 10%; left: 15%; animation-delay: 2.4s; }
+      @keyframes mFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+      .mc-label { font-family: "Manrope", sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .4rem; }
+      .mc-value { font-family: "Manrope", sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.04em; color: #fff; line-height: 1; margin-bottom: .3rem; }
+      .mc-value .pos { color: #45bfe5; }
+      .mc-sub { font-family: "Sora", sans-serif; font-size: .72rem; color: rgba(255,255,255,.45); }
+      .mc-bars { display: flex; align-items: flex-end; gap: 3px; height: 32px; margin-top: .6rem; }
+      .mc-bars span { flex: 1; background: rgba(69,191,229,.3); border-radius: 3px 3px 0 0; }
+      .mc-bars span.hi { background: #45bfe5; }
+      .hero-ring { width: 280px; height: 280px; border-radius: 50%; border: 1px solid rgba(69,191,229,.18); display: flex; align-items: center; justify-content: center; }
+      .hero-ring-inner { width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(69,191,229,.28); display: flex; align-items: center; justify-content: center; background: rgba(69,191,229,.05); }
+      .hero-ring-core { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg,rgba(30,58,90,.8),rgba(20,144,200,.6)); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(69,191,229,.25); }
+      @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; text-align: center; } .hero-desc, .hero-actions, .hero-trust { justify-content: center; } .hero-visual { height: 280px; order: -1; } .metric-card { min-width: 140px; } .mc-value { font-size: 1.4rem; } }
+      @media (max-width: 600px) { .hero { padding: 3rem 1.25rem 2.5rem; min-height: auto; } .hero-visual { display: none; } }
 
       /* ── SHARED SECTION ── */
       .sec-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
@@ -825,21 +842,35 @@
       .footer-legal .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,.2); flex-shrink: 0; }
       @media (max-width: 768px) { .footer-top-inner { flex-direction: column; align-items: flex-start; } .footer-bottom-inner { flex-direction: column; align-items: center; text-align: center; } .footer-legal { justify-content: center; flex-wrap: wrap; } }
 
-      /* ── TEAM HERO: MOUSE-TRACKING FACE VIDEO (full-bleed, transparent webm) ── */
-      .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-      .hero-photo-grid { position: absolute; inset: 0; z-index: 2; }
-      .face-hero { position: absolute; inset: 0; overflow: hidden; isolation: isolate; }
-      .face-hero__video, .face-hero__fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-      .face-hero__video { opacity: 0; transition: opacity .6s cubic-bezier(.16,1,.3,1); }
-      .face-hero[data-video-ready="true"] .face-hero__video { opacity: 1; }
-      .face-hero[data-video-ready="true"] .face-hero__fallback { opacity: 0; }
-      .face-hero__fallback { background: #0b1929; transition: opacity .6s cubic-bezier(.16,1,.3,1); }
-      @media (prefers-reduced-motion: reduce) { .face-hero__video, .face-hero__fallback { transition: none; } }
-
-      /* ── HERO PARTICLES: ambient field + particle-built logo, sit behind the ── */
-      /* transparent-background video so the mark shows through around the subject */
-      .hero-particles { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; display: block; pointer-events: none; opacity: .9; }
-      @media (max-width: 600px) { .hero-particles { opacity: .75; } }
+      /* ── TEAM HERO FLOATING CIRCLES ── */
+      .hero-photo-grid { position: relative; height: 460px; }
+      .team-arcs { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+      .tc { position: absolute; border-radius: 50%; overflow: hidden; border: 3px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45); transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 1; }
+      .tc:hover { transform: scale(1.1); box-shadow: 0 16px 44px rgba(0,0,0,0.58); z-index: 3; }
+      .tc img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tc-xl { width: 148px; height: 148px; }
+      .tc-lg { width: 116px; height: 116px; }
+      .tc-md { width: 94px; height: 94px; }
+      .tc-sm { width: 76px; height: 76px; }
+      .photo-float-badge { position: absolute; bottom: 28px; right: 16px; background: rgba(20,144,200,.28); border: 1px solid rgba(69,191,229,.35); backdrop-filter: blur(12px); border-radius: 14px; padding: .8rem 1.1rem; color: #fff; font-family: "Manrope", sans-serif; text-align: center; z-index: 2; }
+      .pfb-num { font-size: 1.5rem; font-weight: 800; line-height: 1; color: #45bfe5; }
+      .pfb-label { font-size: .6rem; color: rgba(255,255,255,.5); margin-top: 2px; }
+      /* scale the entire collage at tablet — positions stay correct, sizes shrink proportionally */
+      .tc-scene { position: absolute; inset: 0; transform-origin: top left; }
+      /* tablet */
+      @media (max-width: 1024px) {
+        .hero-photo-grid { height: 400px; }
+        .tc-scene { transform: scale(0.82); }
+      }
+      /* small tablet / stacked layout */
+      @media (max-width: 900px) {
+        .hero-photo-grid { height: 320px; order: -1; }
+        .tc-scene { transform: scale(0.68); }
+        .photo-float-badge { bottom: 10px; right: 6px; padding: .6rem .8rem; }
+        .pfb-num { font-size: 1.2rem; }
+      }
+      /* mobile */
+      @media (max-width: 600px) { .hero-photo-grid { display: none; } }
 
       /* ── TEAM SECTION ── */
       .team-section { background: var(--light); padding: 6.5rem 1.5rem; }
@@ -2670,47 +2701,88 @@
 
     <!-- ── HERO / HOME ── -->
     <section class="hero">
-      <div class="hero-copy">
-        <h1 class="hero-h1">The people who make <span class="hl">great work</span> happen</h1>
-      </div>
-      <!-- mouse-tracking face video, full-bleed -->
-      <div
-        class="hero-photo-grid"
-        data-face-hero
-        data-range-start="0.06"
-        data-range-end="0.94"
-      >
-        <div class="face-hero" data-face-hero-media>
-          <video
-            class="face-hero__video"
-            data-face-hero-video
-            poster="/assets/images/face-fallback.svg"
-            muted
-            playsinline
-            webkit-playsinline
-            preload="auto"
-            disablepictureinpicture
-            disableremoteplayback
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <source src="/assets/videos/face-tracking-scrub.webm" type="video/webm; codecs=vp9" />
-            <source src="/assets/videos/face-tracking-scrub.mov" type="video/quicktime" />
-          </video>
-          <img
-            class="face-hero__fallback"
-            data-face-hero-fallback
-            src="/assets/images/face-fallback.svg"
-            alt=""
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
-          />
-          <span class="visually-hidden">Illustrative portrait that turns to follow your cursor.</span>
+      <div class="hero-blob1"></div>
+      <div class="hero-blob2"></div>
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow">Our Team</div>
+          <h1 class="hero-h1">
+            The people who make <span class="hl">great work</span> happen
+          </h1>
+          <p class="hero-desc">
+            Behind every project at Tinqbit is a passionate crew of marketers, engineers, designers, and creators — a Kerala-based team united by one goal: delivering real results for real businesses.
+          </p>
+          <div class="hero-actions">
+            <a href="#team" class="btn-hero-primary">Meet the Team<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <a href="#contact" class="btn-hero-outline">Work With Us<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+          <div class="hero-trust">
+            <span class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>10+ Team Members</span>
+            <span class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>8 Departments</span>
+            <span class="trust-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>5+ Years Together</span>
+          </div>
+        </div>
+        <!-- right: team floating circles -->
+        <div class="hero-photo-grid">
+          <div class="tc-scene">
+          <!-- decorative SVG arcs -->
+          <svg class="team-arcs" viewBox="0 0 480 460" xmlns="http://www.w3.org/2000/svg">
+            <!-- primary teal sweep — bottom-left to top-right -->
+            <path d="M 20 400 C 100 200 300 100 450 140" stroke="#45bfe5" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <!-- secondary teal echo, offset -->
+            <path d="M 40 440 C 130 240 330 130 460 170" stroke="#45bfe5" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.25"/>
+            <!-- orange arc — left side swooping down -->
+            <path d="M 0 150 C 80 300 180 380 340 410" stroke="#f97316" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+            <!-- orange echo -->
+            <path d="M 0 120 C 70 270 160 360 320 400" stroke="#f97316" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.22"/>
+            <!-- pink/purple arc — top-right diagonal -->
+            <path d="M 220 10 C 370 80 440 220 430 370" stroke="#c026d3" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- purple echo -->
+            <path d="M 250 5 C 400 80 460 230 445 390" stroke="#c026d3" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.2"/>
+            <!-- cyan top-left loop -->
+            <path d="M 50 30 C 180 -30 360 40 430 100" stroke="#1490c8" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <!-- green accent bottom arc -->
+            <path d="M 60 460 C 160 340 300 330 440 390" stroke="#10b981" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.38"/>
+            <!-- short amber flick top-center -->
+            <path d="M 160 20 C 240 -15 320 30 360 80" stroke="#fbbf24" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.38"/>
+          </svg>
+          <!-- 7 circular team member photos, absolutely positioned -->
+          <!-- Nikhil — top-left, XL -->
+          <div class="tc tc-xl" style="top:20px; left:28px;">
+            <img src="/assets/teams/nikhil.webp" alt="Nikhil A">
+          </div>
+          <!-- Sreejith — top-center-right, LG -->
+          <div class="tc tc-lg" style="top:8px; left:230px;">
+            <img src="/assets/teams/sreejith.webp" alt="Sreejith Shaji">
+          </div>
+          <!-- Ajith — middle-left, LG -->
+          <div class="tc tc-lg" style="top:188px; left:8px;">
+            <img src="/assets/teams/ajith.webp" alt="Ajith K R">
+          </div>
+          <!-- Alfiya — center, MD -->
+          <div class="tc tc-md" style="top:188px; left:192px;">
+            <img src="/assets/teams/alfiya.webp" alt="Alfiya Sebastian">
+          </div>
+          <!-- Vimal — top far-right, MD -->
+          <div class="tc tc-md" style="top:55px; left:362px;">
+            <img src="/assets/teams/vimal.webp" alt="Vimal Raveendran">
+          </div>
+          <!-- Adnan — bottom-right, MD -->
+          <div class="tc tc-md" style="top:330px; left:320px;">
+            <img src="/assets/teams/adnan.webp" alt="Adnan Sharaf K">
+          </div>
+          <!-- Deepu — bottom-center-left, SM -->
+          <div class="tc tc-sm" style="top:355px; left:130px;">
+            <img src="/assets/teams/deepu.webp" alt="Deepu Manoj">
+          </div>
+          </div><!-- /.tc-scene -->
+          <!-- float badge -->
+          <div class="photo-float-badge">
+            <div class="pfb-num">10+</div>
+            <div class="pfb-label">Team Members</div>
+          </div>
         </div>
       </div>
-      <!-- particle layer: ambient field + particle-built logo, sits behind the transparent-bg video -->
-      <canvas class="hero-particles" data-hero-particles data-logo-src="/assets/logo.png" aria-hidden="true"></canvas>
     </section>
 
     <!-- ── TEAM CARDS ── -->
@@ -3037,7 +3109,5 @@
     </script>
     <script src="/scripts/form-handler.js" defer></script>
   <script src="/scripts/chatbot-widget.js" defer></script>
-  <script src="/scripts/face-tracking-hero.js" defer></script>
-  <script src="/scripts/particle-hero.js" defer></script>
   </body>
 </html>

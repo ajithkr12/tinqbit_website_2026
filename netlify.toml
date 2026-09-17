@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/team"
-  to = "/team_new.html"
-  status = 200
-  force = true
