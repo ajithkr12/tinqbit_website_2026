@@ -1,4 +1,5 @@
 # Clean URLs — strip .html extension
+/team                    /team_new.html                    200
 /profiles/nikhil          /profiles/nikhil.html          200
 /profiles/ajithkr         /profiles/ajithkr.html         200
 /profiles/sreejithshaji   /profiles/sreejithshaji.html   200
