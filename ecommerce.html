@@ -636,6 +636,15 @@ document.getElementById('lead-form').addEventListener('submit', (event) => {
     `Details: ${message}`
   ].join('\n');
 
+  // Google Ads "Submit lead form" conversion
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18539688310/PU2JCMflh6sdEPbitIhF',
+      'value': 1.0,
+      'currency': 'INR'
+    });
+  }
+
   window.open(`https://wa.me/919995657744?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
 });
 

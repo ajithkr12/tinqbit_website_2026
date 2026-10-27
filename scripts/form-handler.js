@@ -15,6 +15,24 @@
   // "https://script.google.com/macros/s/AKfycbx.../exec"
   var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzIoQ80rLIJYw7n6TqbLgegok1Q2rMvITyXFsem3k3t17LP9aQtgRYJ8jHNA4eE_MP1/exec";
 
+  // Google Ads event snippet: "Submit lead form" conversion.
+  // Called after a lead is sent successfully.
+  window.gtag_report_conversion = function (url) {
+    var callback = function () {
+      if (typeof url != "undefined") {
+        window.location = url;
+      }
+    };
+    if (typeof window.gtag !== "function") return false;
+    window.gtag("event", "conversion", {
+      send_to: "AW-18539688310/PU2JCMflh6sdEPbitIhF",
+      value: 1.0,
+      currency: "INR",
+      event_callback: callback,
+    });
+    return false;
+  };
+
   function showFeedback(form, message, isError) {
     var el = form.querySelector(".form-feedback");
     if (!el) {
@@ -76,6 +94,7 @@
     })
       .then(function (response) {
         if (response.ok) {
+          window.gtag_report_conversion();
           showFeedback(
             form,
             "Thanks! Your request has been received — we'll get back to you within 2 business hours.",
