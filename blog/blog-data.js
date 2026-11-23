@@ -7,7 +7,320 @@
    ============================================================ */
 
 const BLOG_POSTS = [
-    {
+  {
+    slug: "practical-ways-small-businesses-can-use-ai",
+    title: "5 Practical Ways Small Businesses Can Use AI Today",
+    category: "AI & Machine Learning",
+    categoryClass: "cv",
+    tags: ["AI", "Automation", "Small Business", "Productivity"],
+    author: "Ajith K R",
+    authorRole: "CTO & Co-Founder",
+    authorInitials: "SS",
+    date: "2026-11-15",
+    dateLabel: "November 15, 2026",
+    readTime: "7 min read",
+    gradient: "linear-gradient(135deg,#4f46e5,#7c3aed)",
+    icon: '<path d="M12 3v2M12 19v2M5 12H3M21 12h-2"/><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 10h4v4h-4z"/>',
+    excerpt: "AI isn't only for large companies with data science teams. Here are five practical, low-risk ways small businesses can use AI right now to save time, respond faster, and serve customers better.",
+    intro: "For many small business owners, AI still sounds like something meant for large companies with big budgets and technical teams. In reality, some of the most useful AI tools today are simple, affordable, and built into software you may already use. The goal isn't to replace your team or rebuild your business around a new technology. It's to take repetitive, time-consuming work off people's plates so they can spend more time on customers and decisions. Here are five practical places to start.",
+    sections: [
+      {
+        id: "customer-support",
+        level: "h2",
+        heading: "1. Answer Common Customer Questions Instantly",
+        paragraphs: [
+          "Every business gets the same questions again and again: What are your opening hours? Do you deliver to my area? How much does this cost? How do I book? Answering them by hand takes time, and customers who message after hours often wait until the next day.",
+          "An AI chatbot on your website, WhatsApp, or Instagram can handle these routine questions at any hour, using your own information — prices, services, policies, and FAQs. When a question needs a person, the bot can collect the customer's details and pass the conversation to your team."
+        ],
+        list: [
+          "Start with your 10–20 most frequently asked questions",
+          "Give the bot clear, accurate business information to answer from",
+          "Always offer an easy way to reach a real person",
+          "Review conversations regularly to spot gaps and improve answers"
+        ],
+        image: {
+          gradient: "linear-gradient(135deg,#4f46e5,#7c3aed)",
+          icon: '<path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 10h8M8 14h5"/>',
+          caption: "An AI assistant handles routine questions and hands complex ones to your team"
+        }
+      },
+      {
+        id: "content-marketing",
+        level: "h2",
+        heading: "2. Speed Up Marketing and Content Creation",
+        paragraphs: [
+          "Writing social media posts, product descriptions, email newsletters, and ad copy takes hours that most small teams don't have. AI writing assistants can produce a solid first draft in minutes, suggest headline variations, or turn one blog post into several social posts.",
+          "The key word is draft. AI doesn't know your customers, your local market, or your brand voice as well as you do. Treat its output as a starting point, then edit it so it sounds like your business and check any facts before publishing."
+        ],
+        list: [
+          "Draft social posts, captions, and promotional messages",
+          "Write and refresh product or service descriptions",
+          "Generate several ad headline options to test",
+          "Repurpose long content into shorter formats"
+        ]
+      },
+      {
+        id: "admin-automation",
+        level: "h2",
+        heading: "3. Automate Repetitive Admin Work",
+        paragraphs: [
+          "A surprising amount of small business time goes into tasks like copying details from emails into spreadsheets, reading invoices, sorting enquiries, and writing routine replies. AI tools can now read documents and messages, pull out the important details, and pass them into the systems you already use.",
+          "For example, AI can extract the amount, date, and vendor from a supplier invoice, summarise a long email thread into the key action points, or sort incoming enquiries by type so they reach the right person faster."
+        ],
+        list: [
+          "Extract data from invoices, receipts, and forms",
+          "Summarise long emails, documents, and meeting notes",
+          "Categorise and route incoming enquiries",
+          "Draft routine replies for a person to review and send"
+        ]
+      },
+      {
+        id: "sales-insights",
+        level: "h2",
+        heading: "4. Make Better Decisions With Your Own Data",
+        paragraphs: [
+          "Most small businesses already collect useful data — sales records, customer lists, website visits, and enquiry history — but rarely have time to analyse it. AI-powered tools can look for patterns in that data and present them in plain language.",
+          "You might discover which products sell best in which months, which customers haven't ordered in a while, or which enquiries are most likely to convert. These insights help you plan stock, time your promotions, and focus follow-ups where they're most likely to pay off."
+        ],
+        image: {
+          gradient: "linear-gradient(135deg,#7c3aed,#1490c8)",
+          icon: '<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>',
+          caption: "AI turns everyday business data into practical, plain-language insights"
+        }
+      },
+      {
+        id: "lead-follow-up",
+        level: "h2",
+        heading: "5. Follow Up With Leads Before They Go Cold",
+        paragraphs: [
+          "Leads often go cold not because the customer lost interest, but because nobody followed up in time. When AI is connected to your CRM, it can help score leads, remind your team who to contact next, and suggest personalised follow-up messages based on what the customer asked about.",
+          "This keeps your sales process consistent even on busy days, and makes sure promising enquiries don't get buried under everything else."
+        ]
+      },
+      {
+        id: "getting-started",
+        level: "h2",
+        heading: "How to Get Started Without the Risk",
+        paragraphs: [
+          "You don't need a big AI strategy to begin. The most successful small businesses start with one clear problem, test a simple tool, and measure whether it actually saves time or improves results."
+        ],
+        list: [
+          "Pick one repetitive task that takes up a lot of your team's time",
+          "Try an existing tool before investing in a custom solution",
+          "Keep a person reviewing anything customer-facing",
+          "Avoid sharing sensitive customer or financial data with tools you haven't vetted",
+          "Measure the time saved or results gained after a few weeks"
+        ]
+      },
+      {
+        id: "when-to-go-custom",
+        level: "h3",
+        heading: "When a Custom AI Solution Makes Sense",
+        paragraphs: [
+          "Off-the-shelf tools cover many needs. A custom solution becomes worthwhile when you need AI to work with your own systems and data — for example, a chatbot that checks live stock or bookings, or an automation that connects your CRM, billing, and support tools. That's where a development partner can help you build something that fits the way your business works."
+        ]
+      }
+    ],
+    faq: [
+      {
+        q: "Is AI too expensive for a small business?",
+        a: "Not necessarily. Many AI features are built into tools small businesses already use, and standalone AI tools often have low-cost or free plans. Starting with one focused use case keeps the cost small while you test the value."
+      },
+      {
+        q: "Will AI replace my staff?",
+        a: "For most small businesses, AI works best as support for your team rather than a replacement. It handles repetitive tasks so people can focus on customers, sales, and decisions that need human judgement."
+      },
+      {
+        q: "Is it safe to use AI with customer data?",
+        a: "It can be, if you choose tools carefully. Check how a tool stores and uses your data, avoid entering sensitive information into tools you haven't reviewed, and follow applicable data protection rules."
+      },
+      {
+        q: "Where should a small business start with AI?",
+        a: "Start with a task that is repetitive, time-consuming, and low-risk — such as answering common questions or drafting marketing content. Once that works, expand to other areas."
+      }
+    ],
+    cta: {
+      heading: "Ready to Put AI to Work in Your Business?",
+      text: "Tinqbit helps small businesses find practical AI use cases and build solutions — from chatbots to workflow automation — that fit the tools and processes you already use.",
+      buttonText: "Explore AI & ML Services",
+      buttonLink: "/services/ai-and-ml.html"
+    },
+    related: ["ai-ml-customer-experience", "meta-ads-for-local-businesses-beginners-guide", "why-we-built-tinqerhub"]
+  },
+  {
+    slug: "meta-ads-for-local-businesses-beginners-guide",
+    title: "Meta Ads for Local Businesses: A Beginner’s Guide to Your First Campaign",
+    category: "Digital Marketing",
+    categoryClass: "cp",
+    tags: ["Meta Ads", "Facebook Ads", "Instagram Ads", "Local Business", "Digital Marketing"],
+    author: "Alfiya",
+    authorRole: "Digital Marketing Executive",
+    authorInitials: "AL",
+    date: "2026-10-21",
+    dateLabel: "October 21, 2026",
+    readTime: "8 min read",
+    gradient: "linear-gradient(135deg,#1877f2,#c026d3)",
+    icon: '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+    excerpt: "Running ads on Facebook and Instagram doesn't need a big budget or an agency-sized team. Here's a step-by-step guide to setting up, targeting, and measuring your first Meta Ads campaign as a local business.",
+    intro: "Most of your customers already spend part of every day on Facebook and Instagram. For a local business — a clinic, salon, restaurant, showroom, or service provider — Meta Ads is one of the most direct ways to put your offer in front of people who live or work nearby. The platform can look intimidating the first time you open Ads Manager, but a good first campaign comes down to a handful of clear decisions: what you want people to do, who you want to reach, how much you want to spend, and how you'll know it worked. This guide walks through each of those decisions in order.",
+    sections: [
+      {
+        id: "why-meta-ads-for-local",
+        level: "h2",
+        heading: "Why Meta Ads Work for Local Businesses",
+        paragraphs: [
+          "Search ads catch people who are already looking for you. Meta Ads do something different: they reach people who match your ideal customer before they start searching. For local businesses, that matters, because many purchases — a new restaurant, a home renovation, a dental check-up — start with someone seeing an offer and deciding it's worth a closer look.",
+          "Meta also lets you target by location down to a radius around your shop, run a single campaign across Facebook, Instagram, and Messenger, and start with a small daily budget. You don't need to commit to a large monthly spend to learn what works."
+        ],
+        list: [
+          "Reach people within a set distance of your business",
+          "Show the same campaign across Facebook, Instagram, and Messenger",
+          "Start small and increase spend only when results justify it",
+          "Let customers call, message on WhatsApp, or book directly from the ad"
+        ]
+      },
+      {
+        id: "before-you-start",
+        level: "h2",
+        heading: "Set Up the Basics Before Your First Ad",
+        paragraphs: [
+          "A little setup work up front saves a lot of confusion later. Before you create a campaign, make sure the accounts and tracking are in place so Meta can deliver your ads properly and you can see what happened afterwards."
+        ],
+        list: [
+          "Create a Facebook Page and connect your Instagram business account to it",
+          "Set up a business portfolio in Meta Business Suite so your Page, ad account, and team access live in one place",
+          "Add a payment method to your ad account",
+          "Install the Meta Pixel on your website if you want to track enquiries, bookings, or purchases",
+          "Connect your WhatsApp Business number if you want customers to message you from ads"
+        ]
+      },
+      {
+        id: "choose-objective",
+        level: "h2",
+        heading: "Choose the Right Campaign Objective",
+        paragraphs: [
+          "The objective tells Meta what result to look for, and it shapes who sees your ad. Choosing the wrong objective is one of the most common beginner mistakes — a campaign set to Awareness will get you plenty of views, but not necessarily enquiries.",
+          "For most local businesses, one of three objectives fits the first campaign:"
+        ],
+        list: [
+          "Leads — collect phone numbers and enquiries through an instant form, or start conversations on WhatsApp or Messenger",
+          "Traffic — send people to your website, booking page, or menu",
+          "Awareness — get your name in front of as many nearby people as possible, useful for a new opening or a local event"
+        ],
+        image: {
+          gradient: "linear-gradient(135deg,#1877f2,#c026d3)",
+          icon: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+          caption: "Pick the objective that matches the action you want customers to take"
+        }
+      },
+      {
+        id: "target-local-audience",
+        level: "h2",
+        heading: "Target the People Who Can Actually Visit You",
+        paragraphs: [
+          "Location is your most important targeting setting. Instead of choosing a whole state or city, drop a pin on your business and set a radius that reflects how far a customer would realistically travel — a café might choose 3–5 km, while a renovation company might cover the whole district.",
+          "Meta's Advantage+ audience will often find your customers more efficiently than tightly hand-picked interests, so start with location, age range, and language, and let the system learn. Avoid stacking lots of narrow interests on your first campaign; a very small audience usually becomes expensive to reach."
+        ]
+      },
+      {
+        id: "custom-audiences",
+        level: "h3",
+        heading: "Use the Customers You Already Have",
+        paragraphs: [
+          "Once you have some data, custom audiences become powerful. You can show ads to people who visited your website, engaged with your Instagram profile, or watched your videos — people who already know who you are.",
+          "You can also create a lookalike audience from these groups, which asks Meta to find new people who resemble your existing customers."
+        ]
+      },
+      {
+        id: "set-budget",
+        level: "h2",
+        heading: "Set a Budget You Can Learn From",
+        paragraphs: [
+          "Your first campaign is a test. The goal is to spend enough to learn what works, without risking money you can't afford. Many local businesses start with a modest daily budget and run the campaign for at least a week before judging the results.",
+          "Meta needs time to learn who responds to your ad. In the first few days, results can swing up and down — this is the learning phase. Resist the urge to edit the campaign every day; frequent changes restart that learning and make results harder to read."
+        ],
+        list: [
+          "Use a daily budget rather than a lifetime budget while testing",
+          "Run the campaign for at least 7 days before making major changes",
+          "Increase the budget gradually — around 20% at a time — once a campaign is performing well"
+        ]
+      },
+      {
+        id: "create-ad",
+        level: "h2",
+        heading: "Create an Ad That Stops the Scroll",
+        paragraphs: [
+          "People scroll fast. Your ad has a second or two to show who you are, what you offer, and why it's relevant to them. Real photos and short videos of your shop, team, and work usually outperform polished stock images for local businesses, because they feel familiar and trustworthy.",
+          "Keep the message simple: one offer, one clear benefit, and one action. Mention the area you serve so nearby viewers instantly know the ad is meant for them."
+        ],
+        list: [
+          "Use vertical video or square images that look good on phones",
+          "Put your key message in the first line of text",
+          "Include a clear offer or reason to act now",
+          "Pick a call-to-action button that matches your goal — Call Now, Send WhatsApp Message, Book Now, or Learn More",
+          "Prepare two or three versions so Meta can test which one works best"
+        ],
+        image: {
+          gradient: "linear-gradient(135deg,#c026d3,#ea580c)",
+          icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+          caption: "Real photos of your business build trust faster than stock imagery"
+        }
+      },
+      {
+        id: "measure-results",
+        level: "h2",
+        heading: "Measure What Matters",
+        paragraphs: [
+          "Ads Manager shows many numbers. For a first campaign, focus on a few that connect directly to your business and ignore the rest until you're comfortable."
+        ],
+        list: [
+          "Cost per result — how much you paid for each lead, message, or click",
+          "Click-through rate (CTR) — how often people who see the ad act on it, a quick signal of whether your creative is working",
+          "Frequency — how many times the average person has seen your ad; when it climbs high, refresh the creative",
+          "Real-world outcomes — how many enquiries turned into bookings, visits, or sales"
+        ]
+      },
+      {
+        id: "common-mistakes",
+        level: "h3",
+        heading: "Common Beginner Mistakes to Avoid",
+        paragraphs: [],
+        list: [
+          "Boosting random posts instead of building a campaign with a clear objective",
+          "Targeting a whole state when customers only come from a few nearby areas",
+          "Changing the ad, audience, or budget every day during the learning phase",
+          "Sending ad clicks to a slow website or a page with no clear next step",
+          "Not replying quickly to messages and leads generated by the ad"
+        ]
+      }
+    ],
+    faq: [
+      {
+        q: "How much should a local business spend on its first Meta Ads campaign?",
+        a: "There is no fixed minimum, but it helps to set a daily budget you are comfortable running for at least one to two weeks. That gives Meta enough data to learn and gives you enough results to judge whether the campaign is working before you spend more."
+      },
+      {
+        q: "Is boosting a post the same as running a Meta Ads campaign?",
+        a: "Boosting is a simplified version of advertising with fewer options. A campaign built in Ads Manager gives you control over the objective, audience, placements, and ad versions, which usually leads to better results for specific goals such as leads or bookings."
+      },
+      {
+        q: "Should I run ads on Facebook or Instagram?",
+        a: "For most local businesses, it's best to run one campaign across both and let Meta show ads where they perform best. You can review placement results later and adjust if one platform is clearly stronger for your audience."
+      },
+      {
+        q: "How long does it take to see results from Meta Ads?",
+        a: "Many campaigns start generating clicks or enquiries within a few days, but results usually become more stable after the first week, once the learning phase is complete."
+      }
+    ],
+    cta: {
+      heading: "Ready to Launch Your First Meta Ads Campaign?",
+      text: "Tinqbit's digital marketing team can set up your campaign, target the right local audience, and track the enquiries it brings in — so your ad budget turns into real customers.",
+      buttonText: "Explore Meta Advertising",
+      buttonLink: "/services/meta-advertising.html"
+    },
+    related: ["local-seo-strategies-2026", "website-redesign-signs", "repair-kochi-website-performance-case-study"]
+  },
+  {
     slug: "why-we-built-tinqerhub",
     title: "Why We Built TinqerHub: Moving Work From WhatsApp to Tasks That Keep the Conversation",
     category: "CRM Development",
